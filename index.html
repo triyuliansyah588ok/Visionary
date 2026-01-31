@@ -3,106 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>THE APEX VISIONARY - OFFICIAL PORTAL</title>
-    
-    <meta property="og:title" content="THE APEX VISIONARY">
-    <meta property="og:description" content="Portal Streaming VAMS TV & NS TV. Dukung kami via DANA 082227473281">
-    <meta property="og:image" content="logo.png">
-    
-    <link rel="icon" type="image/png" href="logo.png">
+    <title>THE APEX VISIONARY</title>
     <style>
-        :root { --pink: #ff004c; --cyan: #00f2ff; --gold: #ffd700; }
-        body { background: #000; color: #fff; font-family: 'Segoe UI', sans-serif; text-align: center; margin: 0; padding: 0; }
+        body { background: #fff; color: #333; font-family: Arial, sans-serif; margin: 0; padding: 0; }
         
-        /* Pengumuman Berjalan */
-        .marquee-container { background: #111; color: var(--cyan); padding: 12px; font-weight: bold; border-bottom: 2px solid var(--cyan); font-size: 14px; }
-        
-        /* Header & Logo */
-        .header-section { padding: 30px 20px; }
-        .logo-utama img { max-width: 160px; border-radius: 25px; box-shadow: 0 0 30px rgba(0, 242, 255, 0.3); margin-bottom: 15px; }
-        h1 { font-size: 1.6rem; letter-spacing: 3px; margin: 10px 0; text-transform: uppercase; }
-        #clock { color: var(--pink); font-size: 20px; font-weight: bold; font-family: monospace; letter-spacing: 2px; }
+        /* Header Biru Gelap ala Professional TV */
+        .header { background: #1a237e; color: white; padding: 15px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; }
+        .header .brand { font-weight: bold; font-size: 18px; }
+        .header .icons { display: flex; gap: 15px; }
 
-        /* Container Utama */
-        .container { display: flex; flex-direction: column; gap: 20px; align-items: center; padding: 20px; max-width: 500px; margin: auto; }
-        .card { width: 100%; background: #0a0a0a; padding: 25px; border-radius: 20px; border: 1px solid #222; box-sizing: border-box; }
+        /* Container Menu Utama */
+        .main-content { padding: 20px; }
+        .brand-title { color: #1a237e; font-size: 24px; font-weight: bold; margin-bottom: 5px; text-decoration: none; display: block; }
+        .brand-desc { color: #666; font-size: 14px; margin-bottom: 20px; }
 
-        /* Jadwal Acara */
-        .jadwal-title { color: var(--gold); margin-top: 0; font-size: 18px; border-bottom: 1px solid #333; padding-bottom: 10px; }
-        .jadwal-item { text-align: left; font-size: 15px; margin: 12px 0; color: #bbb; display: flex; justify-content: space-between; }
-        .jadwal-item b { color: var(--gold); }
+        /* List Menu ala SCTV Google Result */
+        .menu-list { border-top: 1px solid #eee; }
+        .menu-item { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 18px 0; 
+            border-bottom: 1px solid #eee; 
+            text-decoration: none; 
+            color: #1a237e; 
+            font-size: 18px; 
+            font-weight: 500;
+        }
+        .menu-item:active { background: #f5f5f5; }
+        .arrow { color: #999; font-weight: bold; font-family: serif; }
 
-        /* Tombol Stasiun TV */
-        .btn { display: block; padding: 16px; text-decoration: none; font-weight: bold; border-radius: 15px; text-transform: uppercase; transition: 0.3s; margin: 15px 0; font-size: 15px; }
-        .btn-ns { color: var(--pink); border: 2px solid var(--pink); box-shadow: 0 0 15px rgba(255, 0, 76, 0.2); }
-        .btn-vams { color: var(--cyan); border: 2px solid var(--cyan); box-shadow: 0 0 15px rgba(0, 242, 255, 0.2); }
-        .btn:hover { transform: translateY(-3px); background: rgba(255,255,255,0.05); }
-
-        /* Section Donasi DANA */
-        .donasi-box { border: 1px dashed var(--gold); }
-        .dana-num { font-size: 22px; font-weight: bold; color: #fff; margin: 15px 0; letter-spacing: 1px; }
-        .dana-btn { background: #0077ff; color: white; padding: 12px; text-decoration: none; display: block; border-radius: 10px; font-weight: bold; }
-
-        /* Social Media & Footer */
-        .fb-btn { display: block; padding: 12px; color: white; text-decoration: none; border-radius: 30px; margin: 10px 0; font-size: 13px; font-weight: bold; }
-        .footer-info { background: #0a0a0a; padding: 30px 20px; border-top: 1px solid #222; margin-top: 40px; font-size: 12px; color: #555; }
+        /* Donasi & Footer */
+        .donation-info { background: #f9f9f9; margin-top: 30px; padding: 20px; border-radius: 8px; border-left: 4px solid #ffd700; }
+        .donation-info h4 { margin: 0 0 10px 0; color: #333; }
+        .footer { text-align: center; padding: 30px; color: #999; font-size: 12px; }
     </style>
 </head>
 <body>
 
-    <div class="marquee-container">
-        <marquee scrollamount="6">INFO: DUKUNG SIARAN KAMI VIA DANA 082227473281 — TONTON VAMS TV & NS TV SETIAP HARI — VISIONARY DIGITAL BROADCASTING</marquee>
+    <div class="header">
+        <div class="brand">THE APEX VISIONARY</div>
+        <div class="icons">
+            <span>🔍</span>
+            <span>☰</span> </div>
     </div>
 
-    <div class="header-section">
-        <div class="logo-utama">
-            <img src="logo.png" alt="THE APEX VISIONARY" onerror="this.src='https://via.placeholder.com/150?text=VISIONARY';">
-        </div>
-        <h1>The Apex Visionary</h1>
-        <div id="clock">00:00:00</div>
-    </div>
+    <div class="main-content">
+        <a href="#" class="brand-title">THE APEX VISIONARY</a>
+        <p class="brand-desc">Cek jadwal lengkap dan tonton live streaming program favoritmu di sini!</p>
 
-    <div class="container">
-        <div class="card">
-            <h3 class="jadwal-title">📅 JADWAL SIARAN HARI INI</h3>
-            <div class="jadwal-item"><span>19:00 - Live Utama</span> <b>VAMS TV</b></div>
-            <div class="jadwal-item"><span>21:00 - Eksklusif</span> <b>NS TV</b></div>
-            <div class="jadwal-item"><span>00:00 - Late Show</span> <b>VISIONARY</b></div>
-        </div>
-
-        <div class="card" style="border-color: #333;">
-            <p style="font-size: 12px; color: #666; margin-bottom: 20px;">SILAKAN PILIH SALURAN:</p>
-            <a href="https://triyuliansyah588ok.github.io/NSTV/" class="btn btn-ns">MASUK NS TV</a>
-            <a href="https://triyuliansyah588ok.github.io/VAMSTV/" class="btn btn-vams">MASUK VAMS TV</a>
-        </div>
-
-        <div class="card donasi-box">
-            <p style="color: var(--gold); font-size: 14px; margin: 0;">☕ DUKUNG KREATIFITAS KAMI</p>
-            <div class="dana-num">0822-2747-3281</div>
-            <a href="https://link.dana.id/qr/082227473281" target="_blank" class="dana-btn">KIRIM DANA SEKARANG</a>
+        <div class="menu-list">
+            <a href="https://triyuliansyah588ok.github.io/VAMSTV/" class="menu-item">
+                VAMS TV Streaming <span class="arrow">›</span>
+            </a>
+            <a href="https://triyuliansyah588ok.github.io/NSTV/" class="menu-item">
+                NS TV Streaming <span class="arrow">›</span>
+            </a>
+            <a href="#jadwal" class="menu-item">
+                Jadwal TV <span class="arrow">›</span>
+            </a>
+            <a href="https://www.facebook.com/956077827592831" class="menu-item">
+                Facebook NS TV <span class="arrow">›</span>
+            </a>
+            <a href="https://www.facebook.com/971370336066551" class="menu-item">
+                Facebook VAMS TV <span class="arrow">›</span>
+            </a>
+            <a href="mailto:triyuliansyah588ok@gmail.com" class="menu-item">
+                Kontak Kami <span class="arrow">›</span>
+            </a>
         </div>
 
-        <div style="width: 100%; margin-top: 10px;">
-            <p style="font-size: 12px; color: #444;">FOLLOW US ON FACEBOOK:</p>
-            <a href="https://www.facebook.com/956077827592831" target="_blank" class="fb-btn" style="background: #ff004c;">FACEBOOK NS TV</a>
-            <a href="https://www.facebook.com/971370336066551" target="_blank" class="fb-btn" style="background: #1877F2;">FACEBOOK VAMS TV</a>
+        <div class="donation-info">
+            <h4>☕ Dukung Operasional</h4>
+            <p style="margin: 0; color: #666; font-size: 14px;">Transfer Donasi via DANA:</p>
+            <p style="margin: 5px 0; font-size: 18px; font-weight: bold; color: #1a237e;">0822 2747 3281</p>
         </div>
     </div>
 
-    <div class="footer-info">
-        <p>REDAKSI: triyuliansyah588ok@gmail.com</p>
-        <p>© 2026 THE APEX VISIONARY BROADCAST SYSTEM</p>
+    <div class="footer">
+        © 2026 THE APEX VISIONARY BROADCAST SYSTEM
     </div>
-
-    <script>
-        function updateClock() {
-            const now = new Date();
-            const timeString = now.toLocaleTimeString('id-ID', { hour12: false });
-            document.getElementById('clock').innerHTML = "ON-AIR: " + timeString;
-        }
-        setInterval(updateClock, 1000);
-        updateClock();
-    </script>
 
 </body>
 </html>
