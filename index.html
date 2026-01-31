@@ -5,38 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>THE APEX VISIONARY</title>
     <style>
-        body { background: #fff; color: #333; font-family: Arial, sans-serif; margin: 0; padding: 0; }
+        body { background: #fff; color: #333; font-family: Arial, sans-serif; margin: 0; padding: 0; overflow-x: hidden; }
         
-        /* Header Biru Gelap ala Professional TV */
+        /* Header Biru Gelap Profesional */
         .header { background: #1a237e; color: white; padding: 15px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; }
-        .header .brand { font-weight: bold; font-size: 18px; }
-        .header .icons { display: flex; gap: 15px; }
+        .header .brand { font-weight: bold; font-size: 18px; letter-spacing: 1px; }
+        .header .icons { display: flex; gap: 15px; cursor: pointer; }
 
-        /* Container Menu Utama */
-        .main-content { padding: 20px; }
-        .brand-title { color: #1a237e; font-size: 24px; font-weight: bold; margin-bottom: 5px; text-decoration: none; display: block; }
-        .brand-desc { color: #666; font-size: 14px; margin-bottom: 20px; }
+        /* Logo Visionary Center */
+        .logo-container { text-align: center; padding: 25px 0; background: #fdfdfd; }
+        .logo-container img { width: 100px; height: 100px; border-radius: 50%; border: 3px solid #1a237e; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
 
-        /* List Menu ala SCTV Google Result */
+        /* Main Content List ala Google/SCTV */
+        .main-content { padding: 0 20px 20px 20px; }
+        .brand-title { color: #1a237e; font-size: 24px; font-weight: bold; text-decoration: none; display: block; margin-bottom: 5px; }
+        .brand-desc { color: #666; font-size: 14px; margin-bottom: 20px; line-height: 1.4; }
+
         .menu-list { border-top: 1px solid #eee; }
-        .menu-item { 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            padding: 18px 0; 
-            border-bottom: 1px solid #eee; 
-            text-decoration: none; 
-            color: #1a237e; 
-            font-size: 18px; 
-            font-weight: 500;
-        }
-        .menu-item:active { background: #f5f5f5; }
-        .arrow { color: #999; font-weight: bold; font-family: serif; }
+        .menu-item { display: flex; justify-content: space-between; align-items: center; padding: 18px 0; border-bottom: 1px solid #eee; text-decoration: none; color: #1a237e; font-size: 17px; font-weight: 500; }
+        .arrow { color: #ccc; font-size: 20px; }
 
-        /* Donasi & Footer */
-        .donation-info { background: #f9f9f9; margin-top: 30px; padding: 20px; border-radius: 8px; border-left: 4px solid #ffd700; }
-        .donation-info h4 { margin: 0 0 10px 0; color: #333; }
-        .footer { text-align: center; padding: 30px; color: #999; font-size: 12px; }
+        /* Section Donasi DANA Interaktif */
+        .donation-card { background: #f9f9f9; margin-top: 25px; padding: 20px; border-radius: 12px; border-left: 5px solid #ffd700; text-decoration: none; display: block; }
+        .donation-card:active { background: #f0f0f0; }
+        .dana-title { color: #333; font-weight: bold; margin-bottom: 5px; display: flex; align-items: center; gap: 8px; }
+        .dana-number { font-size: 20px; font-weight: bold; color: #0077ff; }
+
+        /* Footer */
+        .footer { text-align: center; padding: 30px; color: #999; font-size: 11px; border-top: 1px solid #f5f5f5; margin-top: 20px; }
+
+        /* Sub-Menu Content (Sinetron/Drama) */
+        .category-header { background: #f0f2f5; padding: 10px 20px; font-size: 13px; font-weight: bold; color: #555; text-transform: uppercase; }
     </style>
 </head>
 <body>
@@ -44,44 +43,63 @@
     <div class="header">
         <div class="brand">THE APEX VISIONARY</div>
         <div class="icons">
-            <span>🔍</span>
-            <span>☰</span> </div>
+            <span onclick="alert('Cari program...')">🔍</span>
+            <span onclick="window.scrollTo(0, document.body.scrollHeight)">☰</span>
+        </div>
+    </div>
+
+    <div class="logo-container">
+        <img src="logo.png" alt="Visionary Logo" onerror="this.src='https://via.placeholder.com/100?text=V';">
     </div>
 
     <div class="main-content">
         <a href="#" class="brand-title">THE APEX VISIONARY</a>
-        <p class="brand-desc">Cek jadwal lengkap dan tonton live streaming program favoritmu di sini!</p>
+        <p class="brand-desc">Portal resmi penyiaran digital. Nikmati tayangan eksklusif VAMS TV dan NS TV kapan saja, di mana saja.</p>
 
         <div class="menu-list">
-            <a href="https://triyuliansyah588ok.github.io/VAMSTV/" class="menu-item">
-                VAMS TV Streaming <span class="arrow">›</span>
-            </a>
-            <a href="https://triyuliansyah588ok.github.io/NSTV/" class="menu-item">
-                NS TV Streaming <span class="arrow">›</span>
-            </a>
-            <a href="#jadwal" class="menu-item">
-                Jadwal TV <span class="arrow">›</span>
-            </a>
-            <a href="https://www.facebook.com/956077827592831" class="menu-item">
-                Facebook NS TV <span class="arrow">›</span>
-            </a>
-            <a href="https://www.facebook.com/971370336066551" class="menu-item">
-                Facebook VAMS TV <span class="arrow">›</span>
-            </a>
-            <a href="mailto:triyuliansyah588ok@gmail.com" class="menu-item">
-                Kontak Kami <span class="arrow">›</span>
-            </a>
+            <a href="https://triyuliansyah588ok.github.io/VAMSTV/" class="menu-item">Live Streaming VAMS TV <span class="arrow">›</span></a>
+            <a href="https://triyuliansyah588ok.github.io/NSTV/" class="menu-item">Live Streaming NS TV <span class="arrow">›</span></a>
+            <a href="https://www.facebook.com/971370336066551" class="menu-item">Facebook VAMS TV <span class="arrow">›</span></a>
+            <a href="https://www.facebook.com/956077827592831" class="menu-item">Facebook NS TV <span class="arrow">›</span></a>
+            
+            <div class="category-header">Tentang & Program</div>
+            <a href="#" class="menu-item">Tentang Visionary Media <span class="arrow">›</span></a>
+            
+            <div class="category-header">Sinetron Unggulan</div>
+            <a href="#" class="menu-item">Mengejar Bayang Neon <span class="arrow">›</span></a>
+            <a href="#" class="menu-item">Cinta di Balik Lensa <span class="arrow">›</span></a>
+            <a href="#" class="menu-item">Rahasia Frekuensi <span class="arrow">›</span></a>
+            <a href="#" class="menu-item">Prahara Apex City <span class="arrow">›</span></a>
+            <a href="#" class="menu-item">Takdir Sang Penyiar <span class="arrow">›</span></a>
+
+            <div class="category-header">Web Series Eksklusif</div>
+            <a href="#" class="menu-item">Cyber Soul <span class="arrow">›</span></a>
+            <a href="#" class="menu-item">Misteri Kode 588 <span class="arrow">›</span></a>
+            <a href="#" class="menu-item">Digital Heartbreak <span class="arrow">›</span></a>
+            <a href="#" class="menu-item">Underground Vision <span class="arrow">›</span></a>
+            <a href="#" class="menu-item">The Apex Files <span class="arrow">›</span></a>
+
+            <div class="category-header">Drama Pilihan</div>
+            <a href="#" class="menu-item">Luka Masa Lalu <span class="arrow">›</span></a>
+            <a href="#" class="menu-item">Gema di Ujung Malam <span class="arrow">›</span></a>
+            <a href="#" class="menu-item">Janji di Atas Menara <span class="arrow">›</span></a>
+            <a href="#" class="menu-item">Sisi Lain Cahaya <span class="arrow">›</span></a>
+            <a href="#" class="menu-item">Arus Waktu <span class="arrow">›</span></a>
+
+            <div class="category-header">Bantuan</div>
+            <a href="mailto:triyuliansyah588ok@gmail.com" class="menu-item">Kontak Kami / Kerjasama <span class="arrow">›</span></a>
         </div>
 
-        <div class="donation-info">
-            <h4>☕ Dukung Operasional</h4>
-            <p style="margin: 0; color: #666; font-size: 14px;">Transfer Donasi via DANA:</p>
-            <p style="margin: 5px 0; font-size: 18px; font-weight: bold; color: #1a237e;">0822 2747 3281</p>
-        </div>
+        <a href="https://link.dana.id/qr/082227473281" target="_blank" class="donation-card">
+            <div class="dana-title">☕ Dukung Operasional</div>
+            <p style="margin: 0; color: #666; font-size: 13px;">Klik untuk donasi via DANA:</p>
+            <div class="dana-number">0822 2747 3281</div>
+        </a>
     </div>
 
     <div class="footer">
-        © 2026 THE APEX VISIONARY BROADCAST SYSTEM
+        © 2026 THE APEX VISIONARY BROADCAST SYSTEM<br>
+        Digital Media Network Indonesia
     </div>
 
 </body>
