@@ -1,170 +1,27 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VISIONARY+ | Premium Streaming</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Inter', sans-serif;
-            background-color: #0a0a0a;
-            color: #ffffff;
-            text-align: center;
-        }
+<div style="display: grid; gap: 15px; margin-top: 30px;">
 
-        .container {
-            padding: 40px 20px;
-            max-width: 500px;
-            margin: auto;
-        }
-
-        .logo {
-            font-size: 32px;
-            font-weight: 900;
-            letter-spacing: -1px;
-            color: #facc15;
-            margin-bottom: 5px;
-        }
-
-        .tagline {
-            font-size: 14px;
-            color: #94a3b8;
-            margin-bottom: 40px;
-        }
-
-        /* KOTAK VIP */
-        .vip-card {
-            background: linear-gradient(145deg, #1a1a1a, #000000);
-            border: 2px solid #facc15;
-            border-radius: 24px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(250, 204, 21, 0.1);
-        }
-
-        .price {
-            font-size: 40px;
-            font-weight: 800;
-            margin: 10px 0;
-        }
-
-        .price span {
-            font-size: 16px;
-            color: #94a3b8;
-            font-weight: normal;
-        }
-
-        .btn-bayar {
-            display: block;
-            background-color: #facc15;
-            color: #000;
-            text-decoration: none;
-            padding: 18px;
-            border-radius: 14px;
-            font-weight: bold;
-            font-size: 18px;
-            margin-top: 20px;
-            transition: 0.3s;
-        }
-
-        .btn-bayar:hover {
-            transform: scale(1.03);
-            box-shadow: 0 5px 20px rgba(250, 204, 21, 0.4);
-        }
-
-        /* INPUT KODE */
-        .input-section {
-            margin-top: 30px;
-            padding-top: 30px;
-            border-top: 1px solid #333;
-        }
-
-        input {
-            width: 80%;
-            padding: 15px;
-            border-radius: 10px;
-            border: 1px solid #333;
-            background: #1a1a1a;
-            color: white;
-            font-size: 16px;
-            text-align: center;
-            margin-bottom: 10px;
-        }
-
-        .btn-check {
-            background: #334155;
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 10px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-
-        /* VIDEO AREA (TERSEMBUNYI) */
-        #videoPlayer {
-            display: none;
-            margin-top: 30px;
-        }
-
-        iframe {
-            width: 100%;
-            border-radius: 15px;
-            border: 2px solid #facc15;
-        }
-    </style>
-</head>
-<body>
-
-    <div class="container">
-        <div class="logo">VISIONARY+</div>
-        <div class="tagline">Exclusive Web Series & Cinema</div>
-
-        <div class="vip-card">
-            <h3 style="margin: 0; color: #facc15;">PAKET VIP 30 HARI</h3>
-            <div class="price">25.000 <span>/ bulan</span></div>
-            <p style="font-size: 13px; color: #94a3b8;">Akses otomatis tanpa antri via GoPay/DANA</p>
-            
-            <a href="https://saweria.co/VisionaryPlus" target="_blank" class="btn-bayar">
-                BELI AKSES SEKARANG
-            </a>
-
-            <div class="input-section">
-                <p style="font-size: 14px; margin-bottom: 10px;">Sudah punya kode? Masukkan di sini:</p>
-                <input type="text" id="kodeVIP" placeholder="Contoh: APEX2">
-                <br>
-                <button class="btn-check" onclick="cekKode()">AKTIFKAN VIP</button>
-            </div>
-        </div>
-
-        <div id="videoPlayer">
-            <h2 style="color: #4ade80;">✅ AKSES VIP AKTIF</h2>
-            <p>Selamat menonton, Pak CEO!</p>
-            <iframe height="250" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
-        </div>
-        
-        <p style="margin-top: 40px; font-size: 11px; color: #444;">&copy; 2026 Visionary+ Streaming System. All rights reserved.</p>
+    <div style="background: #1a1a1a; border: 1px solid #facc15; padding: 20px; border-radius: 15px;">
+        <h4 style="color: #facc15; margin: 0;">SILVER 1 BULAN</h4>
+        <div style="font-size: 22px; font-weight: bold; margin: 10px 0;">Rp 60.000</div>
+        <a href="https://saweria.co/VisionaryPlus" target="_blank" style="display:block; background:#facc15; color:#000; text-decoration:none; padding:10px; border-radius:8px; font-weight:bold; font-size:12px;">PILIH SILVER</a>
     </div>
 
-    <script>
-        function cekKode() {
-            const input = document.getElementById('kodeVIP').value.trim().toUpperCase();
-            
-            // LOGIKA KODE HARIAN: APEX + Tanggal Hari Ini
-            const tgl = new Date().getDate(); // Mengambil tanggal hari ini
-            const kodeBenar = "APEX" + tgl; 
+    <div style="background: #1a1a1a; border: 1px solid #4ade80; padding: 20px; border-radius: 15px;">
+        <h4 style="color: #4ade80; margin: 0;">GOLD 3 BULAN</h4>
+        <div style="font-size: 22px; font-weight: bold; margin: 10px 0;">Rp 150.000</div>
+        <a href="https://saweria.co/VisionaryPlus" target="_blank" style="display:block; background:#4ade80; color:#000; text-decoration:none; padding:10px; border-radius:8px; font-weight:bold; font-size:12px;">PILIH GOLD</a>
+    </div>
 
-            if (input === kodeBenar) {
-                alert("Selamat! Kode Benar. Selamat Menonton.");
-                document.querySelector('.vip-card').style.display = 'none'; // Sembunyikan kotak bayar
-                document.getElementById('videoPlayer').style.display = 'block'; // Munculkan video
-            } else {
-                alert("KODE SALAH atau SUDAH EXPIRED! Pastikan Anda sudah membayar di Saweria untuk mendapatkan kode hari ini.");
-            }
-        }
-    </script>
+    <div style="background: linear-gradient(145deg, #222, #000); border: 1px solid #ffffff; padding: 20px; border-radius: 15px;">
+        <h4 style="color: #ffffff; margin: 0;">PLATINUM 13 BULAN</h4>
+        <div style="font-size: 22px; font-weight: bold; margin: 10px 0; color: #fff;">Rp 1.000.000</div>
+        <a href="https://saweria.co/VisionaryPlus" target="_blank" style="display:block; background:#fff; color:#000; text-decoration:none; padding:10px; border-radius:8px; font-weight:bold; font-size:12px;">PILIH PLATINUM</a>
+    </div>
 
-</body>
-</html>
+    <div style="background: #000; border: 2px solid #f87171; padding: 20px; border-radius: 15px; box-shadow: 0 0 15px rgba(248, 113, 113, 0.4);">
+        <h4 style="color: #f87171; margin: 0;">LEGEND 3 TAHUN</h4>
+        <div style="font-size: 22px; font-weight: bold; margin: 10px 0; color: #f87171;">Rp 4.000.000</div>
+        <a href="https://saweria.co/VisionaryPlus" target="_blank" style="display:block; background:#f87171; color:#000; text-decoration:none; padding:10px; border-radius:8px; font-weight:bold; font-size:12px;">PILIH LEGEND</a>
+    </div>
+
+</div>
