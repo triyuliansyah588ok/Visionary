@@ -6,51 +6,68 @@
     <title>THE APEX VISIONARY - Official Portal</title>
     <meta name="google-site-verification" content="NXnPTMapUtNrEYOUSr-d0aJT1H2zWiX96TN504I-qZA" />
     <style>
-        :root { --primary: #1a237e; }
-        body { margin: 0; font-family: sans-serif; background: #fff; }
-        .header { background: var(--primary); color: white; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; }
-        .header .brand { font-weight: bold; font-size: 19px; }
-        .icons { display: flex; gap: 20px; font-size: 22px; cursor: pointer; }
-        .nav-menu { display: none; background: #fff; position: absolute; top: 55px; right: 0; width: 220px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); border-bottom: 3px solid var(--primary); }
+        :root { --primary: #1a237e; --accent: #ffd700; }
+        body { margin: 0; font-family: 'Segoe UI', sans-serif; background: #f0f2f5; color: #333; }
+        .header { background: var(--primary); color: white; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.2); }
+        .header .brand { font-weight: bold; font-size: 20px; letter-spacing: 1px; }
+        .nav-menu { display: none; background: #fff; position: absolute; top: 60px; right: 0; width: 250px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); border-radius: 0 0 0 15px; overflow: hidden; }
         .nav-menu.active { display: block; }
-        .nav-item { display: block; padding: 15px 20px; text-decoration: none; color: var(--primary); border-bottom: 1px solid #eee; font-weight: bold; }
-        .container { padding: 20px; }
-        .category-label { background: #f1f3f4; padding: 10px 15px; font-size: 11px; font-weight: bold; color: #5f6368; margin: 15px -20px 10px -20px; text-indent: 10px; }
-        .list-link { display: flex; justify-content: space-between; padding: 18px 0; border-bottom: 1px solid #eee; text-decoration: none; color: var(--primary); font-weight: 500; }
-        .footer { text-align: center; color: #aaa; font-size: 11px; padding: 40px 0; }
+        .nav-item { display: block; padding: 15px 20px; text-decoration: none; color: var(--primary); border-bottom: 1px solid #eee; font-weight: bold; transition: 0.3s; }
+        .nav-item:hover { background: #f1f1f1; }
+        .hero { background: linear-gradient(rgba(26,35,126,0.8), rgba(26,35,126,0.8)), url('https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?q=80&w=1000&auto=format&fit=crop'); background-size: cover; padding: 40px 20px; color: white; text-align: center; border-bottom: 5px solid var(--accent); }
+        .container { padding: 20px; max-width: 600px; margin: auto; }
+        .category-label { font-size: 12px; font-weight: bold; color: #888; margin: 20px 0 10px 0; text-transform: uppercase; letter-spacing: 1px; }
+        .list-card { background: white; border-radius: 12px; display: flex; align-items: center; padding: 15px; margin-bottom: 10px; text-decoration: none; color: var(--primary); font-weight: 600; box-shadow: 0 2px 5px rgba(0,0,0,0.05); transition: 0.2s; }
+        .list-card:active { transform: scale(0.98); }
+        .list-card span { margin-right: 15px; font-size: 20px; }
+        .footer { text-align: center; padding: 40px 20px; color: #999; font-size: 12px; }
+        .admin-btn { margin-top: 10px; display: inline-block; color: #ccc; text-decoration: none; font-style: italic; }
     </style>
 </head>
 <body>
+
     <div class="header">
         <div class="brand">THE APEX VISIONARY</div>
-        <div class="icons">
-            <span onclick="alert('Gunakan Menu Titik 3 untuk Navigasi')">🔍</span>
-            <span onclick="toggleMenu()">☰</span>
-        </div>
+        <div style="font-size:24px; cursor:pointer;" onclick="toggleMenu()">☰</div>
     </div>
 
     <div id="navMenu" class="nav-menu">
-        <a href="program/sinetron.html" class="nav-item">🎬 Sinetron</a>
-        <a href="program/webseries.html" class="nav-item">💻 Web Series</a>
-        <a href="program/drama.html" class="nav-item">🎭 Drama</a>
+        <a href="program/sinetron.html" class="nav-item">🎬 Sinetron Terpopuler</a>
+        <a href="program/webseries.html" class="nav-item">💻 Web Series Original</a>
+        <a href="program/drama.html" class="nav-item">🎭 Drama Pilihan</a>
+        <a href="admin.html" class="nav-item" style="color:red;">⚙️ Panel Admin</a>
+    </div>
+
+    <div class="hero">
+        <h2 style="margin:0;">Selamat Datang</h2>
+        <p style="font-size:14px; opacity:0.9;">Pusat Media & Hiburan Digital Terlengkap</p>
     </div>
 
     <div class="container">
-        <div class="category-label">LIVE STREAMING</div>
-        <a href="https://triyuliansyah588ok.github.io/VAMSTV/" class="list-link">VAMS TV - Live <span>›</span></a>
-        <a href="https://triyuliansyah588ok.github.io/NSTV/" class="list-link">NS TV - Live <span>›</span></a>
+        <div class="category-label">CHANNEL LIVE</div>
+        <a href="https://triyuliansyah588ok.github.io/VAMSTV/" class="list-card"><span>📺</span> VAMS TV STREAMING</a>
+        <a href="https://triyuliansyah588ok.github.io/NSTV/" class="list-card"><span>📡</span> NS TV STREAMING</a>
 
-        <div class="category-label">PROGRAM UNGGULAN</div>
-        <a href="program/sinetron.html" class="list-link">Sinetron Unggulan <span>›</span></a>
-        <a href="program/webseries.html" class="list-link">Web Series Eksklusif <span>›</span></a>
-        <a href="program/drama.html" class="list-link">Drama Pilihan <span>›</span></a>
+        <div class="category-label">EKSPLORASI KONTEN</div>
+        <a href="program/sinetron.html" class="list-card"><span>🎬</span> KOLEKSI SINETRON</a>
+        <a href="program/webseries.html" class="list-card"><span>💻</span> WEB SERIES EKSKLUSIF</a>
+        <a href="program/drama.html" class="list-card"><span>🎭</span> DRAMA TERBAIK</a>
     </div>
 
-    <div class="footer">© 2026 PT THE APEX VISIONARY MEDIA</div>
+    <div class="footer">
+        <p>© 2026 PT THE APEX VISIONARY MEDIA GROUP</p>
+        <p>Developed by Visionary Tech Team</p>
+        <a href="admin.html" class="admin-btn">Login Developer</a>
+    </div>
 
     <script>
         function toggleMenu() { document.getElementById("navMenu").classList.toggle("active"); }
-        window.onclick = function(e) { if (!e.target.closest('.header')) document.getElementById("navMenu").classList.remove("active"); }
+        // Menutup menu jika klik di luar
+        window.onclick = function(event) {
+            if (!event.target.matches('.header div')) {
+                document.getElementById("navMenu").classList.remove("active");
+            }
+        }
     </script>
 </body>
 </html>
