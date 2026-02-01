@@ -3,25 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sinetron Terpopuler - Visionary+</title>
+    <title>Sinetron Eksklusif - Visionary+</title>
     <style>
-        body { margin: 0; font-family: sans-serif; background: #000; color: white; }
-        .nav { background: #1e293b; padding: 15px; display: flex; align-items: center; gap: 10px; }
-        .nav a { color: white; text-decoration: none; font-size: 20px; }
-        .player { width: 100%; aspect-ratio: 16/9; background: #111; }
-        .info { padding: 20px; }
-        .title { font-size: 20px; font-weight: bold; color: #ffd700; }
-        .desc { font-size: 14px; color: #94a3b8; margin-top: 10px; }
+        body { margin: 0; font-family: 'Segoe UI', sans-serif; background: #000; color: white; }
+        .nav { background: #0f172a; padding: 15px; display: flex; align-items: center; border-bottom: 2px solid #3b82f6; }
+        .nav a { color: white; text-decoration: none; font-weight: bold; }
+        
+        /* Area Video Eksklusif */
+        .premium-player { width: 100%; aspect-ratio: 16/9; background: #111; position: relative; }
+        iframe { width: 100%; height: 100%; border: none; }
+
+        .content-info { padding: 20px; }
+        .tag-eksklusif { background: gold; color: black; padding: 3px 8px; font-size: 10px; font-weight: bold; border-radius: 4px; }
+        
+        /* Section Segera Tayang */
+        .coming-soon-box { 
+            margin-top: 20px; 
+            background: linear-gradient(45deg, #1e293b, #000); 
+            border: 1px solid #334155; 
+            border-radius: 15px; 
+            padding: 15px;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        .poster-mini { width: 80px; height: 110px; background: #334155; border-radius: 8px; flex-shrink: 0; }
+        .soon-text b { color: #ef4444; font-size: 12px; display: block; margin-bottom: 5px; }
     </style>
 </head>
 <body>
-    <div class="nav"><a href="../index.html">‹</a> <b>NONTON SINETRON</b></div>
-    <div class="player">
-        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/Bey4XXJAqS8" frameborder="0" allowfullscreen></iframe>
+
+    <div class="nav"><a href="../index.html">‹ KEMBALI</a></div>
+
+    <div class="premium-player">
+        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0" allowfullscreen></iframe>
     </div>
-    <div class="info">
-        <div class="title">The Final Visionary - Action Scene</div>
-        <div class="desc">Video pilihan dunia dengan kualitas sinematik tertinggi. Cocok untuk menguji layar HP penonton.</div>
+
+    <div class="content-info">
+        <span class="tag-eksklusif">WEB EKSKLUSIF</span>
+        <h2 style="margin: 10px 0 5px 0;">Mengejar Takdir - Ep 05</h2>
+        <p style="color: #94a3b8; font-size: 13px;">Konten ini hanya tersedia di website Visionary+. Jangan lewatkan setiap episodenya.</p>
+
+        <hr style="border: 0; border-top: 1px solid #334155; margin: 25px 0;">
+
+        <h3 style="font-size: 16px;">SEGERA TAYANG HANYA DI WEB</h3>
+        
+        <div class="coming-soon-box">
+            <div class="poster-mini" style="background-image: url('https://via.placeholder.com/80x110/3b82f6/fff?text=S1'); background-size: cover;"></div>
+            <div class="soon-text">
+                <b>AKAN DATANG: SENIN</b>
+                <div style="font-size: 14px; font-weight: bold;">Cinta di Ujung Langit</div>
+                <div style="font-size: 11px; color: #94a3b8;">Hanya di Visionary+ Web App</div>
+            </div>
+        </div>
+
+        <div class="coming-soon-box">
+            <div class="poster-mini" style="background-image: url('https://via.placeholder.com/80x110/ef4444/fff?text=S2'); background-size: cover;"></div>
+            <div class="soon-text">
+                <b>AKAN DATANG: JUMAT</b>
+                <div style="font-size: 14px; font-weight: bold;">Misteri NS TV</div>
+                <div style="font-size: 11px; color: #94a3b8;">Edisi Spesial Investigasi</div>
+            </div>
+        </div>
     </div>
+
 </body>
 </html>
