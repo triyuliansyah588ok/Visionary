@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>THE APEX VISIONARY - Streaming Platform</title>
+    <title>THE APEX VISIONARY - Premium Streaming</title>
     
     <meta name="description" content="Nonton Sinetron, Web Series, dan Drama terbaik di The Apex Visionary.">
     <meta name="google-site-verification" content="NXnPTMapUtNrEYOUSr-d0aJT1H2zWiX96TN504I-qZA" />
@@ -12,73 +12,112 @@
         :root { --primary: #0f172a; --accent: #3b82f6; --gold: #ffd700; }
         body { margin: 0; font-family: 'Segoe UI', sans-serif; background: #000; color: white; }
         
-        /* Header */
-        .header { background: rgba(15, 23, 42, 0.95); padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid #1e293b; }
-        .brand { font-size: 20px; font-weight: 900; color: var(--gold); text-transform: uppercase; letter-spacing: 1px; }
-        
-        /* Search */
+        /* Header & Logo Neon */
+        .header { 
+            background: rgba(15, 23, 42, 0.95); 
+            padding: 15px 20px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            position: sticky; 
+            top: 0; 
+            z-index: 1000; 
+            border-bottom: 2px solid #1e293b;
+            backdrop-filter: blur(10px);
+        }
+
+        .brand { 
+            font-size: 24px; 
+            font-weight: 900; 
+            text-transform: uppercase; 
+            letter-spacing: 2px;
+            background: linear-gradient(90deg, #ffd700, #fff, #ffd700);
+            background-size: 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shine 3s infinite linear;
+            cursor: pointer;
+        }
+        @keyframes shine {
+            to { background-position: 200% center; }
+        }
+
+        /* Search Bar */
         .search-area { padding: 15px; }
-        .search-input { width: 100%; padding: 12px 20px; border-radius: 30px; border: none; background: #1e293b; color: white; box-sizing: border-box; outline: none; border: 1px solid #334155; }
+        .search-input { 
+            width: 100%; padding: 12px 20px; border-radius: 30px; border: 1px solid #334155; 
+            background: #1e293b; color: white; box-sizing: border-box; outline: none; 
+        }
 
-        /* Banner Slider */
+        /* Banner Poster Geser */
         .banner-container { padding: 10px; overflow-x: auto; display: flex; gap: 15px; scroll-snap-type: x mandatory; }
-        .banner-card { min-width: 85%; height: 180px; background: var(--accent); border-radius: 15px; flex-shrink: 0; scroll-snap-align: center; position: relative; overflow: hidden; background-size: cover; background-position: center; }
-        .banner-text { position: absolute; bottom: 0; left: 0; right: 0; padding: 15px; background: linear-gradient(transparent, rgba(0,0,0,0.9)); font-weight: bold; }
+        .banner-card { 
+            min-width: 85%; height: 180px; background: #3b82f6; border-radius: 15px; 
+            flex-shrink: 0; scroll-snap-align: center; position: relative; overflow: hidden; 
+            background-size: cover; background-position: center; border: 1px solid #334155;
+        }
+        .banner-text { 
+            position: absolute; bottom: 0; left: 0; right: 0; padding: 15px; 
+            background: linear-gradient(transparent, rgba(0,0,0,0.9)); font-weight: bold; 
+        }
 
-        /* Categories */
+        /* Menu Grid */
         .section { padding: 20px; }
-        .section-title { font-size: 14px; font-weight: bold; color: #94a3b8; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 2px; }
+        .section-title { font-size: 13px; font-weight: bold; color: #94a3b8; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 2px; }
         .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-        .card { background: #1e293b; padding: 20px; border-radius: 15px; text-align: center; text-decoration: none; color: white; transition: 0.3s; border: 1px solid #334155; }
-        .card:active { transform: scale(0.95); }
-        .card i { font-size: 24px; display: block; margin-bottom: 8px; }
+        .card { 
+            background: #1e293b; padding: 20px; border-radius: 15px; text-align: center; 
+            text-decoration: none; color: white; border: 1px solid #334155; transition: 0.3s; 
+        }
+        .card:active { transform: scale(0.95); background: #334155; }
+        .card span { font-size: 30px; display: block; margin-bottom: 8px; }
 
-        /* Live TV Button */
-        .live-btn { background: linear-gradient(45deg, #ef4444, #b91c1c); margin-top: 15px; display: block; padding: 15px; border-radius: 12px; text-align: center; text-decoration: none; color: white; font-weight: bold; animation: pulse 2s infinite; }
-        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.8; } 100% { opacity: 1; } }
+        /* Live TV Pulse Effect */
+        .live-btn { 
+            background: linear-gradient(45deg, #ef4444, #b91c1c); margin-top: 10px; 
+            display: block; padding: 18px; border-radius: 12px; text-align: center; 
+            text-decoration: none; color: white; font-weight: bold; font-size: 18px;
+            box-shadow: 0 0 15px rgba(239, 68, 68, 0.4); animation: pulse 2s infinite; 
+        }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(0.98); opacity: 0.9; } 100% { transform: scale(1); } }
+
+        /* Floating WhatsApp */
+        .wa-float {
+            position: fixed; bottom: 20px; right: 20px; background: #25d366; 
+            width: 60px; height: 60px; border-radius: 50%; text-align: center; 
+            font-size: 30px; box-shadow: 2px 2px 15px rgba(0,0,0,0.5); z-index: 1000;
+            display: flex; align-items: center; justify-content: center; text-decoration: none;
+        }
 
         .footer { text-align: center; padding: 40px 20px; color: #475569; font-size: 11px; }
-        .admin-link { color: #334155; text-decoration: none; display: block; margin-top: 10px; }
     </style>
 </head>
 <body>
 
     <div class="header">
-        <div class="brand">VISIONARY+</div>
-        <div onclick="location.href='admin.html'" style="cursor:pointer">👤</div>
+        <div class="brand" onclick="location.reload()">VISIONARY+</div>
+        <div onclick="location.href='admin.html'" style="cursor:pointer; font-size: 20px;">⚙️</div>
     </div>
 
     <div class="search-area">
-        <input type="text" class="search-input" placeholder="Cari judul sinetron...">
+        <input type="text" class="search-input" placeholder="Cari film atau acara TV...">
     </div>
 
     <div class="banner-container">
         <div class="banner-card" style="background-image: url('https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?q=80&w=600');">
-            <div class="banner-text">Mengejar Bayang Neon - New Episode</div>
+            <div class="banner-text">Mengejar Bayang Neon - Ep 01</div>
         </div>
         <div class="banner-card" style="background-image: url('https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=600');">
-            <div class="banner-text">Cyber Soul 2026 - Eksklusif</div>
+            <div class="banner-text">Cyber Soul 2026 - Coming Soon</div>
         </div>
     </div>
 
     <div class="section">
-        <div class="section-title">Streaming Sekarang</div>
-        <a href="https://triyuliansyah588ok.github.io/VAMSTV/" class="live-btn">🔴 NONTON VAMS TV LIVE</a>
-        
-        <div class="section-title" style="margin-top:25px;">Koleksi Program</div>
+        <div class="section-title">Nonton Langsung</div>
+        <a href="https://triyuliansyah588ok.github.io/VAMSTV/" class="live-btn">📺 NONTON VAMS TV</a>
+
+        <div class="section-title" style="margin-top:30px;">Kategori Program</div>
         <div class="grid">
-            <a href="program/sinetron.html" class="card">🎬<br>Sinetron</a>
-            <a href="program/webseries.html" class="card">💻<br>Web Series</a>
-            <a href="program/drama.html" class="card">🎭<br>Drama</a>
-            <a href="about.html" class="card">ℹ️<br>Info</a>
-        </div>
-    </div>
-
-    <div class="footer">
-        <p>© 2026 PT THE APEX VISIONARY MEDIA</p>
-        <p>Banten, Indonesia</p>
-        <a href="admin.html" class="admin-link">Developer Login</a>
-    </div>
-
-</body>
-</html>
+            <a href="program/sinetron.html" class="card"><span>🎬</span>Sinetron</a>
+            <a href="program/webseries.html" class="card"><span>💻</span>Web Series</a>
+            <a href
