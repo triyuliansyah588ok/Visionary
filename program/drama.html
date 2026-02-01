@@ -3,18 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Drama - Visionary</title>
+    <title>Drama Pilihan - Visionary</title>
     <style>
         body { margin: 0; font-family: sans-serif; background: #fff; color: #333; }
         .header { background: #c2185b; color: white; padding: 15px; display: flex; align-items: center; gap: 15px; }
         .header a { color: white; text-decoration: none; font-size: 24px; }
-        .drama-card { border-bottom: 1px solid #eee; padding: 20px; font-size: 18px; color: #c2185b; font-weight: bold; }
+        .drama-list { padding: 0; margin: 0; list-style: none; }
+        .drama-item { padding: 20px; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; }
+        .drama-item:active { background: #fdf2f8; }
+        .drama-title { font-weight: bold; color: #c2185b; }
+        .arrow-pink { color: #c2185b; font-weight: bold; }
     </style>
 </head>
 <body>
-    <div class="header"><a href="../index.html">‹</a><b>DRAMA PILIHAN</b></div>
-    <div class="drama-card">Luka Masa Lalu</div>
-    <div class="drama-card">Gema di Ujung Malam</div>
-    <div class="drama-card">Takdir Sang Visioner</div>
+    <div class="header"><a href="../index.html">‹</a> <b>DRAMA PILIHAN</b></div>
+    <div class="drama-list">
+        <div class="drama-item">
+            <div class="drama-title">Luka Masa Lalu</div>
+            <div class="arrow-pink">›</div>
+        </div>
+        <div class="drama-item">
+            <div class="drama-title">Gema di Ujung Malam</div>
+            <div class="arrow-pink">›</div>
+        </div>
+        <div class="drama-item">
+            <div class="drama-title">Takdir Sang Visioner</div>
+            <div class="arrow-pink">›</div>
+        </div>
+    </div>
 </body>
 </html>
