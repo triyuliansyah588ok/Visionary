@@ -1,17 +1,121 @@
-function cekKode() {
-    const input = document.getElementById("inputKode").value;
-    
-    // RUMUS: APEX + Tanggal Hari Ini (Misal tgl 5 jadi APEX5)
-    const d = new Date();
-    const kodeBenar = "APEX" + d.getDate(); 
-    
-    if (input === kodeBenar) {
-        const exp = new Date();
-        exp.setDate(exp.getDate() + 30); // Aktif 30 hari
-        localStorage.setItem("vipUntil", exp.getTime());
-        alert("SUKSES! VIP Aktif 30 Hari.");
-        location.reload();
-    } else {
-        alert("Kode Salah! Cek kode terbaru di instruksi pembayaran.");
-    }
-}
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visionary+ | Official Platform</title>
+    <style>
+        :root { --dana: #008cff; --gold: #ffd700; --dark: #000000; }
+        body { margin: 0; font-family: 'Segoe UI', sans-serif; background: var(--dark); color: white; text-align: center; }
+        
+        .header { background: #111; padding: 15px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #1e293b; }
+        .brand { font-size: 20px; font-weight: 900; color: var(--gold); letter-spacing: 2px; }
+
+        /* VIP Status */
+        .vip-status { margin: 15px; padding: 15px; border-radius: 15px; border: 1px solid #334155; background: #0a0a0a; display: none; }
+        .is-vip { border: 1px solid var(--gold); color: var(--gold); display: block; }
+
+        /* Pricing Packages */
+        .pricing-container { padding: 15px; display: flex; flex-direction: column; gap: 15px; align-items: center; }
+        .card { background: #111; border: 1px solid #334155; border-radius: 20px; padding: 20px; width: 90%; max-width: 320px; }
+        .card.premium { border: 2px solid var(--gold); }
+        .price { font-size: 28px; font-weight: bold; color: var(--gold); margin: 10px 0; }
+        .btn-pay { background: var(--gold); color: black; text-decoration: none; padding: 12px; border-radius: 12px; display: block; font-weight: bold; margin-top: 15px; }
+
+        /* Activation Box */
+        .activation-box { margin: 20px; padding: 20px; background: #0a0a0a; border: 1px dashed #334155; border-radius: 20px; }
+        input { padding: 12px; border-radius: 10px; border: 1px solid #334155; background: #000; color: white; width: 80%; text-align: center; margin-bottom: 10px; font-size: 16px; }
+        .btn-unlock { background: white; color: black; border: none; padding: 12px 30px; border-radius: 10px; font-weight: bold; cursor: pointer; }
+
+        .menu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 15px; }
+        .menu-item { background: #111; padding: 25px 10px; border-radius: 15px; text-decoration: none; color: white; border: 1px solid #1e293b; }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="brand">VISIONARY+</div>
+        <div id="ceoBtn" style="display:none; cursor:pointer;" onclick="location.href='admin.html'">👤</div>
+    </div>
+
+    <div id="statusBox" class="vip-status">
+        <div id="statusText">Status: Penonton Gratis</div>
+        <div id="expiryDate" style="font-size: 10px; margin-top: 5px;"></div>
+    </div>
+
+    <div id="pricingSection">
+        <h3 style="margin-top: 25px;">UPGRADE VIP 💎</h3>
+        <div class="pricing-container">
+            <div class="card premium">
+                <div style="font-size: 12px; font-weight: bold; color: var(--gold);">REKOMENDASI CEO</div>
+                <div class="price">Rp 25.000</div>
+                <div style="font-size: 11px; color: #94a3b8;">Akses 30 Hari - Web Series & Film Premium</div>
+                <a href="https://saweria.co/RamadhanCEO" target="_blank" class="btn-pay">BAYAR OTOMATIS (DANA)</a>
+            </div>
+        </div>
+
+        <div class="activation-box">
+            <p style="font-size: 11px; color: #94a3b8;">Sudah bayar? Masukkan kode harian dari pesan Saweria:</p>
+            <input type="text" id="kodeInput" placeholder="Contoh: APEX2">
+            <button class="btn-unlock" onclick="prosesAktivasi()">AKTIFKAN</button>
+        </div>
+    </div>
+
+    <div class="menu-grid">
+        <a href="program/sinetron.html" class="menu-item">🎬<br>SINETRON</a>
+        <div onclick="cekAksesVIP()" class="menu-item" style="cursor:pointer;">🎥<br>WEB SERIES<br><small style="color:gold;">VIP ONLY</small></div>
+    </div>
+
+    <script>
+        window.onload = function() {
+            if (localStorage.getItem("userRole") === "CEO") document.getElementById("ceoBtn").style.display = "block";
+            updateUI();
+        };
+
+        function updateUI() {
+            const exp = localStorage.getItem("vipUntil");
+            const now = new Date().getTime();
+
+            if ((exp && now < exp) || localStorage.getItem("userRole") === "CEO") {
+                document.getElementById("statusBox").classList.add("is-vip");
+                document.getElementById("statusText").innerText = "⭐ AKUN VIP AKTIF";
+                document.getElementById("pricingSection").style.display = "none";
+                if (exp) {
+                    const d = new Date(parseInt(exp));
+                    document.getElementById("expiryDate").innerText = "Berlaku hingga: " + d.toLocaleDateString('id-ID');
+                }
+            } else {
+                document.getElementById("statusBox").style.display = "block";
+            }
+        }
+
+        function prosesAktivasi() {
+            const input = document.getElementById("kodeInput").value.toUpperCase();
+            const d = new Date();
+            // RUMUS KODE: APEX + TANGGAL (Contoh: APEX2)
+            const kodeBenar = "APEX" + d.getDate();
+
+            if (input === kodeBenar) {
+                const durasi = 30; // 30 hari
+                const exp = new Date();
+                exp.setDate(exp.getDate() + durasi);
+                localStorage.setItem("vipUntil", exp.getTime());
+                alert("SUKSES! VIP Anda telah aktif selama 30 hari.");
+                location.reload();
+            } else {
+                alert("KODE SALAH! Cek tanggal hari ini atau hubungi CEO jika ada kendala.");
+            }
+        }
+
+        function cekAksesVIP() {
+            const exp = localStorage.getItem("vipUntil");
+            const now = new Date().getTime();
+            if ((exp && now < exp) || localStorage.getItem("userRole") === "CEO") {
+                window.location.href = "program/webseries.html";
+            } else {
+                alert("Konten ini khusus Member VIP! Silakan upgrade paket.");
+            }
+        }
+    </script>
+</body>
+</html>
