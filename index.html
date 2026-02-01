@@ -1,78 +1,36 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>THE APEX VISIONARY - Official Portal</title>
-    
-    <meta name="google-site-verification" content="NXnPTMapUtNrEYOUSr-d0aJT1H2zWiX96TN504I-qZA" />
-    
-    <meta name="description" content="Portal Media Terlengkap The Apex Visionary. Nonton Sinetron, Web Series, dan Drama terbaik.">
-    <meta name="theme-color" content="#1a237e">
+    <title>Sinetron - Visionary</title>
     <style>
-        :root { --primary: #1a237e; --accent: #ffd700; }
-        body { margin: 0; font-family: 'Segoe UI', Arial, sans-serif; background: #fff; color: #333; }
-        .header { background: var(--primary); color: white; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        .header .brand { font-weight: bold; font-size: 19px; letter-spacing: 1px; }
-        .header .icons { display: flex; gap: 20px; font-size: 22px; cursor: pointer; }
-        .nav-menu { display: none; background: #fff; border-bottom: 3px solid var(--primary); position: absolute; top: 55px; right: 0; width: 220px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); z-index: 999; }
-        .nav-menu.active { display: block; }
-        .nav-item { display: block; padding: 15px 20px; text-decoration: none; color: var(--primary); border-bottom: 1px solid #eee; font-weight: bold; }
-        .container { padding: 20px; }
-        .category-label { background: #f1f3f4; padding: 10px 15px; font-size: 12px; font-weight: bold; color: #5f6368; margin: 15px -20px 0 -20px; text-indent: 10px; border-top: 1px solid #ddd; }
-        .list-link { display: flex; justify-content: space-between; align-items: center; padding: 18px 0; border-bottom: 1px solid #eee; text-decoration: none; color: var(--primary); font-size: 17px; font-weight: 500; }
-        .arrow { color: #ccc; font-size: 20px; }
-        .dana-card { background: #fdfdfd; border-left: 6px solid #0077ff; padding: 20px; border-radius: 12px; margin-top: 30px; text-decoration: none; display: block; border: 1px solid #ddd; }
-        .dana-num { color: #0077ff; font-size: 24px; font-weight: bold; margin: 10px 0; display: block; }
-        .footer { text-align: center; color: #aaa; font-size: 11px; padding: 40px 0; }
+        body { margin: 0; font-family: sans-serif; background: #f9f9f9; }
+        .header { background: #1a237e; color: white; padding: 15px; display: flex; align-items: center; gap: 15px; }
+        .header a { color: white; text-decoration: none; font-size: 24px; }
+        .content { padding: 15px; }
+        .card { background: white; border-radius: 8px; margin-bottom: 15px; display: flex; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.1); text-decoration: none; color: inherit; }
+        .card img { width: 100px; height: 130px; object-fit: cover; background: #ddd; }
+        .info { padding: 15px; }
+        .info h3 { margin: 0 0 5px 0; font-size: 16px; color: #1a237e; }
+        .info p { margin: 0; font-size: 12px; color: #666; }
     </style>
 </head>
 <body>
-
     <div class="header">
-        <div class="brand">THE APEX VISIONARY</div>
-        <div class="icons">
-            <span onclick="aktifkanCari()">🔍</span>
-            <span onclick="toggleMenu()">☰</span>
+        <a href="../index.html">‹</a>
+        <b>SINETRON</b>
+    </div>
+    <div class="content">
+        <div class="card">
+            <img src="https://via.placeholder.com/100x130?text=Sinetron" alt="Poster">
+            <div class="info"><h3>Mengejar Bayang Neon</h3><p>Tayang Setiap Hari 19:00 WIB</p></div>
+        </div>
+        <div class="card">
+            <img src="https://via.placeholder.com/100x130?text=Sinetron" alt="Poster">
+            <div class="info"><h3>Cinta di Balik Lensa</h3><p>Tayang Setiap Hari 20:30 WIB</p></div>
         </div>
     </div>
-
-    <div id="navMenu" class="nav-menu">
-        <a href="program/sinetron.html" class="nav-item">🎬 Sinetron</a>
-        <a href="program/webseries.html" class="nav-item">💻 Web Series</a>
-        <a href="program/drama.html" class="nav-item">🎭 Drama</a>
-        <a href="https://link.dana.id/qr/082227473281" class="nav-item">☕ Donasi DANA</a>
-    </div>
-
-    <div class="container">
-        <div class="category-label">LIVE STREAMING</div>
-        <a href="https://triyuliansyah588ok.github.io/VAMSTV/" class="list-link">VAMS TV - Live Streaming <span class="arrow">›</span></a>
-        <a href="https://triyuliansyah588ok.github.io/NSTV/" class="list-link">NS TV - Live Streaming <span class="arrow">›</span></a>
-
-        <div class="category-label">KATEGORI PROGRAM</div>
-        <a href="program/sinetron.html" class="list-link">Daftar Sinetron Unggulan <span class="arrow">›</span></a>
-        <a href="program/webseries.html" class="list-link">Web Series Eksklusif <span class="arrow">›</span></a>
-        <a href="program/drama.html" class="list-link">Drama Pilihan Terbaik <span class="arrow">›</span></a>
-
-        <a href="https://link.dana.id/qr/082227473281" class="dana-card">
-            <span style="color:#333; font-weight:bold;">☕ DUKUNG OPERASIONAL</span>
-            <span class="dana-num">0822 2747 3281</span>
-            <span style="color:#0077ff; font-size:12px;">Klik untuk donasi via DANA otomatis</span>
-        </a>
-    </div>
-
-    <div class="footer">© 2026 PT THE APEX VISIONARY MEDIA GROUP</div>
-
-    <script>
-        function toggleMenu() { document.getElementById("navMenu").classList.toggle("active"); }
-        function aktifkanCari() {
-            let q = prompt("Cari program (Contoh: SCTV):");
-            if(q && q.toLowerCase().includes("sctv")) {
-                window.location.href="https://triyuliansyah588ok.github.io/VAMSTV/";
-            } else {
-                alert("Mencari hasil untuk: " + q);
-            }
-        }
-    </script>
 </body>
 </html>
