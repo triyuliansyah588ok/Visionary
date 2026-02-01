@@ -3,31 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daftar Visionary+</title>
+    <title>Daftar CEO - Visionary+</title>
     <style>
-        body { margin: 0; font-family: 'Segoe UI', sans-serif; background: #000; color: white; display: flex; align-items: center; justify-content: center; height: 100vh; }
-        .card { background: #111; padding: 30px; border-radius: 20px; border: 1px solid #334155; width: 85%; max-width: 350px; text-align: center; }
-        input { width: 100%; padding: 12px; margin-bottom: 10px; border-radius: 10px; border: 1px solid #334155; background: #000; color: white; box-sizing: border-box; }
-        .btn { width: 100%; padding: 12px; border-radius: 10px; border: none; background: #22c55e; color: white; font-weight: bold; cursor: pointer; }
+        body { margin: 0; font-family: 'Segoe UI', sans-serif; background: #000; color: white; display: flex; align-items: center; justify-content: center; min-height: 100vh; }
+        .card { background: #111; padding: 30px; border-radius: 25px; border: 1px solid #1e293b; width: 85%; max-width: 360px; text-align: center; }
+        input { width: 100%; padding: 14px; margin-bottom: 15px; border-radius: 12px; border: 1px solid #334155; background: #000; color: white; box-sizing: border-box; }
+        .upload-area { border: 2px dashed #3b82f6; padding: 20px; border-radius: 15px; margin-bottom: 20px; cursor: pointer; }
+        .btn { width: 100%; padding: 15px; border-radius: 12px; border: none; background: #22c55e; color: white; font-weight: bold; cursor: pointer; }
+        #preview { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; display: none; margin: 10px auto; border: 2px solid gold; }
     </style>
 </head>
 <body>
     <div class="card">
-        <h2 style="color: gold;">BUAT AKUN</h2>
-        <input type="text" id="regUser" placeholder="Username Baru">
-        <input type="password" id="regPass" placeholder="Password Baru">
-        <button class="btn" onclick="daftar()">DAFTAR SEKARANG</button>
-        <p style="font-size: 12px; margin-top: 15px;"><a href="login.html" style="color: #3b82f6; text-decoration: none;">Sudah punya akun? Masuk</a></p>
+        <h2 style="color: gold;">REGISTRASI CEO</h2>
+        <p style="font-size: 12px; color: #94a3b8;">Lengkapi data dan unggah foto profil Bapak</p>
+        
+        <input type="text" id="regUser" placeholder="Username">
+        <input type="password" id="regPass" placeholder="Password">
+        
+        <div class="upload-area" onclick="document.getElementById('fileInput').click()">
+            <span id="uploadText">📷 Klik untuk Unggah Foto CEO</span>
+            <img id="preview">
+            <input type="file" id="fileInput" hidden accept="image/*" onchange="handleImage(this)">
+        </div>
+
+        <button class="btn" onclick="simpanData()">DAFTAR & MASUK</button>
     </div>
+
     <script>
-        function daftar() {
+        let base64Image = "";
+
+        function handleImage(input) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                base64Image = e.target.result;
+                document.getElementById('preview').src = base64Image;
+                document.getElementById('preview').style.display = "block";
+                document.getElementById('uploadText').style.display = "none";
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+
+        function simpanData() {
             const u = document.getElementById('regUser').value;
             const p = document.getElementById('regPass').value;
-            if(u && p) {
+            
+            if(u && p && base64Image) {
                 localStorage.setItem("user_" + u, p);
-                alert("Berhasil! Silakan Login.");
+                localStorage.setItem("fotoCEO", base64Image); // Foto tersimpan permanen di HP
+                alert("Pendaftaran Berhasil, Pak CEO!");
                 window.location.href = "login.html";
-            } else { alert("Isi data dengan lengkap!"); }
+            } else {
+                alert("Mohon isi semua data dan unggah foto Bapak!");
+            }
         }
     </script>
 </body>
