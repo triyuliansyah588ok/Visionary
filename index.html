@@ -1,31 +1,42 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>THE APEX VISIONARY</title>
+    <title>THE APEX VISIONARY - Official Portal</title>
+    
+    <meta name="google-site-verification" content="MASUKKAN_KODE_DARI_GOOGLE_DISINI" />
+    <meta name="description" content="Portal Media Terlengkap The Apex Visionary. Nonton Sinetron, Web Series, dan Drama terbaik.">
+    <meta name="keywords" content="Visionary, SCTV, VAMS TV, NS TV, Streaming Sinetron, Drama Indonesia">
+    <meta name="theme-color" content="#1a237e">
+
     <style>
-        body { background: #fff; color: #333; font-family: Arial, sans-serif; margin: 0; padding: 0; }
+        :root { --primary: #1a237e; --accent: #ffd700; }
+        body { margin: 0; font-family: 'Segoe UI', Arial, sans-serif; background: #fff; color: #333; }
         
-        /* Header Profesional dengan Ikon */
-        .header { background: #1a237e; color: white; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; }
-        .header .brand { font-weight: bold; font-size: 18px; }
+        /* Header & Icons */
+        .header { background: var(--primary); color: white; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+        .header .brand { font-weight: bold; font-size: 19px; letter-spacing: 1px; }
         .header .icons { display: flex; gap: 20px; font-size: 22px; cursor: pointer; }
 
-        /* Menu Dropdown (Titik 3) */
-        .nav-menu { display: none; background: #fff; border-bottom: 2px solid #1a237e; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        /* Dropdown Menu Titik 3 */
+        .nav-menu { display: none; background: #fff; border-bottom: 3px solid var(--primary); position: absolute; top: 55px; right: 0; width: 220px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); z-index: 999; }
         .nav-menu.active { display: block; }
-        .nav-item { display: block; padding: 15px 20px; text-decoration: none; color: #1a237e; border-bottom: 1px solid #eee; font-weight: bold; }
+        .nav-item { display: block; padding: 15px 20px; text-decoration: none; color: var(--primary); border-bottom: 1px solid #eee; font-weight: bold; }
 
-        /* Tampilan List ala SCTV/Google */
-        .main-content { padding: 20px; }
-        .category-header { background: #f1f3f4; padding: 10px 20px; font-size: 12px; font-weight: bold; color: #5f6368; margin: 15px -20px 0 -20px; }
-        .menu-link { display: flex; justify-content: space-between; align-items: center; padding: 18px 0; border-bottom: 1px solid #eee; text-decoration: none; color: #1a237e; font-size: 17px; font-weight: 500; }
+        /* Main Content ala Google List */
+        .container { padding: 20px; }
+        .category-label { background: #f1f3f4; padding: 10px 15px; font-size: 12px; font-weight: bold; color: #5f6368; margin: 15px -20px 0 -20px; text-indent: 10px; border-top: 1px solid #ddd; }
+        .list-link { display: flex; justify-content: space-between; align-items: center; padding: 18px 0; border-bottom: 1px solid #eee; text-decoration: none; color: var(--primary); font-size: 17px; font-weight: 500; }
+        .list-link:hover { background: #f9f9f9; }
         .arrow { color: #ccc; font-size: 20px; }
 
-        /* Box Donasi DANA */
-        .dana-card { background: #f9f9f9; margin-top: 25px; padding: 20px; border-radius: 12px; border-left: 5px solid #ffd700; text-decoration: none; display: block; }
-        .dana-num { font-size: 20px; font-weight: bold; color: #1a237e; margin: 5px 0; }
+        /* Donasi DANA Card */
+        .dana-card { background: #fdfdfd; border: 1px solid #ddd; border-left: 6px solid #0077ff; padding: 20px; border-radius: 12px; margin-top: 30px; text-decoration: none; display: block; }
+        .dana-title { color: #333; font-weight: bold; font-size: 14px; }
+        .dana-num { color: #0077ff; font-size: 24px; font-weight: bold; margin: 10px 0; display: block; }
+
+        .footer { text-align: center; color: #aaa; font-size: 11px; padding: 40px 0; }
     </style>
 </head>
 <body>
@@ -33,40 +44,66 @@
     <div class="header">
         <div class="brand">THE APEX VISIONARY</div>
         <div class="icons">
-            <span onclick="alert('Cari program favorit Anda...')">🔍</span>
-            <span onclick="toggleMenu()">☰</span> </div>
+            <span onclick="aktifkanCari()">🔍</span>
+            <span onclick="toggleMenu()">☰</span>
+        </div>
     </div>
 
     <div id="navMenu" class="nav-menu">
         <a href="program/sinetron.html" class="nav-item">🎬 Sinetron</a>
         <a href="program/webseries.html" class="nav-item">💻 Web Series</a>
         <a href="program/drama.html" class="nav-item">🎭 Drama</a>
-        <a href="#" class="nav-item">ℹ️ Tentang Kami</a>
+        <a href="https://link.dana.id/qr/082227473281" class="nav-item">☕ Dukung Kami (DANA)</a>
     </div>
 
-    <div class="main-content">
-        <div class="menu-list">
-            <div class="category-header">LIVE STREAMING</div>
-            <a href="https://triyuliansyah588ok.github.io/VAMSTV/" class="menu-link">VAMS TV Streaming <span class="arrow">›</span></a>
-            <a href="https://triyuliansyah588ok.github.io/NSTV/" class="menu-link">NS TV Streaming <span class="arrow">›</span></a>
-            
-            <div class="category-header">KATEGORI PROGRAM</div>
-            <a href="program/sinetron.html" class="menu-link">Daftar Sinetron <span class="arrow">›</span></a>
-            <a href="program/webseries.html" class="menu-link">Web Series <span class="arrow">›</span></a>
-            <a href="program/drama.html" class="menu-link">Drama Pilihan <span class="arrow">›</span></a>
-        </div>
+    <div class="container">
+        <div class="category-label">LIVE STREAMING</div>
+        <a href="https://triyuliansyah588ok.github.io/VAMSTV/" class="list-link">VAMS TV - Live Streaming <span class="arrow">›</span></a>
+        <a href="https://triyuliansyah588ok.github.io/NSTV/" class="list-link">NS TV - Live Streaming <span class="arrow">›</span></a>
+
+        <div class="category-label">PROGRAM UNGGULAN</div>
+        <a href="program/sinetron.html" class="list-link">Daftar Sinetron Terbaru <span class="arrow">›</span></a>
+        <a href="program/webseries.html" class="list-link">Web Series Eksklusif <span class="arrow">›</span></a>
+        <a href="program/drama.html" class="list-link">Drama Pilihan Terbaik <span class="arrow">›</span></a>
 
         <a href="https://link.dana.id/qr/082227473281" class="dana-card">
-            <div style="color:#333; font-weight:bold;">☕ Dukung Operasional</div>
-            <div class="dana-num">0822 2747 3281</div>
-            <div style="font-size: 12px; color: #0077ff;">Klik untuk donasi otomatis</div>
+            <span class="dana-title">☕ DUKUNG OPERASIONAL MEDIA</span>
+            <span class="dana-num">0822 2747 3281</span>
+            <span style="color:#0077ff; font-size:12px;">Klik untuk transfer otomatis ke DANA</span>
         </a>
     </div>
 
+    <div class="footer">
+        © 2026 PT THE APEX VISIONARY MEDIA GROUP<br>
+        Jakarta, Indonesia
+    </div>
+
     <script>
+        // Fungsi Menu Titik 3
         function toggleMenu() {
-            var menu = document.getElementById("navMenu");
-            menu.classList.toggle("active");
+            document.getElementById("navMenu").classList.toggle("active");
+        }
+
+        // Fungsi Carian (🔍) - Ketik "SCTV" untuk Tes
+        function aktifkanCari() {
+            let kueri = prompt("Cari program atau stasiun TV:");
+            if (kueri) {
+                let cari = kueri.toLowerCase();
+                if (cari.includes("sctv") || cari.includes("vams")) {
+                    window.location.href = "https://triyuliansyah588ok.github.io/VAMSTV/";
+                } else if (cari.includes("sinetron")) {
+                    window.location.href = "program/sinetron.html";
+                } else {
+                    alert("Hasil untuk '" + kueri + "' tidak ditemukan. Coba kata kunci lain.");
+                }
+            }
+        }
+
+        // Tutup menu jika klik area lain
+        window.onclick = function(event) {
+            if (!event.target.closest('.header')) {
+                document.getElementById("navMenu").classList.remove("active");
+            }
         }
     </script>
 </body>
