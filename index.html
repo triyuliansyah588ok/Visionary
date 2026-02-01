@@ -1,36 +1,56 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sinetron - Visionary</title>
+    <title>THE APEX VISIONARY - Official Portal</title>
+    <meta name="google-site-verification" content="NXnPTMapUtNrEYOUSr-d0aJT1H2zWiX96TN504I-qZA" />
     <style>
-        body { margin: 0; font-family: sans-serif; background: #f9f9f9; }
-        .header { background: #1a237e; color: white; padding: 15px; display: flex; align-items: center; gap: 15px; }
-        .header a { color: white; text-decoration: none; font-size: 24px; }
-        .content { padding: 15px; }
-        .card { background: white; border-radius: 8px; margin-bottom: 15px; display: flex; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.1); text-decoration: none; color: inherit; }
-        .card img { width: 100px; height: 130px; object-fit: cover; background: #ddd; }
-        .info { padding: 15px; }
-        .info h3 { margin: 0 0 5px 0; font-size: 16px; color: #1a237e; }
-        .info p { margin: 0; font-size: 12px; color: #666; }
+        :root { --primary: #1a237e; }
+        body { margin: 0; font-family: sans-serif; background: #fff; }
+        .header { background: var(--primary); color: white; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; }
+        .header .brand { font-weight: bold; font-size: 19px; }
+        .icons { display: flex; gap: 20px; font-size: 22px; cursor: pointer; }
+        .nav-menu { display: none; background: #fff; position: absolute; top: 55px; right: 0; width: 220px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); border-bottom: 3px solid var(--primary); }
+        .nav-menu.active { display: block; }
+        .nav-item { display: block; padding: 15px 20px; text-decoration: none; color: var(--primary); border-bottom: 1px solid #eee; font-weight: bold; }
+        .container { padding: 20px; }
+        .category-label { background: #f1f3f4; padding: 10px 15px; font-size: 11px; font-weight: bold; color: #5f6368; margin: 15px -20px 10px -20px; text-indent: 10px; }
+        .list-link { display: flex; justify-content: space-between; padding: 18px 0; border-bottom: 1px solid #eee; text-decoration: none; color: var(--primary); font-weight: 500; }
+        .footer { text-align: center; color: #aaa; font-size: 11px; padding: 40px 0; }
     </style>
 </head>
 <body>
     <div class="header">
-        <a href="../index.html">‹</a>
-        <b>SINETRON</b>
-    </div>
-    <div class="content">
-        <div class="card">
-            <img src="https://via.placeholder.com/100x130?text=Sinetron" alt="Poster">
-            <div class="info"><h3>Mengejar Bayang Neon</h3><p>Tayang Setiap Hari 19:00 WIB</p></div>
-        </div>
-        <div class="card">
-            <img src="https://via.placeholder.com/100x130?text=Sinetron" alt="Poster">
-            <div class="info"><h3>Cinta di Balik Lensa</h3><p>Tayang Setiap Hari 20:30 WIB</p></div>
+        <div class="brand">THE APEX VISIONARY</div>
+        <div class="icons">
+            <span onclick="alert('Gunakan Menu Titik 3 untuk Navigasi')">🔍</span>
+            <span onclick="toggleMenu()">☰</span>
         </div>
     </div>
+
+    <div id="navMenu" class="nav-menu">
+        <a href="program/sinetron.html" class="nav-item">🎬 Sinetron</a>
+        <a href="program/webseries.html" class="nav-item">💻 Web Series</a>
+        <a href="program/drama.html" class="nav-item">🎭 Drama</a>
+    </div>
+
+    <div class="container">
+        <div class="category-label">LIVE STREAMING</div>
+        <a href="https://triyuliansyah588ok.github.io/VAMSTV/" class="list-link">VAMS TV - Live <span>›</span></a>
+        <a href="https://triyuliansyah588ok.github.io/NSTV/" class="list-link">NS TV - Live <span>›</span></a>
+
+        <div class="category-label">PROGRAM UNGGULAN</div>
+        <a href="program/sinetron.html" class="list-link">Sinetron Unggulan <span>›</span></a>
+        <a href="program/webseries.html" class="list-link">Web Series Eksklusif <span>›</span></a>
+        <a href="program/drama.html" class="list-link">Drama Pilihan <span>›</span></a>
+    </div>
+
+    <div class="footer">© 2026 PT THE APEX VISIONARY MEDIA</div>
+
+    <script>
+        function toggleMenu() { document.getElementById("navMenu").classList.toggle("active"); }
+        window.onclick = function(e) { if (!e.target.closest('.header')) document.getElementById("navMenu").classList.remove("active"); }
+    </script>
 </body>
 </html>
