@@ -6,9 +6,9 @@
     <title>Login Visionary+</title>
     <style>
         body { margin: 0; font-family: 'Segoe UI', sans-serif; background: #000; color: white; display: flex; align-items: center; justify-content: center; height: 100vh; }
-        .card { background: #111; padding: 30px; border-radius: 20px; border: 1px solid #334155; width: 85%; max-width: 350px; text-align: center; }
-        input { width: 100%; padding: 12px; margin-bottom: 10px; border-radius: 10px; border: 1px solid #334155; background: #000; color: white; box-sizing: border-box; }
-        .btn { width: 100%; padding: 12px; border-radius: 10px; border: none; background: #3b82f6; color: white; font-weight: bold; cursor: pointer; }
+        .card { background: #111; padding: 35px 25px; border-radius: 25px; border: 1px solid #1e293b; width: 85%; max-width: 350px; text-align: center; }
+        input { width: 100%; padding: 14px; margin-bottom: 12px; border-radius: 12px; border: 1px solid #334155; background: #000; color: white; box-sizing: border-box; }
+        .btn { width: 100%; padding: 14px; border-radius: 12px; border: none; background: #3b82f6; color: white; font-weight: bold; cursor: pointer; }
     </style>
 </head>
 <body>
@@ -17,15 +17,24 @@
         <input type="text" id="lUser" placeholder="Username">
         <input type="password" id="lPass" placeholder="Password">
         <button class="btn" onclick="login()">MASUK</button>
-        <p style="font-size: 12px; margin-top: 15px;">Belum punya akun? <a href="daftar.html" style="color: #22c55e; text-decoration: none;">Daftar Gratis</a></p>
+        <p style="font-size: 12px; margin-top: 20px;">Belum punya akun? <a href="daftar.html" style="color: #3b82f6;">Daftar</a></p>
     </div>
     <script>
         function login() {
             const u = document.getElementById('lUser').value;
             const p = document.getElementById('lPass').value;
             const savedP = localStorage.getItem("user_" + u);
-            if ((u === "member" && p === "12345") || (savedP === p && p !== null)) {
+
+            // LOGIKA CEO (Username Bapak: Ramadhan)
+            if (u === "Ramadhan" && p === "admin123") {
                 localStorage.setItem("isLoggedIn", "true");
+                localStorage.setItem("role", "CEO");
+                window.location.href = "index.html";
+            } 
+            // LOGIKA PENONTON
+            else if (savedP === p && p !== null) {
+                localStorage.setItem("isLoggedIn", "true");
+                localStorage.setItem("role", "penonton");
                 window.location.href = "index.html";
             } else { alert("Login Gagal!"); }
         }
