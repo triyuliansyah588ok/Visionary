@@ -3,55 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profil CEO - THE APEX VISIONARY</title>
+    <title>CEO Profil - M Ramadhan</title>
     <style>
         :root { --gold: #ffd700; --dark: #0f172a; --accent: #3b82f6; }
         body { margin: 0; font-family: 'Segoe UI', sans-serif; background: #000; color: white; display: flex; align-items: center; justify-content: center; min-height: 100vh; }
-        
-        .profile-card { background: var(--dark); width: 90%; max-width: 400px; border-radius: 30px; border: 1px solid #1e293b; padding: 40px 20px; text-align: center; position: relative; overflow: hidden; }
-        .profile-card::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100px; background: linear-gradient(to bottom, var(--accent), transparent); opacity: 0.2; }
-
-        .ceo-photo { width: 150px; height: 150px; border-radius: 50%; border: 4px solid var(--gold); object-fit: cover; margin-bottom: 20px; position: relative; z-index: 1; box-shadow: 0 0 20px rgba(255, 215, 0, 0.3); }
-        
+        .card { background: var(--dark); width: 85%; max-width: 380px; border-radius: 30px; border: 1px solid #1e293b; padding: 40px 20px; text-align: center; box-shadow: 0 0 30px rgba(59, 130, 246, 0.2); }
+        .ceo-photo { width: 140px; height: 140px; border-radius: 50%; border: 4px solid var(--gold); object-fit: cover; margin-bottom: 20px; }
         h1 { margin: 10px 0 5px 0; font-size: 24px; letter-spacing: 1px; }
-        .title { color: var(--gold); font-size: 12px; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px; }
-        
-        .bio { font-size: 14px; color: #94a3b8; line-height: 1.6; padding: 0 10px; margin-bottom: 30px; }
-        
-        .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 30px; }
-        .stat-item { background: rgba(255,255,255,0.05); padding: 10px; border-radius: 15px; border: 1px solid #1e293b; }
-        .stat-val { font-weight: bold; font-size: 16px; color: var(--accent); }
-        .stat-label { font-size: 10px; color: #475569; }
-
-        .btn-back { display: inline-block; padding: 12px 30px; background: var(--accent); color: white; text-decoration: none; border-radius: 50px; font-weight: bold; font-size: 14px; transition: 0.3s; }
-        .btn-back:active { transform: scale(0.95); }
+        .title { color: var(--gold); font-size: 11px; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px; }
+        .bio { font-size: 14px; color: #94a3b8; line-height: 1.6; margin-bottom: 25px; }
+        .btn-wa { display: block; padding: 12px; background: #25d366; color: white; text-decoration: none; border-radius: 12px; font-weight: bold; margin-bottom: 10px; }
+        .btn-back { display: block; padding: 12px; background: var(--accent); color: white; text-decoration: none; border-radius: 12px; font-weight: bold; }
     </style>
 </head>
 <body>
-
-    <div class="profile-card">
+    <div class="card">
         <img src="IMG_20260129_175803_586.webp" alt="M Ramadhan" class="ceo-photo">
-        
         <h1>M Ramadhan</h1>
         <div class="title">CEO & Founder - THE APEX VISIONARY</div>
+        <div class="bio">"Membangun masa depan media digital Indonesia melalui inovasi tanpa batas di Visionary+."</div>
         
-        <div class="bio">
-            "Mewujudkan masa depan media digital Indonesia melalui inovasi tanpa batas di Visionary+."
-        </div>
-
-        <div class="stats">
-            <div class="stat-item">
-                <div class="stat-val">2026</div>
-                <div class="stat-label">Tahun Berdiri</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-val">2</div>
-                <div class="stat-label">Channel TV</div>
-            </div>
-        </div>
-
+        <a href="https://wa.me/628XXXXXXXXXX" class="btn-wa">HUBUNGI CEO</a>
         <a href="index.html" class="btn-back">KEMBALI KE BERANDA</a>
     </div>
-
 </body>
 </html>
