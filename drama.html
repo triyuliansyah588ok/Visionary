@@ -3,40 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Drama Pilihan - Visionary</title>
+    <title>Sinetron Unggulan - Visionary</title>
     <style>
-        body { background: #fff; color: #333; font-family: Arial, sans-serif; margin: 0; padding: 0; }
-        .header { background: #c2185b; color: white; padding: 15px 20px; display: flex; align-items: center; gap: 15px; position: sticky; top: 0; }
-        .header a { color: white; text-decoration: none; font-size: 20px; }
-        .main-content { padding: 20px; }
-        .category-header { background: #fce4ec; padding: 10px 20px; font-size: 12px; font-weight: bold; color: #c2185b; margin: 15px -20px 20px -20px; text-transform: uppercase; }
-        .menu-link { display: flex; justify-content: space-between; align-items: center; padding: 18px 0; border-bottom: 1px solid #eee; text-decoration: none; color: #c2185b; font-size: 17px; font-weight: 500; }
-        .arrow { color: #ccc; font-size: 20px; }
-        .footer { text-align: center; padding: 30px; color: #999; font-size: 11px; }
+        body { background: #f4f4f4; color: #333; font-family: Arial, sans-serif; margin: 0; padding: 0; }
+        .header { background: #1a237e; color: white; padding: 15px; display: flex; align-items: center; gap: 15px; position: sticky; top: 0; z-index: 100; }
+        .header a { color: white; text-decoration: none; font-size: 24px; }
+        
+        .content { padding: 15px; }
+        .card { background: white; border-radius: 10px; overflow: hidden; margin-bottom: 20px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); display: flex; text-decoration: none; color: inherit; }
+        .card img { width: 120px; height: 160px; object-fit: cover; background: #ddd; }
+        .card-info { padding: 15px; display: flex; flex-direction: column; justify-content: center; }
+        .card-info h3 { margin: 0 0 5px 0; font-size: 18px; color: #1a237e; }
+        .card-info p { margin: 0; font-size: 13px; color: #666; }
+        
+        .btn-nonton { margin-top: 10px; background: #1a237e; color: white; padding: 8px 15px; border-radius: 5px; font-size: 12px; display: inline-block; width: fit-content; }
     </style>
 </head>
 <body>
 
     <div class="header">
         <a href="../index.html">‹</a>
-        <div style="font-weight:bold;">DRAMA PILIHAN</div>
+        <b style="letter-spacing:1px;">SINETRON UNGGULAN</b>
     </div>
 
-    <div class="main-content">
-        <div class="category-header">Daftar Drama Terbaik</div>
-        
-        <a href="#" class="menu-link">Luka Masa Lalu <span class="arrow">›</span></a>
-        <a href="#" class="menu-link">Gema di Ujung Malam <span class="arrow">›</span></a>
-        <a href="#" class="menu-link">Janji di Atas Menara <span class="arrow">›</span></a>
-        <a href="#" class="menu-link">Sisi Lain Cahaya <span class="arrow">›</span></a>
-        <a href="#" class="menu-link">Arus Waktu <span class="arrow">›</span></a>
+    <div class="content">
+        <a href="#" class="card">
+            <img src="https://images.unsplash.com/photo-1594909122845-11baa439b7bf?q=80&w=200&auto=format&fit=crop" alt="Poster">
+            <div class="card-info">
+                <h3>Mengejar Bayang Neon</h3>
+                <p>Kisah cinta di masa depan Jakarta tahun 2026.</p>
+                <div class="btn-nonton">NONTON SEKARANG</div>
+            </div>
+        </a>
 
-        <div style="margin-top: 30px; padding: 15px; background: #f9f9f9; border-radius: 10px; border-left: 5px solid #ffd700;">
-            <p style="margin:0; font-weight:bold; font-size:14px;">Dukung Drama Kami:</p>
-            <p style="margin:5px 0; font-size:18px; color:#c2185b; font-weight:bold;">DANA: 0822 2747 3281</p>
+        <a href="#" class="card">
+            <img src="https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?q=80&w=200&auto=format&fit=crop" alt="Poster">
+            <div class="card-info">
+                <h3>Cinta di Balik Lensa</h3>
+                <p>Rahasia besar seorang fotografer ternama.</p>
+                <div class="btn-nonton">NONTON SEKARANG</div>
+            </div>
+        </a>
+
         </div>
+
+    <div style="text-align:center; padding: 20px; color: #999; font-size: 12px;">
+        © 2026 THE APEX VISIONARY
     </div>
 
-    <div class="footer">© 2026 THE APEX VISIONARY</div>
 </body>
 </html>
