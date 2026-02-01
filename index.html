@@ -3,16 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Beranda Visionary+</title>
+    <title>Visionary+ | Home</title>
     <script>
         if (localStorage.getItem("isLoggedIn") !== "true") { window.location.href = "login.html"; }
     </script>
     <style>
+        :root { --dana: #008cff; --gold: #ffd700; --dark: #0f172a; }
         body { margin: 0; font-family: 'Segoe UI', sans-serif; background: #000; color: white; }
-        .header { background: #0f172a; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #1e293b; }
-        .brand { font-size: 20px; font-weight: 900; color: gold; }
-        .menu-icon { cursor: pointer; font-size: 22px; display: none; }
-        .logout-icon { cursor: pointer; font-size: 20px; }
+        .header { background: var(--dark); padding: 15px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #1e293b; position: sticky; top:0; z-index:100; }
+        .brand { font-size: 20px; font-weight: 900; color: var(--gold); }
+        
+        .dana-card { margin: 15px; background: linear-gradient(135deg, #008cff, #0056b3); padding: 20px; border-radius: 20px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 10px 20px rgba(0, 140, 255, 0.3); border: 1px solid rgba(255,255,255,0.2); }
+        .dana-info b { font-size: 16px; display: block; }
+        .dana-info span { font-size: 11px; opacity: 0.9; }
+        .btn-dana { background: #fff; color: #008cff; text-decoration: none; padding: 10px 15px; border-radius: 12px; font-size: 12px; font-weight: bold; }
+
+        .menu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 15px; }
+        .menu-item { background: #111; padding: 30px 10px; border-radius: 15px; text-align: center; text-decoration: none; color: white; border: 1px solid #1e293b; font-weight: bold; }
+        .vip-badge { background: var(--gold); color: #000; font-size: 9px; padding: 2px 5px; border-radius: 4px; display: block; width: fit-content; margin: 8px auto 0; }
     </style>
 </head>
 <body>
@@ -20,23 +28,27 @@
     <div class="header">
         <div class="brand">VISIONARY+</div>
         <div style="display: flex; gap: 15px; align-items: center;">
-            <div id="ceoBtn" class="menu-icon" onclick="location.href='admin.html'">👤</div>
-            <div class="logout-icon" onclick="localStorage.clear(); location.reload();">🚪</div>
+            <div id="ceoBtn" style="display:none; cursor:pointer; font-size: 24px;" onclick="location.href='admin.html'">👤</div>
+            <div style="cursor:pointer; font-size: 22px;" onclick="logout()">🚪</div>
         </div>
     </div>
 
-    <script>
-        // Logika Menampilkan Tombol CEO
-        const role = localStorage.getItem("userRole");
-        if (role === "CEO") {
-            document.getElementById("ceoBtn").style.display = "block";
-        }
-    </script>
-
-    <div style="padding: 20px; text-align: center;">
-        <h2 style="color: white;">Selamat Datang di Visionary+</h2>
-        <p style="color: #94a3b8;">Nikmati tayangan eksklusif kami.</p>
+    <div class="dana-card">
+        <div class="dana-info">
+            <b>DONASI DANA</b>
+            <span>0821-1553-241 (Ramadhan)</span>
+        </div>
+        <a href="https://wa.me/628211553241?text=Halo%20CEO%20Ramadhan,%20saya%20sudah%20transfer%20DANA.%20Mohon%20proses%20akun%20saya." target="_blank" class="btn-dana">KONFIRMASI</a>
     </div>
 
+    <div class="menu-grid">
+        <a href="program/sinetron.html" class="menu-item">🎬 SINETRON</a>
+        <a href="program/webseries.html" class="menu-item">🎥 SERIES <span class="vip-badge">VIP ONLY</span></a>
+    </div>
+
+    <script>
+        if (localStorage.getItem("userRole") === "CEO") document.getElementById("ceoBtn").style.display = "block";
+        function logout() { localStorage.clear(); location.reload(); }
+    </script>
 </body>
 </html>
