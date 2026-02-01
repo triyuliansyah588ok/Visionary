@@ -13,10 +13,10 @@
 </head>
 <body>
     <div class="card">
-        <h2 style="color: gold;">DAFTAR AKUN</h2>
-        <p style="font-size: 12px; color: #94a3b8; margin-bottom: 20px;">Daftar untuk menonton VAMS & NS TV</p>
-        <input type="text" id="regUser" placeholder="Username Baru">
-        <input type="password" id="regPass" placeholder="Password Baru">
+        <h2 style="color: gold;">DAFTAR PENONTON</h2>
+        <p style="font-size: 12px; color: #94a3b8; margin-bottom: 20px;">Daftar gratis untuk akses VAMS & NS TV</p>
+        <input type="text" id="regUser" placeholder="Username">
+        <input type="password" id="regPass" placeholder="Password">
         <button class="btn" onclick="daftar()">DAFTAR SEKARANG</button>
         <p style="font-size: 12px; margin-top: 15px;"><a href="login.html" style="color: #94a3b8; text-decoration: none;">Sudah punya akun? Masuk</a></p>
     </div>
@@ -25,12 +25,12 @@
             const u = document.getElementById('regUser').value;
             const p = document.getElementById('regPass').value;
             if(u && p) {
-                // Simpan sebagai user biasa
+                // Simpan data dengan status penonton
                 localStorage.setItem("user_" + u, p);
                 localStorage.setItem("role_" + u, "penonton"); 
-                alert("Daftar Berhasil! Silakan Login.");
+                alert("Daftar Berhasil! Selamat menonton.");
                 window.location.href = "login.html";
-            } else { alert("Lengkapi data!"); }
+            } else { alert("Mohon isi semua data!"); }
         }
     </script>
 </body>
