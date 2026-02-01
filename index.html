@@ -3,78 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Visionary+ Home</title>
+    <title>Visionary+ | Home</title>
     <script>
-        if (localStorage.getItem("isLoggedIn") !== "true") { window.location.href = "login.html"; }
+        if (localStorage.getItem("isLoggedIn") !== "true") {
+            window.location.href = "login.html";
+        }
     </script>
     <style>
-        :root { --accent: #3b82f6; --red: #ef4444; }
+        :root { --accent: #3b82f6; --red: #ef4444; --gold: #ffd700; }
         body { margin: 0; font-family: 'Segoe UI', sans-serif; background: #000; color: white; }
-        
-        /* Header */
-        .header { background: rgba(0,0,0,0.8); padding: 15px 20px; display: flex; justify-content: space-between; position: sticky; top:0; z-index:100; backdrop-filter: blur(10px); }
-        .brand { font-size: 20px; font-weight: 900; color: #ffd700; }
-        
-        /* Horizontal Scroll */
+        .header { background: rgba(15,23,42,0.9); padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; position: sticky; top:0; z-index:100; border-bottom: 1px solid #1e293b; }
+        .brand { font-size: 22px; font-weight: 900; color: var(--gold); }
+        .banner { width: 100%; height: 220px; background: linear-gradient(to bottom, transparent, #000), url('https://via.placeholder.com/500x300/1e293b/fff?text=Visionary+Originals'); background-size: cover; display: flex; align-items: flex-end; padding: 20px; box-sizing: border-box; }
         .section { padding: 20px 0 20px 20px; }
         .section-title { font-size: 14px; font-weight: bold; margin-bottom: 15px; color: #94a3b8; text-transform: uppercase; }
         .scroll-container { display: flex; overflow-x: auto; gap: 15px; padding-right: 20px; scrollbar-width: none; }
-        .scroll-container::-webkit-scrollbar { display: none; }
-        
-        /* Card Segera Tayang */
-        .poster { min-width: 140px; height: 200px; background: #1e293b; border-radius: 12px; position: relative; overflow: hidden; border: 1px solid #334155; }
-        .tag { position: absolute; top: 8px; left: 8px; padding: 3px 7px; font-size: 9px; font-weight: bold; border-radius: 4px; }
-        .tag.hot { background: var(--red); }
-        .tag.soon { background: var(--accent); }
-        .poster-info { position: absolute; bottom: 0; padding: 10px; background: linear-gradient(transparent, rgba(0,0,0,0.9)); width: 100%; box-sizing: border-box; }
-        .poster-info div { font-size: 11px; font-weight: bold; }
-
-        /* Channel Buttons */
-        .tv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; padding: 0 20px; }
-        .tv-card { padding: 20px; border-radius: 15px; text-align: center; text-decoration: none; color: white; font-weight: bold; border: 1px solid #334155; }
+        .poster { min-width: 140px; height: 200px; background: #111; border-radius: 12px; position: relative; border: 1px solid #1e293b; overflow: hidden; }
+        .tag { position: absolute; top: 8px; left: 8px; padding: 3px 8px; font-size: 10px; font-weight: bold; border-radius: 5px; background: var(--red); }
+        .tv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; padding: 0 20px 30px 20px; }
+        .tv-card { padding: 25px 10px; border-radius: 15px; text-align: center; text-decoration: none; color: white; border: 1px solid #1e293b; background: #0f172a; font-weight: bold; }
     </style>
 </head>
 <body>
 
     <div class="header">
         <div class="brand">VISIONARY+</div>
-        <div onclick="localStorage.clear(); location.reload();">🚪</div>
+        <div onclick="localStorage.clear(); location.reload();" style="cursor:pointer">🚪</div>
+    </div>
+
+    <div class="banner">
+        <div>
+            <div style="font-size: 12px; color: var(--gold); font-weight: bold;">ORIGINAL SERIES</div>
+            <div style="font-size: 24px; font-weight: 900;">JAKARTA 2026</div>
+        </div>
     </div>
 
     <div class="section">
         <div class="section-title">Baru & Segera Tayang</div>
         <div class="scroll-container">
-            <div class="poster" style="background-image: url('https://via.placeholder.com/140x200/3b82f6/fff?text=Sinetron'); background-size: cover;">
-                <span class="tag hot">HOT</span>
-                <div class="poster-info"><div>Cinta di VAMS</div></div>
-            </div>
-            <div class="poster" style="background-image: url('https://via.placeholder.com/140x200/ef4444/fff?text=Action'); background-size: cover;">
-                <span class="tag soon">SENIN</span>
-                <div class="poster-info"><div>Misteri NS TV</div></div>
-            </div>
-            <div class="poster" style="background-image: url('https://via.placeholder.com/140x200/ffd700/000?text=Series'); background-size: cover;">
-                <span class="tag soon">JUMAT</span>
-                <div class="poster-info"><div>The Apex War</div></div>
-            </div>
+            <div class="poster"><span class="tag">HOT</span><div style="margin-top:160px; padding:10px; font-size:12px;">VAMS Special</div></div>
+            <div class="poster" style="border-color: var(--accent);"><span class="tag" style="background:var(--accent)">SOON</span><div style="margin-top:160px; padding:10px; font-size:12px;">NS Investigasi</div></div>
         </div>
     </div>
 
     <div class="section-title" style="padding-left: 20px;">Official Channels</div>
     <div class="tv-grid">
-        <a href="https://youtube.com/@vamstv.official01" target="_blank" class="tv-card" style="background: linear-gradient(to bottom, #1e293b, #0f172a); border-top: 3px solid var(--accent);">
-            VAMS TV
-        </a>
-        <a href="https://www.youtube.com/@nstv.officiall" target="_blank" class="tv-card" style="background: linear-gradient(to bottom, #1e293b, #0f172a); border-top: 3px solid var(--red);">
-            NS TV
-        </a>
-    </div>
-
-    <div class="section">
-        <div class="section-title">Kategori</div>
-        <div class="tv-grid">
-            <a href="program/sinetron.html" class="tv-card">🎬 Sinetron</a>
-            <a href="program/webseries.html" class="tv-card">💻 Series</a>
-        </div>
+        <a href="https://youtube.com/@vamstv.official01" target="_blank" class="tv-card" style="border-top: 3px solid var(--accent);">VAMS TV</a>
+        <a href="https://www.youtube.com/@nstv.officiall" target="_blank" class="tv-card" style="border-top: 3px solid var(--red);">NS TV</a>
     </div>
 
 </body>
