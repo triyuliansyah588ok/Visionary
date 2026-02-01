@@ -6,33 +6,31 @@
     <title>Login Visionary+</title>
     <style>
         body { margin: 0; font-family: 'Segoe UI', sans-serif; background: #000; color: white; display: flex; align-items: center; justify-content: center; height: 100vh; }
-        .card { background: #111; padding: 30px; border-radius: 20px; border: 1px solid #334155; width: 85%; max-width: 350px; text-align: center; }
-        .brand { font-size: 24px; font-weight: 900; color: gold; margin-bottom: 20px; }
-        input { width: 100%; padding: 12px; margin-bottom: 10px; border-radius: 10px; border: 1px solid #334155; background: #000; color: white; box-sizing: border-box; }
-        .btn { width: 100%; padding: 12px; border-radius: 10px; border: none; background: #3b82f6; color: white; font-weight: bold; cursor: pointer; }
+        .card { background: #111; padding: 35px 25px; border-radius: 25px; border: 1px solid #1e293b; width: 85%; max-width: 350px; text-align: center; }
+        .brand { font-size: 28px; font-weight: 900; color: gold; margin-bottom: 25px; }
+        input { width: 100%; padding: 14px; margin-bottom: 15px; border-radius: 12px; border: 1px solid #334155; background: #000; color: white; box-sizing: border-box; }
+        .btn { width: 100%; padding: 14px; border-radius: 12px; border: none; background: #3b82f6; color: white; font-weight: bold; cursor: pointer; }
     </style>
 </head>
 <body>
     <div class="card">
         <div class="brand">VISIONARY+</div>
-        <input type="text" id="lUser" placeholder="Username">
-        <input type="password" id="lPass" placeholder="Password">
+        <input type="text" id="user" placeholder="Username">
+        <input type="password" id="pass" placeholder="Password">
         <button class="btn" onclick="login()">MASUK</button>
-        <p style="font-size: 12px; margin-top: 15px;">Belum punya akun? <a href="daftar.html" style="color: #3b82f6;">Daftar Gratis</a></p>
+        <p style="font-size: 12px; margin-top: 20px; color: #94a3b8;">
+            Belum punya akun? <a href="daftar.html" style="color: #22c55e; text-decoration: none;">Daftar Gratis</a>
+        </p>
     </div>
-
     <script>
         function login() {
-            const u = document.getElementById('lUser').value;
-            const p = document.getElementById('lPass').value;
+            const u = document.getElementById('user').value;
+            const p = document.getElementById('pass').value;
             const savedPass = localStorage.getItem("user_" + u);
-
-            if ( (u === "member" && p === "12345") || (savedPass && savedPass === p) ) {
+            if ((u === "member" && p === "12345") || (savedPass === p && p !== null)) {
                 localStorage.setItem("isLoggedIn", "true");
                 window.location.href = "index.html";
-            } else {
-                alert("Username atau Password Salah!");
-            }
+            } else { alert("Username atau Password Salah!"); }
         }
     </script>
 </body>
