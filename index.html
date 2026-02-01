@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Visionary+ Home</title>
+    <title>Beranda Visionary+</title>
     <script>
         if (localStorage.getItem("isLoggedIn") !== "true") { window.location.href = "login.html"; }
     </script>
@@ -11,26 +11,32 @@
         body { margin: 0; font-family: 'Segoe UI', sans-serif; background: #000; color: white; }
         .header { background: #0f172a; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #1e293b; }
         .brand { font-size: 20px; font-weight: 900; color: gold; }
-        .admin-btn { display: none; cursor: pointer; font-size: 24px; }
-        /* Style lainnya tetap sama seperti sebelumnya */
+        .menu-icon { cursor: pointer; font-size: 22px; display: none; }
+        .logout-icon { cursor: pointer; font-size: 20px; }
     </style>
 </head>
 <body>
 
     <div class="header">
         <div class="brand">VISIONARY+</div>
-        <div id="ceoIcon" class="admin-btn" onclick="location.href='admin.html'">👤</div>
-        <div id="userLogout" style="font-size: 20px;" onclick="localStorage.clear(); location.reload();">🚪</div>
+        <div style="display: flex; gap: 15px; align-items: center;">
+            <div id="ceoBtn" class="menu-icon" onclick="location.href='admin.html'">👤</div>
+            <div class="logout-icon" onclick="localStorage.clear(); location.reload();">🚪</div>
+        </div>
     </div>
 
     <script>
-        // Cek Role setelah Login
-        const role = localStorage.getItem("role");
+        // Logika Menampilkan Tombol CEO
+        const role = localStorage.getItem("userRole");
         if (role === "CEO") {
-            document.getElementById("ceoIcon").style.display = "block";
-            document.getElementById("userLogout").style.display = "none";
+            document.getElementById("ceoBtn").style.display = "block";
         }
     </script>
 
-    </body>
+    <div style="padding: 20px; text-align: center;">
+        <h2 style="color: white;">Selamat Datang di Visionary+</h2>
+        <p style="color: #94a3b8;">Nikmati tayangan eksklusif kami.</p>
+    </div>
+
+</body>
 </html>
