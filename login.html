@@ -3,47 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Penonton - Visionary+</title>
+    <title>Login Visionary+</title>
     <style>
         body { margin: 0; font-family: 'Segoe UI', sans-serif; background: #000; color: white; display: flex; align-items: center; justify-content: center; height: 100vh; }
-        .login-card { background: #111; padding: 40px 30px; border-radius: 20px; border: 1px solid #334155; width: 90%; max-width: 400px; text-align: center; }
-        .brand { font-size: 28px; font-weight: 900; color: gold; margin-bottom: 30px; letter-spacing: 2px; }
-        input { width: 100%; padding: 15px; margin-bottom: 15px; border-radius: 10px; border: 1px solid #334155; background: #1e293b; color: white; box-sizing: border-box; }
-        .btn-login { width: 100%; padding: 15px; border-radius: 10px; border: none; background: #3b82f6; color: white; font-weight: bold; cursor: pointer; font-size: 16px; }
-        .footer-link { margin-top: 20px; font-size: 12px; color: #94a3b8; }
+        .card { background: #111; padding: 30px; border-radius: 20px; border: 1px solid #334155; width: 85%; max-width: 350px; text-align: center; }
+        .brand { font-size: 24px; font-weight: 900; color: gold; margin-bottom: 20px; }
+        input { width: 100%; padding: 12px; margin-bottom: 10px; border-radius: 10px; border: 1px solid #334155; background: #000; color: white; box-sizing: border-box; }
+        .btn { width: 100%; padding: 12px; border-radius: 10px; border: none; background: #3b82f6; color: white; font-weight: bold; cursor: pointer; }
     </style>
 </head>
 <body>
-
-    <div class="login-card">
+    <div class="card">
         <div class="brand">VISIONARY+</div>
-        <h3 style="margin-bottom: 20px;">Masuk untuk Menonton</h3>
-        
-        <input type="text" id="user" placeholder="Nama Pengguna / Email">
-        <input type="password" id="pass" placeholder="Kata Sandi">
-        
-        <button class="btn-login" onclick="masuk()">MASUK SEKARANG</button>
-        
-        <div class="footer-link">
-            Belum punya akun? <a href="#" style="color: #3b82f6; text-decoration: none;">Daftar Gratis</a>
-        </div>
+        <input type="text" id="lUser" placeholder="Username">
+        <input type="password" id="lPass" placeholder="Password">
+        <button class="btn" onclick="login()">MASUK</button>
+        <p style="font-size: 12px; margin-top: 15px;">Belum punya akun? <a href="daftar.html" style="color: #3b82f6;">Daftar Gratis</a></p>
     </div>
 
     <script>
-        function masuk() {
-            var user = document.getElementById('user').value;
-            var pass = document.getElementById('pass').value;
+        function login() {
+            const u = document.getElementById('lUser').value;
+            const p = document.getElementById('lPass').value;
+            const savedPass = localStorage.getItem("user_" + u);
 
-            // Password contoh untuk penonton
-            if(user === "member" && pass === "12345") {
-                alert("Login Berhasil! Selamat menonton.");
-                window.location.href = "index.html";
+            if ( (u === "member" && p === "12345") || (savedPass && savedPass === p) ) {
                 localStorage.setItem("isLoggedIn", "true");
+                window.location.href = "index.html";
             } else {
-                alert("Nama atau Sandi Salah! Gunakan user: member, pass: 12345");
+                alert("Username atau Password Salah!");
             }
         }
     </script>
-
 </body>
 </html>
