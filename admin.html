@@ -3,69 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profil CEO - THE APEX VISIONARY</title>
+    <title>CEO Dashboard</title>
     <style>
-        :root { --gold: #ffd700; --dark: #0f172a; --accent: #3b82f6; }
-        body { margin: 0; font-family: 'Segoe UI', sans-serif; background: #000; color: white; display: flex; align-items: center; justify-content: center; min-height: 100vh; }
-        .card { background: var(--dark); width: 85%; max-width: 380px; border-radius: 30px; border: 1px solid #1e293b; padding: 40px 20px; text-align: center; box-shadow: 0 0 30px rgba(59, 130, 246, 0.2); }
-        
-        /* Frame Foto CEO */
-        .photo-container { position: relative; width: 140px; height: 140px; margin: 0 auto 20px; }
-        #ceoPhoto { width: 100%; height: 100%; border-radius: 50%; border: 4px solid var(--gold); object-fit: cover; background: #222; }
-        
-        /* Tombol Ganti Foto Kecil */
-        .change-photo-btn { position: absolute; bottom: 5px; right: 5px; background: var(--accent); border: none; width: 35px; height: 35px; border-radius: 50%; color: white; cursor: pointer; font-size: 18px; display: flex; align-items: center; justify-content: center; border: 2px solid var(--dark); }
-
-        h1 { margin: 10px 0 5px 0; font-size: 24px; }
-        .title { color: var(--gold); font-size: 11px; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 25px; }
-        .bio { font-size: 14px; color: #94a3b8; line-height: 1.6; margin-bottom: 30px; }
-        
-        .btn-action { display: block; padding: 12px; border-radius: 12px; text-decoration: none; font-weight: bold; margin-bottom: 10px; font-size: 14px; }
-        .btn-blue { background: var(--accent); color: white; }
-        .btn-red { background: #ef4444; color: white; }
+        body { margin: 0; font-family: 'Segoe UI', sans-serif; background: #000; color: white; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+        .card { background: #0f172a; width: 90%; max-width: 380px; border-radius: 30px; border: 1px solid #1e293b; padding: 30px 20px; text-align: center; }
+        #profileImg { width: 120px; height: 120px; border-radius: 50%; border: 3px solid #ffd700; object-fit: cover; margin-bottom: 15px; background: #111; }
+        .btn { display: block; padding: 14px; margin: 10px 0; border-radius: 12px; text-decoration: none; font-weight: bold; font-size: 14px; }
+        .btn-wa { background: #25d366; color: white; }
+        .btn-back { background: #3b82f6; color: white; }
     </style>
 </head>
 <body>
-
     <div class="card">
-        <div class="photo-container">
-            <img id="ceoPhoto" src="" alt="Klik ikon + untuk unggah foto">
-            <input type="file" id="fileInput" hidden accept="image/*" onchange="uploadFoto(this)">
-            <button class="change-photo-btn" onclick="document.getElementById('fileInput').click()">+</button>
+        <div style="position:relative; width:120px; margin: 0 auto;">
+            <img id="profileImg" src="https://via.placeholder.com/150" alt="CEO">
+            <input type="file" id="up" hidden onchange="saveFoto(this)">
+            <button onclick="document.getElementById('up').click()" style="position:absolute; bottom:10px; right:0; background:gold; border:none; border-radius:50%; width:30px; height:30px; cursor:pointer;">+</button>
+        </div>
+        <h2 style="margin:5px 0;">M Ramadhan</h2>
+        <p style="color:gold; font-size:11px; letter-spacing:2px; margin-bottom:25px;">CEO THE APEX VISIONARY</p>
+
+        <div style="background:rgba(0,140,255,0.1); border:1px dashed #008cff; padding:15px; border-radius:15px; margin-bottom:20px;">
+            <div style="color:#008cff; font-size:12px; font-weight:bold;">Pusat Dana: 08211553241</div>
+            <p style="font-size:10px; color:#94a3b8; margin-top:5px;">Cek WhatsApp untuk bukti transfer penonton.</p>
         </div>
 
-        <h1>M Ramadhan</h1>
-        <div class="title">CEO & Founder - THE APEX VISIONARY</div>
-        <div class="bio">"Membangun masa depan media digital Indonesia melalui inovasi tanpa batas di Visionary+."</div>
-        
-        <a href="index.html" class="btn-action btn-blue">KEMBALI KE BERANDA</a>
-        <a href="#" onclick="logout()" class="btn-action btn-red">KELUAR (LOGOUT)</a>
+        <a href="https://wa.me/628211553241" target="_blank" class="btn btn-wa">BUKA WHATSAPP</a>
+        <a href="index.html" class="btn btn-back">KEMBALI</a>
     </div>
 
     <script>
-        // 1. Fungsi Menampilkan Foto yang Sudah Disimpan
-        window.onload = function() {
-            const savedFoto = localStorage.getItem("fotoCEO");
-            if(savedFoto) {
-                document.getElementById('ceoPhoto').src = savedFoto;
-            }
-        };
-
-        // 2. Fungsi Unggah & Simpan Foto Permanen
-        function uploadFoto(input) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const base64 = e.target.result;
-                localStorage.setItem("fotoCEO", base64); // Simpan di memori HP
-                document.getElementById('ceoPhoto').src = base64; // Langsung tampilkan
-                alert("Foto CEO Berhasil Diperbarui, Pak!");
-            }
-            reader.readAsDataURL(input.files[0]);
-        }
-
-        function logout() {
-            localStorage.clear();
-            window.location.href = "login.html";
+        window.onload = () => { if(localStorage.getItem("fotoCEO")) document.getElementById('profileImg').src = localStorage.getItem("fotoCEO"); }
+        function saveFoto(input) {
+            const r = new FileReader();
+            r.onload = (e) => { localStorage.setItem("fotoCEO", e.target.result); location.reload(); }
+            r.readAsDataURL(input.files[0]);
         }
     </script>
 </body>
