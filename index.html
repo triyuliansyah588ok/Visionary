@@ -3,38 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VisionaryPlus - Global Streaming Platform</title>
+    <title>VisionaryPlus - VIP Platform</title>
     <style>
-        :root { --gold: #facc15; --dark: #0a0a0a; --gray: #1a1a1a; --red: #ff4d4d; }
-        body { background-color: var(--dark); color: white; font-family: 'Segoe UI', Tahoma, sans-serif; text-align: center; margin: 0; padding: 20px; user-select: none; }
+        :root { --gold: #facc15; --dark: #0a0a0a; --gray: #1a1a1a; }
+        body { background-color: var(--dark); color: white; font-family: 'Segoe UI', sans-serif; text-align: center; margin: 0; padding: 20px; user-select: none; }
         .hidden { display: none; }
-        
-        /* Box container */
-        .box { background: var(--gray); padding: 25px; border-radius: 20px; border: 1px solid #333; margin: 20px auto; max-width: 500px; box-shadow: 0 10px 40px rgba(0,0,0,0.8); }
-        
-        /* Typography */
-        h1 { font-size: 32px; letter-spacing: 3px; margin-bottom: 10px; }
-        h1 span { color: var(--gold); }
-        
-        /* Inputs & Buttons */
+        .box { background: var(--gray); padding: 25px; border-radius: 20px; border: 1px solid #333; margin: 20px auto; max-width: 550px; box-shadow: 0 10px 40px rgba(0,0,0,0.8); }
+        h1 span { color: var(--gold); letter-spacing: 2px; }
         input { width: 85%; padding: 15px; margin: 10px 0; border-radius: 12px; border: 1px solid #333; background: #000; color: white; outline: none; }
-        input:focus { border-color: var(--gold); }
-        .btn { width: 90%; padding: 15px; border-radius: 12px; border: none; font-weight: bold; cursor: pointer; transition: 0.3s; font-size: 16px; margin-top: 10px; }
+        .btn { width: 95%; padding: 15px; border-radius: 12px; border: none; font-weight: bold; cursor: pointer; font-size: 16px; margin-top: 10px; transition: 0.3s; }
         .btn-gold { background: linear-gradient(45deg, var(--gold), #b45309); color: black; }
-        .btn-gold:hover { transform: scale(1.02); opacity: 0.9; }
-
-        /* VIP Badge */
-        .status-vip { color: #4ade80; font-weight: bold; border: 1px solid #4ade80; padding: 8px 15px; border-radius: 50px; display: inline-block; font-size: 14px; margin-bottom: 20px; background: rgba(74, 222, 128, 0.1); }
-
-        /* Grid System */
+        .btn-outline { background: #333; color: white; margin-top: 20px; width: auto; padding: 10px 25px; }
         .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px; }
-        .card { background: #000; border-radius: 15px; border: 1px solid #333; overflow: hidden; cursor: pointer; transition: 0.3s; position: relative; }
-        .card:hover { border-color: var(--gold); transform: translateY(-5px); }
-        .card img { width: 100%; height: 200px; object-fit: cover; opacity: 0.7; }
-        .card-title { padding: 10px; font-size: 14px; font-weight: bold; }
-
-        /* Video Player */
-        .video-wrapper { position:relative; padding-top:56.25%; background: #000; border-radius: 15px; overflow: hidden; }
+        .card { background: #000; border-radius: 15px; border: 1px solid #333; overflow: hidden; cursor: pointer; transition: 0.3s; }
+        .card:hover { border-color: var(--gold); transform: scale(1.03); }
+        .card img { width: 100%; height: 160px; object-fit: cover; opacity: 0.7; }
+        .status-vip { color: #4ade80; font-weight: bold; border: 1px solid #4ade80; padding: 8px 15px; border-radius: 50px; display: inline-block; font-size: 13px; margin-bottom: 20px; background: rgba(74, 222, 128, 0.1); }
+        .video-container { position:relative; padding-top:56.25%; background: #000; border-radius: 15px; overflow: hidden; }
         iframe { position:absolute; top:0; left:0; width:100%; height:100%; border:0; }
     </style>
 </head>
@@ -42,131 +27,105 @@
 
     <h1>VISIONARY<span>PLUS</span></h1>
 
-    <div id="register-section" class="box">
-        <h2 style="margin-top:0;">Daftar Akun</h2>
-        <p style="color: #888;">Buat akun untuk memulai langganan</p>
-        <input type="text" id="reg-user" placeholder="Username Baru">
-        <input type="password" id="reg-pass" placeholder="Password Baru">
-        <button class="btn btn-gold" onclick="register()">BUAT AKUN</button>
-        <p style="font-size: 14px; color: #666; cursor: pointer; margin-top: 15px;" onclick="showLogin()">Sudah punya akun? Login</p>
-    </div>
-
-    <div id="login-section" class="hidden box">
-        <h2>Login Member</h2>
-        <p style="color: #888;">Masuk ke VisionaryPlus Platform</p>
+    <div id="login-section" class="box">
+        <h2>Member Login</h2>
+        <p style="color: #888;">Gunakan Akun Founder atau Akun Member</p>
         <input type="text" id="log-user" placeholder="Username">
         <input type="password" id="log-pass" placeholder="Password">
-        <button class="btn btn-gold" onclick="login()">MASUK</button>
-        <p style="font-size: 14px; color: #666; cursor: pointer; margin-top: 15px;" onclick="showRegister()">Belum punya akun? Daftar</p>
+        <button class="btn btn-gold" onclick="login()">MASUK PLATFORM</button>
     </div>
 
-    <div id="station-section" class="hidden box" style="max-width: 600px;">
+    <div id="station-section" class="hidden box">
         <div class="status-vip">VIP LANGGANAN AKTIF ✅</div>
         <h3>PILIH STASIUN TV</h3>
         <div class="grid">
-            <div class="card" onclick="showCatalog('VAMS TV')">
-                <img src="https://images.unsplash.com/photo-1594909122845-11baa439b7bf?w=400" alt="VAMS">
-                <div class="card-title">VAMS TV</div>
+            <div class="card" onclick="openCatalog('VAMS TV')">
+                <img src="https://images.unsplash.com/photo-1594909122845-11baa439b7bf?w=400">
+                <div style="padding:10px;">VAMS TV</div>
             </div>
-            <div class="card" onclick="showCatalog('NSTV')">
-                <img src="https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?w=400" alt="NSTV">
-                <div class="card-title">NSTV</div>
-            </div>
-        </div>
-        <button class="btn" style="background:#333; color:white; width: auto;" onclick="logout()">LOGOUT</button>
-    </div>
-
-    <div id="catalog-section" class="hidden box" style="max-width: 800px;">
-        <h3 id="current-station" style="color: var(--gold);"></h3>
-        <div class="grid">
-            <div class="card" onclick="playVideo('Malaikat Menjagaku')">
-                <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=400">
-                <div class="card-title">Malaikat Menjagaku</div>
-            </div>
-            <div class="card" onclick="playVideo('Rahasia Visionary')">
-                <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=400">
-                <div class="card-title">Rahasia Visionary</div>
-            </div>
-            <div class="card" onclick="playVideo('Pendekar Digital')">
-                <img src="https://images.unsplash.com/photo-1514467950401-6d88ff10e679?w=400">
-                <div class="card-title">Pendekar Digital</div>
-            </div>
-            <div class="card" onclick="playVideo('Cinta di Balik Layar')">
-                <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?w=400">
-                <div class="card-title">Cinta di Balik Layar</div>
-            </div>
-            <div class="card" onclick="playVideo('Pesan Terakhir')">
-                <img src="https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=400">
-                <div class="card-title">Pesan Terakhir</div>
+            <div class="card" onclick="openCatalog('NSTV')">
+                <img src="https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?w=400">
+                <div style="padding:10px;">NSTV</div>
             </div>
         </div>
-        <button class="btn btn-gold" onclick="backToStation()" style="width: auto; padding: 10px 30px;">KEMBALI KE STASIUN</button>
+        <button class="btn btn-outline" onclick="logout()">LOGOUT</button>
     </div>
 
-    <div id="player-section" class="hidden box" style="max-width: 900px;">
-        <h3 id="video-title" style="margin-bottom: 20px;"></h3>
-        <div class="video-wrapper">
+    <div id="catalog-section" class="hidden box">
+        <h3 id="cat-title" style="color: var(--gold);"></h3>
+        <div class="grid" id="movie-list">
+            </div>
+        <button class="btn btn-gold" onclick="navTo('station')">GANTI STASIUN TV</button>
+    </div>
+
+    <div id="player-section" class="hidden box" style="max-width: 850px;">
+        <h3 id="play-title"></h3>
+        <div class="video-container">
             <iframe id="video-frame" src="" allowfullscreen></iframe>
         </div>
-        <button class="btn btn-gold" onclick="backToCatalog()" style="margin-top: 25px;">KEMBALI KE KATALOG</button>
+        <button class="btn btn-gold" onclick="navTo('catalog')">KEMBALI KE KATALOG</button>
     </div>
 
     <script>
-        const MASTER_CEO = "VisionaryPluss Founder90";
+        const CEO_KEY = "VisionaryPluss Founder90";
+        let currentStation = "";
 
-        function register() {
-            const u = document.getElementById('reg-user').value.trim();
-            const p = document.getElementById('reg-pass').value.trim();
-            if(u && p) {
-                localStorage.setItem('vplus_acc_' + u, p);
-                alert("Pendaftaran Berhasil! Silakan Login.");
-                showLogin();
-            } else { alert("Lengkapi data!"); }
-        }
+        // Data Film (Bisa Bapak tambah sendiri nanti)
+        const movies = [
+            { title: "Malaikat Menjagaku", img: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=400" },
+            { title: "Rahasia Visionary", img: "https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=400" },
+            { title: "Pendekar Digital", img: "https://images.unsplash.com/photo-1514467950401-6d88ff10e679?w=400" },
+            { title: "Cinta di Balik Layar", img: "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=400" },
+            { title: "Pesan Terakhir", img: "https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=400" }
+        ];
 
         function login() {
             const u = document.getElementById('log-user').value.trim();
-            const p = document.getElementById('log-pass').value.trim();
+            if (u === CEO_KEY || u.length > 2) {
+                localStorage.setItem('vplus_auth', 'true');
+                navTo('station');
+            } else { alert("Login Gagal!"); }
+        }
 
-            if (u === MASTER_CEO) {
-                localStorage.setItem('user_session', "Founder");
-                showStation();
-                return;
+        function navTo(section) {
+            document.querySelectorAll('.box').forEach(b => b.classList.add('hidden'));
+            if (section === 'station') {
+                document.getElementById('station-section').classList.remove('hidden');
+            } else if (section === 'catalog') {
+                document.getElementById('catalog-section').classList.remove('hidden');
             }
-
-            const savedP = localStorage.getItem('vplus_acc_' + u);
-            if(savedP && savedP === p) {
-                localStorage.setItem('user_session', u);
-                showStation();
-            } else { alert("Akun tidak terdaftar atau password salah!"); }
         }
 
-        function showLogin() { hideAll(); document.getElementById('login-section').classList.remove('hidden'); }
-        function showRegister() { hideAll(); document.getElementById('register-section').classList.remove('hidden'); }
-        function showStation() { hideAll(); document.getElementById('station-section').classList.remove('hidden'); }
-        
-        function showCatalog(station) {
-            hideAll();
-            document.getElementById('catalog-section').classList.remove('hidden');
-            document.getElementById('current-station').innerText = station;
+        function openCatalog(name) {
+            currentStation = name;
+            document.getElementById('cat-title').innerText = "Katalog " + name;
+            const list = document.getElementById('movie-list');
+            list.innerHTML = "";
+            
+            movies.forEach(m => {
+                list.innerHTML += `
+                    <div class="card" onclick="startPlay('${m.title}')">
+                        <img src="${m.img}">
+                        <div style="padding:10px; font-size:14px;">${m.title}</div>
+                    </div>
+                `;
+            });
+            navTo('catalog');
         }
 
-        function playVideo(title) {
-            hideAll();
+        function startPlay(title) {
+            document.getElementById('catalog-section').classList.add('hidden');
             document.getElementById('player-section').classList.remove('hidden');
-            document.getElementById('video-title').innerText = "Streaming: " + title;
-            // Ganti VIDEO_ID dengan ID YouTube Unlisted Bapak
-            document.getElementById('video-frame').src = "https://www.youtube.com/embed/VIDEO_ID?autoplay=1&rel=0";
+            document.getElementById('play-title').innerText = title;
+            // Ganti VIDEO_ID dengan kode Youtube Bapak
+            document.getElementById('video-frame').src = "https://www.youtube.com/embed/VIDEO_ID?autoplay=1";
         }
 
-        function backToCatalog() { document.getElementById('video-frame').src = ""; hideAll(); document.getElementById('catalog-section').classList.remove('hidden'); }
-        function backToStation() { hideAll(); showStation(); }
-        function hideAll() { document.querySelectorAll('.box').forEach(b => b.classList.add('hidden')); }
-        function logout() { localStorage.removeItem('user_session'); location.reload(); }
+        function logout() { localStorage.clear(); location.reload(); }
 
         window.onload = function() {
-            if(localStorage.getItem('user_session')) showStation();
-        }
+            if (localStorage.getItem('vplus_auth')) navTo('station');
+        };
     </script>
 </body>
 </html>
