@@ -3,177 +3,125 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>VisionaryPlus - Official VIP Platform</title>
+    <title>VisionaryPlus - VIP Platform</title>
     <style>
-        :root { --gold: #facc15; --dark: #050505; --card: #121212; --text: #ffffff; }
-        body { background-color: var(--dark); color: var(--text); font-family: 'Segoe UI', Roboto, sans-serif; margin: 0; padding: 0; overflow-x: hidden; user-select: none; }
+        :root { --gold: #facc15; --dark: #050505; --card: #121212; }
+        body { background-color: var(--dark); color: white; font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; overflow-x: hidden; user-select: none; }
         .hidden { display: none !important; }
-        
-        #main-wrapper { min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 20px; box-sizing: border-box; }
-        .logo-header { font-size: 30px; font-weight: 800; letter-spacing: 4px; margin: 20px 0 40px 0; text-transform: uppercase; }
-        .logo-header span { color: var(--gold); }
-
-        /* Panel UI */
-        .panel { background: var(--card); width: 100%; max-width: 500px; padding: 35px; border-radius: 25px; border: 1px solid #222; box-shadow: 0 25px 50px rgba(0,0,0,0.7); box-sizing: border-box; animation: fadeIn 0.5s ease; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        
-        /* Form Elements */
-        input { width: 100%; padding: 16px; margin: 12px 0; border-radius: 12px; border: 1px solid #333; background: #000; color: white; box-sizing: border-box; outline: none; font-size: 16px; }
-        input:focus { border-color: var(--gold); }
-        .btn { width: 100%; padding: 16px; border-radius: 12px; border: none; font-weight: bold; cursor: pointer; font-size: 16px; margin-top: 15px; transition: 0.3s; text-transform: uppercase; }
+        #wrapper { min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 20px; box-sizing: border-box; }
+        .logo { font-size: 28px; font-weight: bold; letter-spacing: 3px; margin: 20px 0 30px 0; }
+        .logo span { color: var(--gold); }
+        .panel { background: var(--card); width: 100%; max-width: 500px; padding: 30px; border-radius: 25px; border: 1px solid #222; box-shadow: 0 20px 50px rgba(0,0,0,0.7); box-sizing: border-box; }
+        input { width: 100%; padding: 15px; margin: 10px 0; border-radius: 12px; border: 1px solid #333; background: #000; color: white; box-sizing: border-box; outline: none; font-size: 16px; }
+        .btn { width: 100%; padding: 16px; border-radius: 12px; border: none; font-weight: bold; cursor: pointer; font-size: 16px; margin-top: 15px; transition: 0.3s; }
         .btn-gold { background: linear-gradient(45deg, var(--gold), #b45309); color: black; }
-        .btn-gold:hover { transform: scale(1.02); box-shadow: 0 0 20px rgba(250, 204, 21, 0.4); }
-        .btn-dark { background: #222; color: #888; border: 1px solid #333; margin-top: 25px; }
-
-        /* VIP Styling */
-        .badge-vip { color: #4ade80; font-weight: bold; border: 1px solid #4ade80; padding: 10px 20px; border-radius: 15px; background: rgba(74, 222, 128, 0.1); margin-bottom: 25px; font-size: 14px; display: inline-block; }
-
-        /* Grid System */
-        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; width: 100%; margin-top: 20px; }
-        .card { background: #000; border-radius: 18px; border: 1px solid #222; overflow: hidden; cursor: pointer; transition: 0.3s; }
-        .card:hover { border-color: var(--gold); transform: translateY(-5px); }
-        .card img { width: 100%; height: 140px; object-fit: cover; opacity: 0.8; }
-        .card-info { padding: 12px; font-size: 13px; font-weight: bold; text-align: center; }
-
-        /* Video Player Area */
-        .player-area { width: 100%; max-width: 850px; }
-        .video-box { position:relative; padding-top:56.25%; background: #000; border-radius: 20px; overflow: hidden; border: 1px solid #333; box-shadow: 0 0 30px rgba(250, 204, 21, 0.1); }
+        .badge-vip { color: #4ade80; font-weight: bold; border: 1px solid #4ade80; padding: 10px; border-radius: 10px; background: rgba(74, 222, 128, 0.1); margin-bottom: 20px; font-size: 14px; display: inline-block; }
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; width: 100%; margin-top: 20px; }
+        .card { background: #000; border-radius: 15px; border: 1px solid #222; overflow: hidden; cursor: pointer; }
+        .card img { width: 100%; height: 140px; object-fit: cover; }
+        .card-info { padding: 10px; font-size: 13px; font-weight: bold; text-align: center; }
+        .video-box { position:relative; padding-top:56.25%; background: #000; border-radius: 20px; overflow: hidden; border: 1px solid #333; }
         iframe { position:absolute; top:0; left:0; width:100%; height:100%; border:0; }
     </style>
 </head>
 <body oncontextmenu="return false;">
 
-<div id="main-wrapper">
-    <div class="logo-header">VISIONARY<span>PLUS</span></div>
+<div id="wrapper">
+    <div class="logo">VISIONARY<span>PLUS</span></div>
 
-    <div id="view-login" class="panel">
-        <h2 style="margin-top:0;">Founder & Member Login</h2>
-        <p style="color: #666; font-size: 14px;">Masukkan kredensial Anda untuk akses VIP</p>
-        <input type="text" id="username" placeholder="Username">
-        <input type="password" id="password" placeholder="Password">
-        <button class="btn btn-gold" onclick="attemptLogin()">MASUK KE SISTEM</button>
+    <div id="view-auth" class="panel">
+        <h2 id="auth-title" style="margin-top:0;">Daftar Penonton</h2>
+        <input type="text" id="user" placeholder="Username">
+        <input type="password" id="pass" placeholder="Password">
+        <button class="btn btn-gold" id="auth-btn" onclick="handleAuth()">DAFTAR SEKARANG</button>
+        <p id="toggle-auth" style="font-size: 13px; color: #888; margin-top: 15px; cursor: pointer;" onclick="toggleAuth()">Sudah punya akun? Login</p>
     </div>
 
     <div id="view-station" class="panel hidden">
         <div class="badge-vip">VIP LANGGANAN AKTIF ✅</div>
-        <h3 style="margin-bottom:5px;">PILIH STASIUN TV</h3>
-        <p style="color: #666; font-size: 13px; margin-bottom: 20px;">Silakan pilih channel favorit Anda</p>
+        <h3>PILIH STASIUN TV</h3>
         <div class="grid">
-            <div class="card" onclick="openChannel('VAMS TV')">
+            <div class="card" onclick="toCatalog('VAMS TV')">
                 <img src="https://images.unsplash.com/photo-1594909122845-11baa439b7bf?w=400">
                 <div class="card-info">VAMS TV</div>
             </div>
-            <div class="card" onclick="openChannel('NSTV')">
+            <div class="card" onclick="toCatalog('NSTV')">
                 <img src="https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?w=400">
                 <div class="card-info">NSTV</div>
             </div>
         </div>
-        <button class="btn btn-dark" onclick="processLogout()">KELUAR AKUN</button>
+        <button class="btn" style="background:#222; color:#888; margin-top: 30px;" onclick="doLogout()">KELUAR</button>
     </div>
 
-    <div id="view-catalog" class="panel hidden" style="max-width:650px;">
-        <h3 id="display-channel" style="color: var(--gold); margin-top:0;"></h3>
+    <div id="view-catalog" class="panel hidden" style="max-width:600px;">
+        <h3 id="cat-label" style="color: var(--gold); margin-top:0;"></h3>
         <div class="grid" id="movie-grid"></div>
-        <button class="btn btn-gold" onclick="goToStation()">GANTI STASIUN TV</button>
+        <button class="btn btn-gold" onclick="nav('view-station')">GANTI STASIUN</button>
     </div>
 
-    <div id="view-player" class="player-area hidden">
-        <h3 id="movie-playing" style="margin-bottom:20px; color: var(--gold);"></h3>
-        <div class="video-box">
-            <iframe id="video-frame" src="" allowfullscreen allow="autoplay"></iframe>
-        </div>
-        <button class="btn btn-gold" style="max-width:300px;" onclick="goToCatalog()">KEMBALI KE KATALOG</button>
+    <div id="view-player" class="hidden" style="width:100%; max-width:800px;">
+        <h3 id="movie-title" style="margin-bottom:15px; color: var(--gold);"></h3>
+        <div class="video-box"><iframe id="player" src="" allowfullscreen allow="autoplay"></iframe></div>
+        <button class="btn btn-gold" style="width: auto; padding: 10px 40px;" onclick="nav('view-catalog')">KEMBALI</button>
     </div>
 </div>
 
 <script>
-    // KONFIGURASI SISTEM
-    const FOUNDER_USER = "VisionaryPluss Founder90";
-    const MOVIE_DATA = [
-        { title: "Malaikat Menjagaku", img: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=400" },
-        { title: "Rahasia Visionary", img: "https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=400" },
-        { title: "Pendekar Digital", img: "https://images.unsplash.com/photo-1514467950401-6d88ff10e679?w=400" },
-        { title: "Cinta di Balik Layar", img: "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=400" },
-        { title: "Pesan Terakhir", img: "https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=400" }
-    ];
+    const MASTER_CEO = "VisionaryPluss Founder90";
+    let isRegisterMode = true;
 
-    // FUNGSI NAVIGASI ANTI-MENTAL
-    function navigate(viewId) {
-        document.querySelectorAll('#main-wrapper > div:not(.logo-header)').forEach(div => div.classList.add('hidden'));
-        document.getElementById(viewId).classList.remove('hidden');
-        
-        // SCRIPT PENTING: Kunci tombol Back
-        window.history.pushState({view: viewId}, "", "#" + viewId);
+    function nav(id) {
+        document.querySelectorAll('#wrapper > div:not(.logo)').forEach(v => v.classList.add('hidden'));
+        document.getElementById(id).classList.remove('hidden');
+        window.history.pushState({view: id}, "", "#" + id);
     }
 
-    // LISTENER TOMBOL BACK HP
-    window.onpopstate = function(event) {
-        // Jika user tekan back, paksa tetap di halaman stasiun atau login
-        if (localStorage.getItem('isLoggedIn')) {
-            navigate('view-station');
-        } else {
-            navigate('view-login');
-        }
+    // KUNCI TOMBOL BACK HP
+    window.onpopstate = () => {
+        if (localStorage.getItem('logged')) nav('view-station');
+        else nav('view-auth');
     };
 
-    function attemptLogin() {
-        const u = document.getElementById('username').value.trim();
-        if (u === FOUNDER_USER || u.length > 2) {
-            localStorage.setItem('isLoggedIn', 'true');
-            navigate('view-station');
-        } else {
-            alert("Username tidak dikenali!");
-        }
+    function toggleAuth() {
+        isRegisterMode = !isRegisterMode;
+        document.getElementById('auth-title').innerText = isRegisterMode ? "Daftar Penonton" : "Login Member";
+        document.getElementById('auth-btn').innerText = isRegisterMode ? "DAFTAR SEKARANG" : "LOGIN";
+        document.getElementById('toggle-auth').innerText = isRegisterMode ? "Sudah punya akun? Login" : "Belum punya akun? Daftar";
     }
 
-    function openChannel(name) {
-        document.getElementById('display-channel').innerText = "CHANNEL " + name;
+    function handleAuth() {
+        const u = document.getElementById('user').value.trim();
+        const p = document.getElementById('pass').value.trim();
+        if (u === MASTER_CEO || u.length > 2) {
+            localStorage.setItem('logged', 'true');
+            nav('view-station');
+        } else { alert("Data tidak valid!"); }
+    }
+
+    function toCatalog(name) {
+        document.getElementById('cat-label').innerText = "KATALOG " + name;
         const grid = document.getElementById('movie-grid');
         grid.innerHTML = "";
-        
-        MOVIE_DATA.forEach(m => {
-            grid.innerHTML += `
-                <div class="card" onclick="startStream('${m.title}')">
-                    <img src="${m.img}">
-                    <div class="card-info">${m.title}</div>
-                </div>`;
+        const titles = ["Malaikat Menjagaku", "Rahasia Visionary", "Pendekar Digital", "Cinta Layar", "Pesan Terakhir"];
+        titles.forEach(t => {
+            grid.innerHTML += `<div class="card" onclick="play('${t}')">
+                <img src="https://via.placeholder.com/400x250/111/facc15?text=${t}"><div class="card-info">${t}</div>
+            </div>`;
         });
-        navigate('view-catalog');
+        nav('view-catalog');
     }
 
-    function startStream(title) {
-        document.getElementById('movie-playing').innerText = "SEDANG DIPUTAR: " + title;
-        // Ganti VIDEO_ID dengan ID YouTube Unlisted Bapak
-        document.getElementById('video-frame').src = "https://www.youtube.com/embed/VIDEO_ID?autoplay=1&rel=0&modestbranding=1";
-        navigate('view-player');
+    function play(t) {
+        document.getElementById('movie-title').innerText = t;
+        document.getElementById('player').src = "https://www.youtube.com/embed/VIDEO_ID?autoplay=1";
+        nav('view-player');
     }
 
-    function goToCatalog() {
-        document.getElementById('video-frame').src = "";
-        navigate('view-catalog');
-    }
+    function doLogout() { localStorage.clear(); location.reload(); }
 
-    function goToStation() {
-        navigate('view-station');
-    }
-
-    function processLogout() {
-        localStorage.clear();
-        location.reload();
-    }
-
-    // SAAT PERTAMA KALI DIBUKA
     window.onload = () => {
-        // Mencegah Inspect Element (Opsional)
-        document.onkeydown = (e) => {
-            if(e.keyCode == 123 || (e.ctrlKey && e.shiftKey && e.keyCode == 73)) return false;
-        };
-
-        if (localStorage.getItem('isLoggedIn')) {
-            navigate('view-station');
-        } else {
-            window.history.pushState({view: 'login'}, "", "#login");
-        }
+        if (localStorage.getItem('logged')) nav('view-station');
+        window.history.pushState(null, "", window.location.href);
     };
 </script>
 </body>
