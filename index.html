@@ -3,142 +3,178 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>VisionaryPlus Platform</title>
+    <title>VisionaryPlus+ Official</title>
     <style>
-        :root { --gold: #facc15; --dark: #050505; --card: #121212; --red: #ff4d4d; }
+        :root { --gold: #facc15; --dark: #050505; --card: #121212; --green: #4ade80; }
         body { background-color: var(--dark); color: white; font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; overflow-x: hidden; user-select: none; }
         .hidden { display: none !important; }
         #wrapper { min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 20px; box-sizing: border-box; }
-        .logo { font-size: 28px; font-weight: bold; letter-spacing: 3px; margin: 20px 0 30px 0; }
+        
+        .ceo-welcome { font-size: 14px; color: #aaa; line-height: 1.6; margin-bottom: 20px; background: rgba(255,255,255,0.05); padding: 15px; border-radius: 15px; border-left: 4px solid var(--gold); max-width: 500px; text-align: left; }
+        .logo { font-size: 30px; font-weight: bold; letter-spacing: 3px; margin: 10px 0 30px 0; }
         .logo span { color: var(--gold); }
-        .panel { background: var(--card); width: 100%; max-width: 500px; padding: 30px; border-radius: 25px; border: 1px solid #222; box-shadow: 0 20px 50px rgba(0,0,0,0.7); box-sizing: border-box; }
+
+        .panel { background: var(--card); width: 100%; max-width: 500px; padding: 25px; border-radius: 25px; border: 1px solid #222; box-shadow: 0 20px 50px rgba(0,0,0,0.8); box-sizing: border-box; }
         input { width: 100%; padding: 15px; margin: 10px 0; border-radius: 12px; border: 1px solid #333; background: #000; color: white; box-sizing: border-box; outline: none; }
         .btn { width: 100%; padding: 16px; border-radius: 12px; border: none; font-weight: bold; cursor: pointer; font-size: 16px; margin-top: 15px; transition: 0.3s; }
         .btn-gold { background: linear-gradient(45deg, var(--gold), #b45309); color: black; }
-        .badge-vip { color: #4ade80; font-weight: bold; border: 1px solid #4ade80; padding: 10px; border-radius: 10px; background: rgba(74, 222, 128, 0.1); margin-bottom: 20px; font-size: 14px; display: inline-block; }
-        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; width: 100%; margin-top: 20px; }
-        .card { background: #000; border-radius: 15px; border: 1px solid #222; overflow: hidden; cursor: pointer; }
-        .card img { width: 100%; height: 130px; object-fit: cover; }
-        .card-info { padding: 10px; font-size: 13px; font-weight: bold; text-align: center; }
+        
+        /* Langganan Card */
+        .sub-card { border: 1px solid #333; padding: 15px; border-radius: 15px; margin-bottom: 15px; text-align: left; background: #000; }
+        .price { color: var(--gold); font-size: 22px; font-weight: bold; }
+
+        /* Station Logo Style */
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; width: 100%; margin-top: 20px; }
+        .station-card { background: #000; border-radius: 20px; border: 2px solid #222; padding: 20px; cursor: pointer; transition: 0.3s; }
+        .station-card:hover { border-color: var(--gold); transform: scale(1.05); }
+        .st-logo { font-size: 50px; margin-bottom: 10px; display: block; }
+
+        /* Video Grid */
+        .video-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; width: 100%; }
+        .video-item { background: #000; border-radius: 15px; overflow: hidden; border: 1px solid #222; cursor: pointer; }
+        .video-item img { width: 100%; height: 120px; object-fit: cover; }
+        
+        .player-container { width: 100%; max-width: 850px; }
+        .iframe-wrapper { position:relative; padding-top:56.25%; background:#000; border-radius:20px; overflow:hidden; border: 1px solid var(--gold); }
+        iframe { position:absolute; top:0; left:0; width:100%; height:100%; border:0; }
     </style>
 </head>
 <body oncontextmenu="return false;">
 
 <div id="wrapper">
-    <div class="logo">VISIONARY<span>PLUS</span></div>
+    <div class="ceo-welcome">
+        Selamat Datang Ibu, Bapak, Kakak & Adik-adik. Nikmatilah program terbaik dari <b>VAMS TV & NSTV</b>. Selamat Menonton!<br><br>
+        Salam Pemilik Saham Dananja Group,<br>
+        <b>M RAMADHAN</b> (Founder & CEO)
+    </div>
 
-    <div id="view-auth" class="panel">
-        <h2 id="auth-title" style="margin-top:0;">Member Login</h2>
+    <div class="logo">VISIONARY<span>PLUS+</span></div>
+
+    <div id="view-login" class="panel">
+        <h2 style="margin-top:0;">Member Access</h2>
         <input type="text" id="user" placeholder="Username">
         <input type="password" id="pass" placeholder="Password">
-        <button class="btn btn-gold" onclick="handleAuth()">MASUK SEKARANG</button>
+        <button class="btn btn-gold" onclick="auth()">MASUK SEKARANG</button>
     </div>
 
     <div id="view-pay" class="panel hidden">
-        <h2 style="color: var(--red);">AKSES TERKUNCI</h2>
-        <p>Silakan aktifkan VIP untuk akses Stasiun TV</p>
-        <div style="border: 1px solid #333; padding: 15px; border-radius: 15px; margin-bottom: 20px;">
-            <h4>PAKET VIP SILVER</h4>
-            <p style="color: var(--gold); font-size: 20px; font-weight: bold;">Rp 60.000</p>
-            <a href="https://saweria.co/VisionaryPlus" target="_blank"><button class="btn btn-gold">BAYAR VIA SAWERIA</button></a>
+        <h2 style="color: #f87171;">AKSES TERKUNCI</h2>
+        <p>Pilih paket untuk membuka seluruh stasiun TV</p>
+        
+        <div class="sub-card">
+            <b>PAKET SILVER (1 Bulan)</b><br>
+            <span class="price">Rp 60.000</span>
+            <button class="btn btn-gold" onclick="window.open('https://saweria.co/VisionaryPlus')">BELI SEKARANG</button>
         </div>
-        <input type="text" id="access-code" placeholder="Masukkan Kode Saweria">
-        <button class="btn" style="background: #333; color: white;" onclick="checkVipCode()">AKTIFKAN VIP</button>
-        <button class="btn" style="background: transparent; color: #555;" onclick="doLogout()">Logout</button>
+
+        <div class="sub-card" style="border-color: var(--gold);">
+            <b>PAKET LEGEND (3 Tahun)</b><br>
+            <span class="price">Rp 4.000.000</span>
+            <button class="btn btn-gold" onclick="window.open('https://saweria.co/VisionaryPlus')">AMBIL PAKET SULTAN</button>
+        </div>
+
+        <input type="text" id="vip-code" placeholder="Masukkan Kode Aktivasi">
+        <button class="btn" style="background:#333; color:white;" onclick="activateVip()">AKTIFKAN VIP</button>
     </div>
 
     <div id="view-station" class="panel hidden">
-        <div class="badge-vip">VIP LANGGANAN AKTIF ✅</div>
+        <div style="color: var(--green); font-weight: bold; margin-bottom: 20px;">VIP LANGGANAN AKTIF ✅</div>
         <h3>PILIH STASIUN TV</h3>
         <div class="grid">
-            <div class="card" onclick="toCatalog('VAMS TV')">
-                <img src="https://images.unsplash.com/photo-1594909122845-11baa439b7bf?w=400"><div class="card-info">VAMS TV</div>
+            <div class="station-card" onclick="openCatalog('VAMS TV')">
+                <span class="st-logo">📺</span>
+                <b>VAMS TV</b>
             </div>
-            <div class="card" onclick="toCatalog('NSTV')">
-                <img src="https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?w=400"><div class="card-info">NSTV</div>
+            <div class="station-card" onclick="openCatalog('NSTV')">
+                <span class="st-logo">📡</span>
+                <b>NSTV</b>
             </div>
         </div>
-        <button class="btn" style="background:#222; color:#888; margin-top: 20px;" onclick="doLogout()">LOGOUT</button>
+        <button class="btn" style="background:transparent; color:#555;" onclick="logout()">Logout Akun</button>
     </div>
 
     <div id="view-catalog" class="panel hidden" style="max-width:600px;">
-        <h3 id="cat-label" style="color: var(--gold); margin-top:0;"></h3>
-        <div class="grid" id="movie-grid"></div>
-        <button class="btn btn-gold" onclick="nav('view-station')">GANTI STASIUN</button>
+        <h3 id="cat-title" style="color: var(--gold); margin-top:0;"></h3>
+        <div class="video-grid" id="video-list"></div>
+        <button class="btn btn-gold" onclick="nav('view-station')">GANTI STASIUN TV</button>
     </div>
 
-    <div id="view-player" class="hidden" style="width:100%; max-width:800px;">
-        <h3 id="movie-title" style="margin-bottom:15px;"></h3>
-        <div style="position:relative;padding-top:56.25%;background:#000;border-radius:20px;overflow:hidden;border:1px solid #333;">
-            <iframe id="player" src="" style="position:absolute;top:0;left:0;width:100%;height:100%;" allowfullscreen></iframe>
-        </div>
-        <button class="btn btn-gold" style="width:auto;padding:10px 40px;margin-top:20px;" onclick="nav('view-catalog')">KEMBALI</button>
+    <div id="view-player" class="player-container hidden">
+        <h3 id="playing-title" style="margin-bottom:15px;"></h3>
+        <div class="iframe-wrapper"><iframe id="video-frame" src="" allowfullscreen allow="autoplay"></iframe></div>
+        <button class="btn btn-gold" style="width:auto; padding:10px 40px; margin-top:20px;" onclick="nav('view-catalog')">KEMBALI KE KATALOG</button>
     </div>
 </div>
 
 <script>
-    const MASTER_CEO = "VisionaryPluss Founder90";
+    const CEO_NAME = "VisionaryPluss Founder90";
+    
+    // DATABASE VIDEO OTOMATIS (Bapak tinggal tambah judul & link di sini)
+    const dbVideo = [
+        { title: "Malaikat Menjagaku", id: "VIDEO_ID_1" },
+        { title: "Rahasia Visionary", id: "VIDEO_ID_2" },
+        { title: "Pendekar Digital", id: "VIDEO_ID_3" },
+        { title: "Cinta Layar", id: "VIDEO_ID_4" },
+        { title: "Pesan Terakhir", id: "VIDEO_ID_5" }
+    ];
 
     function nav(id) {
-        document.querySelectorAll('#wrapper > div:not(.logo)').forEach(v => v.classList.add('hidden'));
+        document.querySelectorAll('#wrapper > div:not(.ceo-welcome):not(.logo)').forEach(v => v.classList.add('hidden'));
         document.getElementById(id).classList.remove('hidden');
         window.history.pushState({view: id}, "", "#" + id);
     }
 
-    // KUNCI TOMBOL BACK HP
+    // ANTI-MENTAL GOOGLE
     window.onpopstate = () => {
-        const session = localStorage.getItem('session');
-        if (session === 'FOUNDER' || localStorage.getItem('vip') === 'true') nav('view-station');
-        else if (session === 'USER') nav('view-pay');
-        else nav('view-auth');
+        if (localStorage.getItem('logged')) nav('view-station');
+        else nav('view-login');
     };
 
-    function handleAuth() {
+    function auth() {
         const u = document.getElementById('user').value.trim();
-        if (u === MASTER_CEO) {
-            localStorage.setItem('session', 'FOUNDER');
+        if (u === CEO_NAME) {
+            localStorage.setItem('logged', 'CEO');
             nav('view-station');
         } else if (u.length > 2) {
-            localStorage.setItem('session', 'USER');
+            localStorage.setItem('logged', 'USER');
             nav('view-pay');
-        } else { alert("Isi Username!"); }
+        } else { alert("User tidak valid!"); }
     }
 
-    function checkVipCode() {
-        const code = document.getElementById('access-code').value.trim();
-        if (code === "APEX2") { // Bapak bisa tambah kode lain di sini
-            localStorage.setItem('vip', 'true');
-            alert("Pembayaran Berhasil! Selamat menonton.");
+    function activateVip() {
+        if (document.getElementById('vip-code').value === "APEX2") {
+            localStorage.setItem('vip_active', 'true');
             nav('view-station');
         } else { alert("Kode Salah!"); }
     }
 
-    function toCatalog(name) {
-        document.getElementById('cat-label').innerText = name;
-        const grid = document.getElementById('movie-grid');
-        grid.innerHTML = "";
-        const films = ["Malaikat Menjagaku", "Rahasia Visionary", "Pendekar Digital", "Cinta Layar", "Pesan Terakhir"];
-        films.forEach(t => {
-            grid.innerHTML += `<div class="card" onclick="play('${t}')">
-                <img src="https://via.placeholder.com/400x250/111/facc15?text=${t}"><div class="card-info">${t}</div>
-            </div>`;
+    function openCatalog(stasiun) {
+        document.getElementById('cat-title').innerText = stasiun;
+        const list = document.getElementById('video-list');
+        list.innerHTML = "";
+        dbVideo.forEach(v => {
+            list.innerHTML += `
+                <div class="video-item" onclick="playVideo('${v.title}', '${v.id}')">
+                    <img src="https://via.placeholder.com/400x250/111/facc15?text=${v.title}">
+                    <div style="padding:10px; font-size:12px; font-weight:bold;">${v.title}</div>
+                </div>`;
         });
         nav('view-catalog');
     }
 
-    function play(t) {
-        document.getElementById('movie-title').innerText = t;
-        document.getElementById('player').src = "https://www.youtube.com/embed/VIDEO_ID?autoplay=1";
+    function playVideo(title, id) {
+        document.getElementById('playing-title').innerText = title;
+        document.getElementById('video-frame').src = "https://www.youtube.com/embed/" + id + "?autoplay=1&rel=0";
         nav('view-player');
     }
 
-    function doLogout() { localStorage.clear(); location.reload(); }
+    function logout() { localStorage.clear(); location.reload(); }
 
     window.onload = () => {
-        const session = localStorage.getItem('session');
-        const vip = localStorage.getItem('vip');
-        if (session === 'FOUNDER' || (session === 'USER' && vip === 'true')) nav('view-station');
-        else if (session === 'USER') nav('view-pay');
+        const status = localStorage.getItem('logged');
+        const vip = localStorage.getItem('vip_active');
+        if (status === 'CEO' || (status === 'USER' && vip === 'true')) nav('view-station');
+        else if (status === 'USER') nav('view-pay');
         window.history.pushState(null, "", window.location.href);
     };
 </script>
