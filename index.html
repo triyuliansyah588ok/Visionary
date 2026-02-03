@@ -3,38 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>VisionaryPlus+ Official</title>
+    <title>VisionaryPlus+ | Dananja Group</title>
     <style>
-        :root { --gold: #facc15; --dark: #050505; --card: #121212; --green: #4ade80; }
+        :root { --gold: #facc15; --dark: #050505; --card: #111111; --green: #4ade80; }
         body { background-color: var(--dark); color: white; font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; overflow-x: hidden; user-select: none; }
         .hidden { display: none !important; }
         #wrapper { min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 20px; box-sizing: border-box; }
         
-        .ceo-welcome { font-size: 14px; color: #aaa; line-height: 1.6; margin-bottom: 20px; background: rgba(255,255,255,0.05); padding: 15px; border-radius: 15px; border-left: 4px solid var(--gold); max-width: 500px; text-align: left; }
-        .logo { font-size: 30px; font-weight: bold; letter-spacing: 3px; margin: 10px 0 30px 0; }
+        /* Sambutan CEO */
+        .ceo-welcome { font-size: 14px; color: #ccc; line-height: 1.6; margin-bottom: 20px; background: rgba(250, 204, 21, 0.05); padding: 15px; border-radius: 15px; border: 1px solid rgba(250, 204, 21, 0.2); max-width: 500px; text-align: left; }
+        .logo { font-size: 32px; font-weight: 900; letter-spacing: 4px; margin-bottom: 30px; }
         .logo span { color: var(--gold); }
 
-        .panel { background: var(--card); width: 100%; max-width: 500px; padding: 25px; border-radius: 25px; border: 1px solid #222; box-shadow: 0 20px 50px rgba(0,0,0,0.8); box-sizing: border-box; }
-        input { width: 100%; padding: 15px; margin: 10px 0; border-radius: 12px; border: 1px solid #333; background: #000; color: white; box-sizing: border-box; outline: none; }
+        .panel { background: var(--card); width: 100%; max-width: 500px; padding: 30px; border-radius: 25px; border: 1px solid #222; box-shadow: 0 30px 60px rgba(0,0,0,0.9); box-sizing: border-box; }
+        input { width: 100%; padding: 16px; margin: 10px 0; border-radius: 12px; border: 1px solid #333; background: #000; color: white; box-sizing: border-box; outline: none; font-size: 16px; }
         .btn { width: 100%; padding: 16px; border-radius: 12px; border: none; font-weight: bold; cursor: pointer; font-size: 16px; margin-top: 15px; transition: 0.3s; }
         .btn-gold { background: linear-gradient(45deg, var(--gold), #b45309); color: black; }
         
-        /* Langganan Card */
-        .sub-card { border: 1px solid #333; padding: 15px; border-radius: 15px; margin-bottom: 15px; text-align: left; background: #000; }
-        .price { color: var(--gold); font-size: 22px; font-weight: bold; }
+        /* Paket Langganan */
+        .sub-card { border: 1px solid #333; padding: 15px; border-radius: 15px; margin-bottom: 15px; text-align: left; background: #070707; }
+        .price { color: var(--gold); font-size: 24px; font-weight: 800; }
 
-        /* Station Logo Style */
+        /* Station Selection */
         .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; width: 100%; margin-top: 20px; }
-        .station-card { background: #000; border-radius: 20px; border: 2px solid #222; padding: 20px; cursor: pointer; transition: 0.3s; }
-        .station-card:hover { border-color: var(--gold); transform: scale(1.05); }
-        .st-logo { font-size: 50px; margin-bottom: 10px; display: block; }
+        .station-card { background: #000; border-radius: 20px; border: 2px solid #222; padding: 25px; cursor: pointer; transition: 0.3s; text-align: center; }
+        .station-card:hover { border-color: var(--gold); transform: translateY(-5px); }
+        .st-icon { font-size: 50px; margin-bottom: 10px; display: block; }
 
-        /* Video Grid */
+        /* Video List */
         .video-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; width: 100%; }
         .video-item { background: #000; border-radius: 15px; overflow: hidden; border: 1px solid #222; cursor: pointer; }
-        .video-item img { width: 100%; height: 120px; object-fit: cover; }
+        .video-item img { width: 100%; height: 110px; object-fit: cover; }
         
-        .player-container { width: 100%; max-width: 850px; }
+        /* Developer Credit */
+        .footer-credit { margin-top: 40px; font-size: 11px; color: #444; letter-spacing: 1px; text-align: center; padding: 20px; }
+
+        .player-container { width: 100%; max-width: 900px; }
         .iframe-wrapper { position:relative; padding-top:56.25%; background:#000; border-radius:20px; overflow:hidden; border: 1px solid var(--gold); }
         iframe { position:absolute; top:0; left:0; width:100%; height:100%; border:0; }
     </style>
@@ -43,38 +47,32 @@
 
 <div id="wrapper">
     <div class="ceo-welcome">
-        Selamat Datang Ibu, Bapak, Kakak & Adik-adik. Nikmatilah program terbaik dari <b>VAMS TV & NSTV</b>. Selamat Menonton!<br><br>
-        Salam Pemilik Saham Dananja Group,<br>
-        <b>M RAMADHAN</b> (Founder & CEO)
+        Selamat Datang Ibu Bapak Kakak & adik adik Nimati lah program dari VAMSTV & NSTV Selamat Menonton Salam Pemilik Saham Dananja Group <b>M RAMADHAN</b> Selaku jabatan Founder & CEO.
     </div>
 
     <div class="logo">VISIONARY<span>PLUS+</span></div>
 
     <div id="view-login" class="panel">
-        <h2 style="margin-top:0;">Member Access</h2>
+        <h2 style="margin-top:0;">Access Login</h2>
         <input type="text" id="user" placeholder="Username">
         <input type="password" id="pass" placeholder="Password">
         <button class="btn btn-gold" onclick="auth()">MASUK SEKARANG</button>
     </div>
 
     <div id="view-pay" class="panel hidden">
-        <h2 style="color: #f87171;">AKSES TERKUNCI</h2>
-        <p>Pilih paket untuk membuka seluruh stasiun TV</p>
-        
+        <h2 style="color: #ff4d4d;">VIP TERKUNCI</h2>
         <div class="sub-card">
             <b>PAKET SILVER (1 Bulan)</b><br>
             <span class="price">Rp 60.000</span>
             <button class="btn btn-gold" onclick="window.open('https://saweria.co/VisionaryPlus')">BELI SEKARANG</button>
         </div>
-
         <div class="sub-card" style="border-color: var(--gold);">
             <b>PAKET LEGEND (3 Tahun)</b><br>
             <span class="price">Rp 4.000.000</span>
-            <button class="btn btn-gold" onclick="window.open('https://saweria.co/VisionaryPlus')">AMBIL PAKET SULTAN</button>
+            <button class="btn btn-gold" onclick="window.open('https://saweria.co/VisionaryPlus')">PAKET SULTAN</button>
         </div>
-
-        <input type="text" id="vip-code" placeholder="Masukkan Kode Aktivasi">
-        <button class="btn" style="background:#333; color:white;" onclick="activateVip()">AKTIFKAN VIP</button>
+        <input type="text" id="vip-code" placeholder="Kode Aktivasi Saweria">
+        <button class="btn" style="background:#222; color:white;" onclick="activateVip()">AKTIFKAN AKSES</button>
     </div>
 
     <div id="view-station" class="panel hidden">
@@ -82,34 +80,36 @@
         <h3>PILIH STASIUN TV</h3>
         <div class="grid">
             <div class="station-card" onclick="openCatalog('VAMS TV')">
-                <span class="st-logo">📺</span>
-                <b>VAMS TV</b>
+                <span class="st-icon">📺</span><b>VAMS TV</b>
             </div>
             <div class="station-card" onclick="openCatalog('NSTV')">
-                <span class="st-logo">📡</span>
-                <b>NSTV</b>
+                <span class="st-icon">📡</span><b>NSTV</b>
             </div>
         </div>
-        <button class="btn" style="background:transparent; color:#555;" onclick="logout()">Logout Akun</button>
+        <button class="btn" style="background:transparent; color:#444;" onclick="logout()">Logout</button>
     </div>
 
     <div id="view-catalog" class="panel hidden" style="max-width:600px;">
         <h3 id="cat-title" style="color: var(--gold); margin-top:0;"></h3>
         <div class="video-grid" id="video-list"></div>
-        <button class="btn btn-gold" onclick="nav('view-station')">GANTI STASIUN TV</button>
+        <button class="btn btn-gold" onclick="nav('view-station')">KEMBALI KE STASIUN</button>
     </div>
 
     <div id="view-player" class="player-container hidden">
-        <h3 id="playing-title" style="margin-bottom:15px;"></h3>
+        <h3 id="playing-title" style="margin-bottom:15px; color:var(--gold);"></h3>
         <div class="iframe-wrapper"><iframe id="video-frame" src="" allowfullscreen allow="autoplay"></iframe></div>
-        <button class="btn btn-gold" style="width:auto; padding:10px 40px; margin-top:20px;" onclick="nav('view-catalog')">KEMBALI KE KATALOG</button>
+        <button class="btn btn-gold" style="width:auto; padding:10px 40px; margin-top:20px;" onclick="nav('view-catalog')">KEMBALI KE DAFTAR</button>
+    </div>
+
+    <div class="footer-credit">
+        Sistem Dikembangkan oleh Developer & lead Developer Apex App Studio Yang membuat aplikasi VisionaryPluss+
     </div>
 </div>
 
 <script>
     const CEO_NAME = "VisionaryPluss Founder90";
     
-    // DATABASE VIDEO OTOMATIS (Bapak tinggal tambah judul & link di sini)
+    // SISTEM UPDATE OTOMATIS: Tambahkan video di sini saja Pak CEO!
     const dbVideo = [
         { title: "Malaikat Menjagaku", id: "VIDEO_ID_1" },
         { title: "Rahasia Visionary", id: "VIDEO_ID_2" },
@@ -119,12 +119,12 @@
     ];
 
     function nav(id) {
-        document.querySelectorAll('#wrapper > div:not(.ceo-welcome):not(.logo)').forEach(v => v.classList.add('hidden'));
+        document.querySelectorAll('#wrapper > div:not(.ceo-welcome):not(.logo):not(.footer-credit)').forEach(v => v.classList.add('hidden'));
         document.getElementById(id).classList.remove('hidden');
         window.history.pushState({view: id}, "", "#" + id);
     }
 
-    // ANTI-MENTAL GOOGLE
+    // KUNCI NAVIGASI ANTI-GOOGLE
     window.onpopstate = () => {
         if (localStorage.getItem('logged')) nav('view-station');
         else nav('view-login');
@@ -138,14 +138,14 @@
         } else if (u.length > 2) {
             localStorage.setItem('logged', 'USER');
             nav('view-pay');
-        } else { alert("User tidak valid!"); }
+        } else { alert("Data tidak valid!"); }
     }
 
     function activateVip() {
         if (document.getElementById('vip-code').value === "APEX2") {
-            localStorage.setItem('vip_active', 'true');
+            localStorage.setItem('vip_status', 'true');
             nav('view-station');
-        } else { alert("Kode Salah!"); }
+        } else { alert("Kode Aktivasi Salah!"); }
     }
 
     function openCatalog(stasiun) {
@@ -156,7 +156,7 @@
             list.innerHTML += `
                 <div class="video-item" onclick="playVideo('${v.title}', '${v.id}')">
                     <img src="https://via.placeholder.com/400x250/111/facc15?text=${v.title}">
-                    <div style="padding:10px; font-size:12px; font-weight:bold;">${v.title}</div>
+                    <div style="padding:10px; font-size:12px; font-weight:bold; text-align:center;">${v.title}</div>
                 </div>`;
         });
         nav('view-catalog');
@@ -164,7 +164,7 @@
 
     function playVideo(title, id) {
         document.getElementById('playing-title').innerText = title;
-        document.getElementById('video-frame').src = "https://www.youtube.com/embed/" + id + "?autoplay=1&rel=0";
+        document.getElementById('video-frame').src = "https://www.youtube.com/embed/" + id + "?autoplay=1&rel=0&modestbranding=1";
         nav('view-player');
     }
 
@@ -172,7 +172,7 @@
 
     window.onload = () => {
         const status = localStorage.getItem('logged');
-        const vip = localStorage.getItem('vip_active');
+        const vip = localStorage.getItem('vip_status');
         if (status === 'CEO' || (status === 'USER' && vip === 'true')) nav('view-station');
         else if (status === 'USER') nav('view-pay');
         window.history.pushState(null, "", window.location.href);
