@@ -3,83 +3,150 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>VisionaryPlus+ Player</title>
+    <title>VisionaryPlus+ v2026 Engine</title>
     <style>
-        :root { --gold: #facc15; --bg: #000; }
-        body { background: var(--bg); color: white; font-family: sans-serif; margin: 0; overflow-x: hidden; }
-        .marquee { background: #b45309; color: black; padding: 10px; font-weight: bold; overflow: hidden; white-space: nowrap; }
+        :root { --gold: #facc15; --bg: #050505; --card: #111; --red: #ff4d4d; }
+        body { background: var(--bg); color: white; font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; overflow: hidden; user-select: none; }
+        .hidden { display: none !important; }
+        
+        /* MARQUEE CEO */
+        .marquee { background: linear-gradient(90deg, #b45309, var(--gold)); color: black; padding: 10px; font-weight: bold; overflow: hidden; white-space: nowrap; position: fixed; top: 0; width: 100%; z-index: 1000; }
         .marquee-text { display: inline-block; animation: scroll 20s linear infinite; }
         @keyframes scroll { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
-        .content { padding: 20px; display: flex; flex-direction: column; align-items: center; }
-        .stasiun-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; width: 100%; max-width: 500px; margin-top: 30px; }
-        .tv-card { background: #111; border-radius: 20px; padding: 20px; text-align: center; border: 2px solid #222; cursor: pointer; }
-        .tv-card img { width: 100%; height: auto; border-radius: 10px; margin-bottom: 10px; }
-        .vip-lock { background: #111; padding: 30px; border-radius: 25px; text-align: center; width: 90%; max-width: 400px; }
-        .footer { margin-top: 50px; font-size: 10px; color: #444; text-align: center; }
+
+        #app { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; box-sizing: border-box; margin-top: 40px; }
+        .panel { background: var(--card); padding: 30px; border-radius: 30px; border: 1px solid #222; width: 100%; max-width: 400px; text-align: center; box-shadow: 0 25px 50px rgba(0,0,0,0.8); }
+        
+        input { width: 100%; padding: 15px; margin: 10px 0; border-radius: 12px; border: 1px solid #333; background: #000; color: white; box-sizing: border-box; outline: none; }
+        .btn-apex { width: 100%; padding: 16px; border-radius: 12px; border: none; background: linear-gradient(45deg, var(--gold), #b45309); color: black; font-weight: bold; cursor: pointer; font-size: 16px; margin-top: 10px; }
+        
+        /* STASIUN TV */
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px; }
+        .tv-card { background: #000; border: 2px solid #222; border-radius: 20px; padding: 15px; cursor: pointer; transition: 0.3s; }
+        .tv-card:hover { border-color: var(--gold); }
+        .tv-card img { width: 100%; height: 80px; object-fit: contain; margin-bottom: 10px; background: #111; border-radius: 10px; }
+
+        .footer { margin-top: 30px; font-size: 10px; color: #444; text-align: center; }
+        .admin-box { text-align: left; background: #000; padding: 15px; border-radius: 15px; border: 1px solid lawngreen; color: lawngreen; font-family: monospace; }
     </style>
 </head>
 <body>
-    <div class="marquee">
-        <div class="marquee-text">Selamat Datang Ibu Bapak Kakak & adik adik... Salam Pemilik Saham Dananja Group M RAMADHAN Selaku jabatan Founder & CEO.</div>
+
+<div class="marquee">
+    <div class="marquee-text">Selamat Datang Ibu Bapak Kakak & adik adik... Salam Pemilik Saham Dananja Group M RAMADHAN Selaku jabatan Founder & CEO.</div>
+</div>
+
+<div id="app">
+    <h1 style="letter-spacing: 5px; margin-bottom: 20px;">VISIONARY<span>PLUS+</span></h1>
+
+    <div id="view-daftar" class="panel">
+        <h2 style="margin-top:0;">Daftar Penonton</h2>
+        <p style="color:#666; font-size:12px;">Spesial Koding Apex Studio 2026</p>
+        <input type="text" id="reg-user" placeholder="Username">
+        <input type="email" id="reg-email" placeholder="Gmail Pemulihan">
+        <input type="password" id="reg-pass" placeholder="Password">
+        <button class="btn-apex" onclick="doRegister()">DAFTAR SEKARANG</button>
+        <p style="font-size:13px; color:#888; margin-top:15px;">Sudah punya akun? <b onclick="showView('view-login')" style="color:var(--gold); cursor:pointer;">Login</b></p>
     </div>
 
-    <div class="content">
-        <h1 style="letter-spacing: 5px;">VISIONARY<span>PLUS+</span></h1>
-
-        <div id="payment-area" class="vip-lock hidden">
-            <h2 style="color:red;">AKSES TERKUNCI</h2>
-            <div style="border:1px solid var(--gold); padding:15px; margin-bottom:20px; border-radius:15px;">
-                <p>PAKET LEGEND (3 Tahun)</p>
-                <b style="font-size:24px; color:var(--gold);">Rp 4.000.000</b>
-                <button onclick="window.open('https://saweria.co/VisionaryPlus')" style="width:100%; padding:10px; background:var(--gold); border:none; border-radius:10px; margin-top:10px; font-weight:bold;">BELI VIA SAWERIA</button>
-            </div>
-            <input type="text" id="kode-vip" placeholder="Masukkan Kode Saweria" style="width:100%; padding:10px; margin-bottom:10px; background:#000; color:white; border:1px solid #333;">
-            <button onclick="verifyVip()" style="width:100%; padding:10px; background:#333; color:white; border:none; border-radius:10px;">VERIFIKASI</button>
-        </div>
-
-        <div id="station-area" class="hidden">
-            <p style="color:lawngreen;">VIP AKTIF ✅</p>
-            <div class="stasiun-grid">
-                <div class="tv-card" onclick="alert('Memuat VAMS TV...')">
-                    <img src="https://raw.githubusercontent.com/triyuliansyah588ok/Visionary/main/logo_vams.png" alt="VAMS">
-                    <b>VAMS TV</b>
-                </div>
-                <div class="tv-card" onclick="alert('Memuat NSTV...')">
-                    <img src="https://raw.githubusercontent.com/triyuliansyah588ok/Visionary/main/logo_nstv.png" alt="NSTV">
-                    <b>NSTV</b>
-                </div>
-            </div>
-            <button onclick="logout()" style="margin-top:40px; background:none; border:none; color:#555; cursor:pointer;">Logout Akun</button>
-        </div>
-
-        <div class="footer">
-            Sistem Dikembangkan oleh Developer & lead Developer Apex App Interactive Studio 2026
-        </div>
+    <div id="view-login" class="panel hidden">
+        <h2 style="margin-top:0;">Member Login</h2>
+        <input type="text" id="log-user" placeholder="Username">
+        <input type="password" id="log-pass" placeholder="Password">
+        <button class="btn-apex" onclick="doLogin()">MASUK</button>
+        <p style="font-size:13px; color:#888; margin-top:15px;">Belum daftar? <b onclick="showView('view-daftar')" style="color:var(--gold); cursor:pointer;">Daftar Akun</b></p>
     </div>
 
-    <script>
-        // ANTI-MENTAL SYSTEM
-        window.history.pushState(null, "", window.location.href);
-        window.onpopstate = function() { window.history.pushState(null, "", window.location.href); };
+    <div id="view-pay" class="panel hidden">
+        <h2 style="color:var(--red);">AKSES TERKUNCI</h2>
+        <div style="border:1px solid #333; padding:15px; border-radius:15px; margin-bottom:15px;">
+            <b>PAKET LEGEND (3 TAHUN)</b><br>
+            <span style="font-size:20px; color:var(--gold);">Rp 4.000.000</span>
+            <button class="btn-apex" onclick="window.open('https://saweria.co/VisionaryPlus')">BAYAR VIA SAWERIA</button>
+        </div>
+        <input type="text" id="vip-code" placeholder="Masukkan Kode Aktivasi">
+        <button class="btn-apex" style="background:#333; color:white;" onclick="verifyVip()">AKTIFKAN</button>
+    </div>
 
-        function checkInit() {
-            if(localStorage.getItem('role') === 'ADMIN') { window.location.href = "admin.html"; return; }
-            if(localStorage.getItem('isVip') === 'true') {
-                document.getElementById('station-area').classList.remove('hidden');
-            } else {
-                document.getElementById('payment-area').classList.remove('hidden');
-            }
-        }
+    <div id="view-player" class="panel hidden" style="max-width:500px;">
+        <p style="color:lawngreen; font-weight:bold;">VIP AKTIF ✅</p>
+        <h3>PILIH STASIUN TV</h3>
+        <div class="grid">
+            <div class="tv-card" onclick="alert('Membuka VAMS TV...')">
+                <img src="https://raw.githubusercontent.com/triyuliansyah588ok/Visionary/main/logo_vams.png" alt="VAMS">
+                <b>VAMS TV</b>
+            </div>
+            <div class="tv-card" onclick="alert('Membuka NSTV...')">
+                <img src="https://raw.githubusercontent.com/triyuliansyah588ok/Visionary/main/logo_nstv.png" alt="NSTV">
+                <b>NSTV</b>
+            </div>
+        </div>
+        <button onclick="logout()" style="margin-top:20px; background:none; border:none; color:#555; cursor:pointer;">Logout</button>
+    </div>
 
-        function verifyVip() {
-            if(document.getElementById('kode-vip').value === "APEX2") {
-                localStorage.setItem('isVip', 'true');
-                location.reload();
-            } else { alert("Kode Salah!"); }
-        }
+    <div id="view-admin" class="panel hidden" style="max-width:500px;">
+        <h2 style="color:lawngreen;">ADMIN CONTROL PANEL</h2>
+        <div class="admin-box">
+            > User: Founder & CEO M RAMADHAN<br>
+            > Database: Apex Interactive Online<br>
+            > Encrypt: AES-2026 Active
+        </div>
+        <button class="btn-apex" onclick="showView('view-player')">LIHAT TAMPILAN WEB</button>
+        <button class="btn-apex" style="background:red;" onclick="localStorage.clear(); location.reload();">RESET SISTEM</button>
+    </div>
 
-        function logout() { localStorage.clear(); window.location.href = "login.html"; }
-        window.onload = checkInit;
-    </script>
+    <div class="footer">
+        Sistem Dikembangkan oleh Developer & lead Developer Apex App Interactive Studio 2026
+    </div>
+</div>
+
+<script>
+    // SISTEM NAVIGASI ANTI-BUG
+    function showView(id) {
+        document.querySelectorAll('.panel').forEach(p => p.classList.add('hidden'));
+        document.getElementById(id).classList.remove('hidden');
+        window.history.pushState(null, "", ""); 
+    }
+
+    // KUNCI TOMBOL BACK (ANTI-GOOGLE)
+    window.onpopstate = function() { window.history.pushState(null, "", ""); };
+
+    function doRegister() {
+        const u = document.getElementById('reg-user').value;
+        const e = document.getElementById('reg-email').value;
+        const p = document.getElementById('reg-pass').value;
+        if(u && e && p) {
+            localStorage.setItem('u', u); localStorage.setItem('e', e); localStorage.setItem('p', p);
+            alert("Berhasil Daftar!"); showView('view-login');
+        } else { alert("Lengkapi Data!"); }
+    }
+
+    function doLogin() {
+        const u = document.getElementById('log-user').value;
+        const p = document.getElementById('log-pass').value;
+        if(u === "VisionaryPluss Founder90") {
+            showView('view-admin');
+        } else if(u === localStorage.getItem('u') && p === localStorage.getItem('p')) {
+            if(localStorage.getItem('vip') === 'true') showView('view-player');
+            else showView('view-pay');
+        } else { alert("Salah Akun!"); }
+    }
+
+    function verifyVip() {
+        if(document.getElementById('vip-code').value === "APEX2") {
+            localStorage.setItem('vip', 'true');
+            alert("VIP Aktif!"); showView('view-player');
+        } else { alert("Kode Salah!"); }
+    }
+
+    function logout() { localStorage.removeItem('u'); location.reload(); }
+
+    // CEK SESI SAAT BUKA WEB
+    window.onload = () => {
+        window.history.pushState(null, "", "");
+        if(localStorage.getItem('u')) showView('view-login');
+        else showView('view-daftar');
+    };
+</script>
 </body>
 </html>
