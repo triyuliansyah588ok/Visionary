@@ -3,130 +3,155 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VisionaryPlus+ | NOVA INTERACTIVE CORP</title>
+    <title>VisionaryPlus+ | Official Pre-Release</title>
     <style>
-        :root { --gold: #ffd700; --neon: #00f2ff; --bg: #050505; }
-        body { margin: 0; background: var(--bg); color: white; font-family: 'Orbitron', sans-serif; overflow: hidden; }
+        :root { --gold: #ffd700; --blue: #0085ff; --dark: #0a0a0a; }
+        body { margin: 0; background: var(--dark); color: white; font-family: 'Orbitron', sans-serif; overflow-x: hidden; }
         
-        /* ANIMASI CYBER-GOLD USA STANDARD */
-        canvas { position: fixed; top: 0; left: 0; z-index: -1; }
+        /* ANIMASI LATAR BELAKANG HYPER-SPACE */
+        #bg-canvas { position: fixed; top: 0; left: 0; z-index: -1; }
 
-        .app-container { height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; box-sizing: border-box; }
+        .container { min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 20px; }
         
-        .branding-header { text-align: center; margin-bottom: 20px; animation: pulse 2s infinite; }
-        @keyframes pulse { 0% { opacity: 0.8; } 50% { opacity: 1; } 100% { opacity: 0.8; } }
-
-        .main-card { 
-            background: rgba(10, 10, 10, 0.9); border: 1px solid var(--gold); 
-            padding: 40px; border-radius: 40px; width: 100%; max-width: 420px; 
-            backdrop-filter: blur(25px); box-shadow: 0 0 40px rgba(255, 215, 0, 0.2);
-            text-align: center; border-top: 5px solid var(--gold);
+        /* PANEL ALA WETV */
+        .auth-box { 
+            background: rgba(15, 15, 15, 0.95); border: 1px solid var(--gold); 
+            padding: 30px; border-radius: 25px; width: 100%; max-width: 380px; 
+            margin-top: 50px; backdrop-filter: blur(15px); text-align: center;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.2);
         }
 
-        input { width: 100%; padding: 16px; margin: 12px 0; border-radius: 15px; border: 1px solid #333; background: #000; color: white; font-size: 16px; box-sizing: border-box; }
+        input { width: 100%; padding: 12px; margin: 8px 0; border-radius: 10px; border: 1px solid #333; background: #000; color: white; box-sizing: border-box; }
         
-        .btn-action { background: linear-gradient(90deg, #ffd700, #b8860b); color: #000; width: 100%; padding: 18px; border: none; border-radius: 15px; font-weight: 900; cursor: pointer; letter-spacing: 2px; transition: 0.4s; margin-top: 10px; }
-        .btn-action:hover { box-shadow: 0 0 30px var(--gold); transform: translateY(-3px); }
+        .btn-gold { background: linear-gradient(90deg, #ffd700, #b8860b); color: #000; width: 100%; padding: 15px; border: none; border-radius: 10px; font-weight: 900; cursor: pointer; margin-top: 10px; }
+        
+        /* ANIMASI KARAKTER MASKOT */
+        .mascot { width: 80px; animation: bounce 2s infinite ease-in-out; margin-bottom: 10px; }
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
 
-        /* PLAYER & TRANSPARENT OVERLAY */
-        #dashboard { display: none; width: 100%; max-width: 1000px; }
-        .tv-frame { position: relative; border-radius: 25px; overflow: hidden; border: 2px solid #222; background: #000; box-shadow: 0 20px 50px rgba(0,0,0,1); }
-        .logo-overlay { position: absolute; top: 20px; right: 20px; width: 70px; z-index: 100; filter: drop-shadow(0 0 10px rgba(0,0,0,0.8)); }
-        iframe { width: 100%; aspect-ratio: 16/9; border: none; }
+        /* DASHBOARD & PLAYER */
+        #mainApp { display: none; width: 100%; max-width: 900px; margin-top: 20px; }
+        .video-wrapper { position: relative; border-radius: 20px; overflow: hidden; border: 2px solid var(--gold); }
+        .overlay-logo { position: absolute; top: 15px; right: 15px; width: 60px; z-index: 10; pointer-events: none; }
+        
+        /* PLAYLIST DJ SELECTOR */
+        .playlist-container { background: #111; padding: 15px; border-radius: 15px; margin-top: 20px; border-bottom: 3px solid var(--gold); }
+        .dj-item { background: #222; padding: 10px; margin: 5px 0; border-radius: 8px; cursor: pointer; display: flex; justify-content: space-between; font-size: 12px; transition: 0.3s; }
+        .dj-item:hover { background: var(--gold); color: black; }
 
-        /* VIP & GOPAY INFO */
-        .pay-info { margin-top: 25px; padding: 15px; border-radius: 20px; background: rgba(0, 133, 255, 0.05); border: 1px dashed #0085ff; font-size: 12px; }
-        .gopay-tag { color: #0085ff; font-weight: bold; font-size: 18px; letter-spacing: 1px; }
+        .vip-tag { font-size: 10px; background: var(--gold); color: black; padding: 2px 6px; border-radius: 4px; font-weight: bold; }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <canvas id="matrixCanvas"></canvas>
+    <canvas id="bg-canvas"></canvas>
 
-    <div class="app-container">
-        <div id="loginPanel" class="main-card">
-            <div class="branding-header">
-                <h1 style="color:var(--gold); margin:0; font-size: 24px;">VISIONARYPLUS+</h1>
-                <small style="letter-spacing: 3px;">NOVA INTERACTIVE CORP</small>
+    <div class="container">
+        <div style="text-align: center;">
+            <img src="https://raw.githubusercontent.com/triyuliansyah588ok/Visionary/main/logo_vams.png" class="mascot">
+            <h1 style="color:var(--gold); margin:0; font-size: 20px; letter-spacing: 5px;">VISIONARYPLUS+</h1>
+            <small>DANANJA GROUP - M RAMADHAN CEO</small>
+        </div>
+
+        <div id="authPanel" class="auth-box">
+            <div id="authTitle"><h2>MASUK</h2></div>
+            <div id="registerFields" style="display:none;">
+                <input type="email" id="regEmail" placeholder="Alamat Email">
+                <input type="text" id="regUser" placeholder="Buat Username">
             </div>
+            <input type="text" id="loginUser" placeholder="Username">
+            <input type="password" id="loginPass" placeholder="Kata Sandi">
+            
+            <button class="btn-gold" id="authBtn" onclick="handleAuth()">MASUK</button>
+            
+            <p style="font-size: 12px; margin-top: 15px;">
+                <span id="toggleText" style="cursor:pointer; color:var(--blue);" onclick="toggleAuth()">Belum punya akun? Daftar</span>
+            </p>
 
-            <input type="text" id="user" placeholder="USERNAME FOUNDER">
-            <input type="password" id="pass" placeholder="ACCESS KEY">
-            <button class="btn-action" onclick="validateAccess()">ENTER SYSTEM</button>
-
-            <div class="pay-info">
-                GOPAY / DANA AKTIVASI VIP:<br>
-                <span class="gopay-tag">08211553241</span><br>
-                A.n <b style="color:var(--gold)">M RAMADHAN</b>
+            <div style="margin-top: 20px; font-size: 10px; border-top: 1px solid #333; padding-top: 10px;">
+                AKTIVASI VIP GOPAY: <b style="color:var(--gold)">08211553241</b> (A.n M RAMADHAN)
             </div>
         </div>
 
-        <div id="dashboard">
-            <div class="tv-frame">
-                <img id="tvLogo" src="https://raw.githubusercontent.com/triyuliansyah588ok/Visionary/main/VAMSTV.png" class="logo-overlay">
-                <div id="videoEngine"></div>
+        <div id="mainApp">
+            <div class="video-wrapper">
+                <img id="overlayLogo" src="https://raw.githubusercontent.com/triyuliansyah588ok/Visionary/main/VAMSTV.png" class="overlay-logo">
+                <div id="player"></div>
             </div>
 
-            <div style="display:flex; gap:15px; margin-top: 20px;">
-                <button onclick="switchChannel('VAMS TV', 'D0ydazTSAyE')" class="btn-action">VAMS TV</button>
-                <button onclick="switchChannel('NSTV', 'D0ydazTSAyE')" class="btn-action" style="background:#fff; color:#000;">NSTV</button>
+            <div style="display:flex; gap:10px; margin-top:15px;">
+                <button onclick="changeChannel('VAMS TV', 'D0ydazTSAyE')" class="btn-gold" style="width:50%">📺 VAMS TV</button>
+                <button onclick="changeChannel('NSTV', 'D0ydazTSAyE')" class="btn-gold" style="width:50%; background:white;">📺 NSTV</button>
             </div>
 
-            <div style="background:rgba(20,20,20,0.8); margin-top:20px; padding:15px; border-radius:20px; border-left:4px solid var(--gold);">
-                <small style="color:var(--gold)">AUDIO SYSTEM ACTIVE</small>
-                <p style="margin:5px 0; font-size:12px;">🔴 Playing: DJ Biring Manggis - M RAMADHAN Special</p>
-                <audio controls style="width:100%; height:30px; filter: invert(1);"><source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></audio>
+            <div class="playlist-container">
+                <h4 style="margin:0 0 10px 0; color:var(--gold);">📀 PILIHAN MUSIK DJ (EXCLUSIVE)</h4>
+                <div class="dj-item" onclick="changeChannel('DJ MANGGIS', 'D0ydazTSAyE')"><span>01. DJ Biring Manggis (Remix)</span> <span class="vip-tag">VIP</span></div>
+                <div class="dj-item" onclick="changeChannel('DJ NOVA', 'z_m_X_X_X')"><span>02. DJ Dananja Group Anthem</span> <span class="vip-tag">VIP</span></div>
+                <div class="dj-item" onclick="changeChannel('DJ BREAK', 'y_y_y_y_y')"><span>03. DJ Slow Bass 2026</span> <span class="vip-tag">VIP</span></div>
             </div>
         </div>
     </div>
 
     <script>
-        // MATRIX GOLD ANIMATION (USA STYLE)
-        const canvas = document.getElementById('matrixCanvas');
+        // 1. ANIMASI LATAR BELAKANG (USA STYLE)
+        const canvas = document.getElementById('bg-canvas');
         const ctx = canvas.getContext('2d');
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
-        const columns = canvas.width / 20;
-        const drops = Array(Math.floor(columns)).fill(1);
+        let stars = Array(200).fill().map(() => ({ x: Math.random()*canvas.width, y: Math.random()*canvas.height, r: Math.random()*2, d: Math.random()*1 }));
 
-        function drawMatrix() {
-            ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle = "#ffd700";
-            ctx.font = "15px monospace";
-            drops.forEach((y, i) => {
-                const text = String.fromCharCode(Math.random() * 128);
-                ctx.fillText(text, i * 20, y * 20);
-                if (y * 20 > canvas.height && Math.random() > 0.975) drops[i] = 0;
-                drops[i]++;
+        function drawStars() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = "white";
+            stars.forEach(s => {
+                ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, Math.PI*2); ctx.fill();
+                s.y += s.d; if(s.y > canvas.height) s.y = 0;
             });
+            requestAnimationFrame(drawStars);
         }
-        setInterval(drawMatrix, 50);
+        drawStars();
 
-        function validateAccess() {
-            const u = document.getElementById('user').value;
-            const p = document.getElementById('pass').value;
+        // 2. SISTEM LOGIN & DAFTAR
+        let isRegister = false;
+        function toggleAuth() {
+            isRegister = !isRegister;
+            document.getElementById('registerFields').style.display = isRegister ? 'block' : 'none';
+            document.getElementById('authTitle').innerHTML = isRegister ? '<h2>DAFTAR AKUN</h2>' : '<h2>MASUK</h2>';
+            document.getElementById('authBtn').innerHTML = isRegister ? 'BUAT AKUN' : 'MASUK';
+            document.getElementById('toggleText').innerHTML = isRegister ? 'Sudah punya akun? Masuk' : 'Belum punya akun? Daftar';
+        }
 
-            if(u === "VisionaryPluss Founder90" && p === "DANANJA2026") {
-                alert("WELCOME CHAIRMAN M RAMADHAN. VIP ACCESS GRANTED.");
-                document.getElementById('loginPanel').style.display = 'none';
-                document.getElementById('dashboard').style.display = 'block';
-                switchChannel('VAMS TV', 'D0ydazTSAyE');
+        function handleAuth() {
+            const user = document.getElementById('loginUser').value;
+            const pass = document.getElementById('loginPass').value;
+
+            // AKUN CEO (HARDCODED)
+            if(user === "VisionaryPluss Founder90" && pass === "DANANJA2026") {
+                alert("WELCOME CHAIRMAN M RAMADHAN. AKSES CEO AKTIF.");
+                launchApp("CEO PERMANENT");
+            } else if(isRegister) {
+                alert("Registrasi Berhasil! Silahkan Login dan Hubungi Admin untuk aktivasi VIP.");
+                toggleAuth();
             } else {
-                alert("AKSES DITOLAK! Hubungi CEO M RAMADHAN untuk Aktivasi.");
+                alert("Akses Terbatas. Gunakan Akun VIP atau hubungi 08211553241.");
             }
         }
 
-        function switchChannel(name, id) {
-            document.getElementById('videoEngine').innerHTML = `<iframe src="https://www.youtube.com/embed/${id}?autoplay=1&controls=0&modestbranding=1&rel=0" allow="autoplay"></iframe>`;
-            const logo = document.getElementById('tvLogo');
-            // OTOMATIS GANTI LOGO TRANSPARAN
+        function launchApp(role) {
+            document.getElementById('authPanel').style.display = 'none';
+            document.getElementById('mainApp').style.display = 'block';
+            changeChannel('VAMS TV', 'D0ydazTSAyE');
+        }
+
+        function changeChannel(name, id) {
+            document.getElementById('player').innerHTML = `<iframe width="100%" height="100%" src="https://www.youtube.com/embed/${id}?autoplay=1&controls=1&modestbranding=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen style="aspect-ratio:16/9;"></iframe>`;
+            const logo = document.getElementById('overlayLogo');
             logo.src = (name === 'VAMS TV') ? 
                 "https://raw.githubusercontent.com/triyuliansyah588ok/Visionary/main/VAMSTV.png" : 
                 "https://raw.githubusercontent.com/triyuliansyah588ok/Visionary/main/NSTV.png";
-            
-            console.log("Channel Switched to: " + name);
+            alert("Memutar: " + name);
         }
     </script>
 </body>
