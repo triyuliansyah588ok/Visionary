@@ -5,103 +5,122 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>VisionaryPlus+ | M RAMADHAN CEO</title>
     <style>
-        :root { --gold: #ffd700; --dark: #000000; }
-        body { margin: 0; background: var(--dark); color: white; font-family: 'Arial', sans-serif; overflow: hidden; }
-        
-        /* CONTAINER UTAMA */
-        .container { height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        :root { --gold: #ffd700; --dark: #000; }
+        body, html { margin: 0; padding: 0; width: 100%; height: 100%; background: #000; overflow: hidden; font-family: 'Arial', sans-serif; }
 
-        /* AUTH CARD */
-        .auth-card { background: #111; border: 2px solid var(--gold); padding: 30px; border-radius: 20px; text-align: center; width: 85%; max-width: 400px; z-index: 100; }
-        input { width: 100%; padding: 15px; margin: 10px 0; border-radius: 10px; border: 1px solid #333; background: #000; color: white; box-sizing: border-box; }
-        .btn-gold { background: var(--gold); color: black; width: 100%; padding: 15px; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; text-transform: uppercase; }
+        /* AREA DASHBOARD */
+        #mainDash { display: none; width: 100vw; height: 100vh; flex-direction: column; }
 
-        /* VIP PAGE */
-        #vipBox { display: none; }
-        .vip-item { background: #222; padding: 15px; margin: 10px 0; border-radius: 10px; border: 1px solid var(--gold); display: flex; justify-content: space-between; }
+        /* CONTAINER VIDEO - INI KUNCINYA */
+        .video-wrapper { 
+            position: relative; 
+            width: 100%; 
+            height: 100%; /* Default Full untuk simulasi TV */
+            background: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
-        /* PLAYER SYSTEM ALA SCTV */
-        #mainDash { display: none; width: 100vw; height: 100vh; position: fixed; top: 0; left: 0; background: #000; }
-        
-        .video-container { position: relative; width: 100%; height: 60%; background: #000; }
-        
-        /* LOGO WATERMARK - INI YANG PERSIS SCTV */
-        .tv-logo { 
+        /* LOGO WATERMARK - TETAP ADA WALAUPUN LEBAR */
+        #watermark { 
             position: absolute; 
             top: 20px; 
             right: 20px; 
-            width: 100px; /* Ukuran pas ala TV */
-            z-index: 2147483647 !important; /* HARUS ANGKA INI BIAR DI ATAS VIDEO */
+            width: 90px; 
+            z-index: 99999999 !important; /* Angka tertinggi agar tidak tertutup */
             pointer-events: none; 
-            mix-blend-mode: screen; /* Hapus background hitam */
-            filter: drop-shadow(0 0 5px black);
+            mix-blend-mode: screen;
+            filter: drop-shadow(0 0 5px rgba(0,0,0,0.8));
+            opacity: 0.9;
         }
 
         iframe { width: 100%; height: 100%; border: none; }
 
-        /* NAVIGASI BAWAH */
-        .controls { padding: 20px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; background: #111; height: 40%; }
-        .nav-btn { padding: 20px 5px; border-radius: 10px; border: none; font-weight: bold; font-size: 12px; cursor: pointer; }
+        /* PANEL KONTROL DI BAWAH */
+        .controls { 
+            position: absolute; bottom: 0; width: 100%; background: rgba(10,10,10,0.9); 
+            display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 5px; padding: 10px; box-sizing: border-box;
+            z-index: 100000000; border-top: 1px solid #333;
+        }
+        .n-btn { padding: 15px 5px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; text-transform: uppercase; font-size: 10px; }
+
+        /* LOGIN & VIP */
+        .overlay-card { 
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            background: #000; display: flex; flex-direction: column; 
+            justify-content: center; align-items: center; z-index: 200000000; 
+        }
+        .card { background: #111; border: 2px solid var(--gold); padding: 30px; border-radius: 20px; text-align: center; width: 80%; max-width: 350px; }
+        input { width: 100%; padding: 15px; margin: 10px 0; border-radius: 10px; border: 1px solid #333; background: #000; color: white; box-sizing: border-box; }
+        .btn-gold { background: var(--gold); color: #000; width: 100%; padding: 15px; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; }
+        .vip-variant { background: #222; margin: 5px 0; padding: 10px; border-radius: 8px; font-size: 12px; display: flex; justify-content: space-between; border: 1px solid #444; }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <div id="authBox" class="auth-card">
-            <h2 style="color:var(--gold)">VISIONARYPLUS+</h2>
+    <div id="authPanel" class="overlay-card">
+        <div class="card">
+            <h2 style="color:var(--gold); margin-bottom: 20px;">VISIONARYPLUS+</h2>
             <input type="text" id="u" placeholder="Username CEO">
             <input type="password" id="p" placeholder="Password">
-            <button class="btn-gold" onclick="prosesLogin()">MASUK SISTEM</button>
+            <button class="btn-gold" onclick="doLogin()">MASUK KE SISTEM</button>
         </div>
+    </div>
 
-        <div id="vipBox" class="auth-card">
-            <h2 style="color:var(--gold)">BELUM VIP</h2>
-            <div class="vip-item"><span>ULTIMATE</span> <b>Rp 500k</b></div>
-            <div class="vip-item"><span>PREMIUM</span> <b>Rp 150k</b></div>
-            <button class="btn-gold" onclick="location.reload()">KEMBALI</button>
+    <div id="vipPanel" class="overlay-card" style="display:none;">
+        <div class="card">
+            <h2 style="color:var(--gold)">AKTIVASI VIP</h2>
+            <div class="vip-variant"><span>VIP ULTIMATE</span> <b>Rp 500k</b></div>
+            <div class="vip-variant"><span>VIP PREMIUM</span> <b>Rp 150k</b></div>
+            <div class="vip-variant"><span>VIP MONTHLY</span> <b>Rp 25k</b></div>
+            <p style="font-size: 10px; color: #888; margin-top: 15px;">Hubungi CEO: 08211553241</p>
+            <button class="btn-gold" style="background:#555; color:#fff;" onclick="location.reload()">KEMBALI</button>
         </div>
     </div>
 
     <div id="mainDash">
-        <div class="video-container">
-            <img id="watermark" src="https://raw.githubusercontent.com/triyuliansyah588ok/Visionary/main/VAMSTV.png" class="tv-logo">
-            <div id="playerArea" style="width:100%; height:100%;"></div>
+        <div class="video-wrapper">
+            <img id="watermark" src="https://raw.githubusercontent.com/triyuliansyah588ok/Visionary/main/VAMSTV.png">
+            <div id="videoContainer" style="width:100%; height:100%;"></div>
         </div>
         
         <div class="controls">
-            <button onclick="pilih('VAMS')" class="nav-btn" style="background:var(--gold)">📺 VAMS TV</button>
-            <button onclick="pilih('DJ')" class="nav-btn" style="background:white">📀 DJ MUSIC</button>
-            <button onclick="pilih('NSTV')" class="nav-btn" style="background:#444; color:white;">📺 NSTV</button>
+            <button onclick="pilih('VAMS')" class="n-btn" style="background:var(--gold)">📺 VAMS TV</button>
+            <button onclick="pilih('DJ')" class="n-btn" style="background:white">📀 DJ MUSIC</button>
+            <button onclick="pilih('NSTV')" class="n-btn" style="background:#444; color:white;">📺 NSTV</button>
         </div>
     </div>
 
     <script>
-        function prosesLogin() {
+        function doLogin() {
             const user = document.getElementById('u').value;
             const pass = document.getElementById('p').value;
             
-            // JALUR CEO M RAMADHAN
             if(user === "VisionaryPluss Founder90" && pass === "DANANJA2026") {
-                document.getElementById('authBox').parentElement.style.display = 'none';
-                document.getElementById('mainDash').style.display = 'block';
+                document.getElementById('authPanel').style.display = 'none';
+                document.getElementById('mainDash').style.display = 'flex';
                 pilih('VAMS');
+            } else if(user !== "" && pass !== "") {
+                document.getElementById('authPanel').style.display = 'none';
+                document.getElementById('vipPanel').style.display = 'flex';
             } else {
-                document.getElementById('authBox').style.display = 'none';
-                document.getElementById('vipBox').style.display = 'block';
+                alert("Lengkapi Data!");
             }
         }
 
-        const list = {
-            'VAMS': {id: 'D0ydazTSAyE', img: 'https://raw.githubusercontent.com/triyuliansyah588ok/Visionary/main/VAMSTV.png'},
-            'NSTV': {id: '8Xje26lClzY', img: 'https://raw.githubusercontent.com/triyuliansyah588ok/Visionary/main/logo_nstv-removebg-preview.png'},
-            'DJ': {id: 'D0ydazTSAyE', img: 'https://raw.githubusercontent.com/triyuliansyah588ok/Visionary/main/VAMSTV.png'}
+        const stasiun = {
+            'VAMS': {id: 'D0ydazTSAyE', logo: 'https://raw.githubusercontent.com/triyuliansyah588ok/Visionary/main/VAMSTV.png'},
+            'NSTV': {id: '8Xje26lClzY', logo: 'https://raw.githubusercontent.com/triyuliansyah588ok/Visionary/main/logo_nstv-removebg-preview.png'},
+            'DJ': {id: 'D0ydazTSAyE', logo: 'https://raw.githubusercontent.com/triyuliansyah588ok/Visionary/main/VAMSTV.png'}
         };
 
-        function pilih(cat) {
-            const p = list[cat];
-            document.getElementById('watermark').src = p.img;
-            document.getElementById('playerArea').innerHTML = `
-                <iframe src="https://www.youtube.com/embed/${p.id}?autoplay=1&modestbranding=1&rel=0&iv_load_policy=3&showinfo=0" 
+        function pilih(key) {
+            const data = stasiun[key];
+            document.getElementById('watermark').src = data.logo;
+            // Gunakan mode "Full View" simulasi, bukan Fullscreen YouTube asli agar logo tidak hilang
+            document.getElementById('videoContainer').innerHTML = `
+                <iframe src="https://www.youtube.com/embed/${data.id}?autoplay=1&controls=1&modestbranding=1&rel=0&iv_load_policy=3&disablekb=1" 
                 allow="autoplay; fullscreen"></iframe>`;
         }
     </script>
