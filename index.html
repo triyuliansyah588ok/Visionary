@@ -3,157 +3,146 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>VisionaryPlus+ | CEO M RAMADHAN</title>
+    <title>Visionary STB Cloud | Dananja Media Group</title>
     <style>
-        :root { --gold: #ffd700; --dark: #000; }
-        body, html { margin: 0; padding: 0; width: 100%; height: 100%; background: #000; overflow: hidden; font-family: 'Arial', sans-serif; color: white; }
+        :root { --v-gold: #ffcc00; --v-glass: rgba(20, 20, 20, 0.95); }
+        body, html { margin: 0; padding: 0; width: 100%; height: 100%; background: #000; font-family: 'Segoe UI', sans-serif; color: white; overflow: hidden; }
+
+        /* UI SET-TOP BOX (DECODER SCREEN) */
+        #stb-boot { 
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            background: radial-gradient(circle, #1a1a1a, #000); 
+            display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 9999; 
+        }
+        .stb-card { 
+            background: var(--v-glass); border: 1px solid var(--v-gold); 
+            padding: 40px; border-radius: 20px; text-align: center; width: 85%; max-width: 400px;
+            box-shadow: 0 0 50px rgba(255, 204, 0, 0.1);
+        }
+        .stb-input { 
+            width: 100%; padding: 15px; margin: 20px 0; border-radius: 10px; border: none; 
+            background: #111; color: var(--v-gold); font-size: 20px; text-align: center; letter-spacing: 5px; 
+            font-weight: bold; border-bottom: 2px solid var(--v-gold);
+        }
         
-        /* BROADCAST AREA */
-        #mainDash { display: none; width: 100vw; height: 100vh; flex-direction: column; z-index: 10; position: relative; }
-        #broadcast-room { position: relative; width: 100%; height: 60%; background: #000; display: flex; justify-content: center; align-items: center; }
+        /* TV BROADCAST INTERFACE */
+        #tv-screen { display: none; width: 100vw; height: 100vh; flex-direction: column; }
         
-        /* LOGO WATERMARK - KUNCI SCTV STYLE */
-        #watermark { position: absolute; top: 15px; right: 15px; width: 85px; z-index: 9999999; pointer-events: none; mix-blend-mode: screen; filter: drop-shadow(0 0 5px black); }
+        /* PLAYER KUNCI (SCTV STYLE) */
+        .video-container { position: relative; width: 100%; height: 65%; background: #000; display: flex; align-items: center; justify-content: center; }
         video { width: 100%; height: 100%; object-fit: contain; }
+        
+        /* WATERMARK PERUSAHAAN (LOCK SYSTEM) */
+        .brand-logo { 
+            position: absolute; top: 20px; right: 20px; width: 80px; 
+            z-index: 100; pointer-events: none; mix-blend-mode: screen; filter: drop-shadow(0 0 5px black);
+        }
 
-        /* CATALOG PROGRAM (DI BAWAH VIDEO) */
-        #program-list { height: 40%; background: #111; padding: 15px; overflow-y: auto; border-top: 2px solid var(--gold); }
-        .grid-program { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-        .prog-card { background: #222; border-radius: 12px; overflow: hidden; border: 1px solid #333; cursor: pointer; transition: 0.3s; }
-        .prog-card:hover { border-color: var(--gold); transform: scale(0.98); }
-        .prog-card img { width: 100%; height: 100px; object-fit: cover; }
-        .prog-card p { padding: 8px; margin: 0; font-size: 11px; text-align: center; font-weight: bold; }
+        /* REMOTE CONTROL PANEL (PROGRAM LIST) */
+        .remote-panel { 
+            height: 35%; background: #0a0a0a; border-top: 3px solid var(--v-gold); 
+            padding: 20px; overflow-y: auto; box-sizing: border-box;
+        }
+        .channel-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 15px; }
+        .channel-item { 
+            background: #1a1a1a; border-radius: 12px; padding: 10px; cursor: pointer; 
+            border: 1px solid #333; transition: 0.3s; text-align: center;
+        }
+        .channel-item:hover { border-color: var(--v-gold); background: #222; }
+        .channel-item img { width: 100%; height: 80px; object-fit: cover; border-radius: 8px; margin-bottom: 8px; }
+        .channel-item span { font-size: 12px; font-weight: bold; display: block; color: #ccc; }
 
-        /* UI OVERLAY LOGIN & DAFTAR */
-        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; display: flex; justify-content: center; align-items: center; z-index: 9999999; }
-        .card { background: #111; border: 2px solid var(--gold); padding: 30px; border-radius: 20px; text-align: center; width: 85%; max-width: 400px; }
-        input { width: 100%; padding: 14px; margin: 8px 0; border-radius: 10px; border: 1px solid #333; background: #000; color: white; box-sizing: border-box; }
-        .btn-gold { background: var(--gold); color: #000; width: 100%; padding: 16px; border: none; border-radius: 10px; font-weight: 900; cursor: pointer; text-transform: uppercase; }
-
-        .nav-footer { display: flex; background: #000; padding: 10px; border-top: 1px solid #333; }
-        .btn-nav { flex: 1; padding: 12px; border: none; font-weight: bold; cursor: pointer; font-size: 10px; color: white; background: #222; margin: 0 5px; border-radius: 5px; }
-        .btn-nav.active { background: var(--gold); color: black; }
+        /* VIP STATUS BAR */
+        .status-bar { padding: 5px 15px; background: var(--v-gold); color: black; font-size: 10px; font-weight: bold; display: flex; justify-content: space-between; }
     </style>
 </head>
 <body>
 
-    <div id="screenGate" class="overlay">
-        <div class="card" id="formBox">
-            <h2 style="color:var(--gold)">VISIONARYPLUS+</h2>
-            <div id="authFields">
-                <input type="text" id="user" placeholder="Username">
-                <input type="password" id="pass" placeholder="Password">
-                <button class="btn-gold" onclick="prosesMasuk()">MASUK STUDIO</button>
-                <p onclick="setDaftar(true)" style="font-size: 10px; margin-top: 15px; color: #888; cursor:pointer;">Belum punya akun? Daftar Sekarang</p>
-            </div>
+    <div id="stb-boot">
+        <div class="stb-card">
+            <h2 style="margin:0; color:var(--v-gold)">VISIONARY STB</h2>
+            <p style="font-size: 10px; color: #888;">DANANJA MEDIA GROUP - GLOBAL BROADCAST</p>
+            <input type="text" id="stb-code" class="stb-input" placeholder="KODE DECODER">
+            <button onclick="activateSTB()" style="width:100%; padding:15px; background:var(--v-gold); border:none; border-radius:10px; font-weight:900; cursor:pointer;">CONNECT SIGNAL</button>
+            <p style="font-size: 10px; margin-top: 20px;">Belum punya kode? Hubungi Admin Visionary</p>
         </div>
     </div>
 
-    <div id="mainDash">
-        <div id="broadcast-room">
-            <img id="watermark" src="https://raw.githubusercontent.com/triyuliansyah588ok/Visionary/main/VAMSTV.png">
-            <video id="v-player" controls autoplay playsinline>
-                <source id="v-source" src="" type="video/mp4">
+    <div id="tv-screen">
+        <div class="status-bar">
+            <span>SIGNAL: STRONG (4G/5G)</span>
+            <span>M RAMADHAN CEO OFFICIAL</span>
+            <span id="stb-clock">12:27</span>
+        </div>
+
+        <div class="video-container">
+            <img id="main-logo" class="brand-logo" src="https://raw.githubusercontent.com/triyuliansyah588ok/Visionary/main/VAMSTV.png">
+            <video id="tv-player" controls autoplay playsinline>
+                <source id="tv-source" src="" type="video/mp4">
             </video>
         </div>
 
-        <div id="program-list">
-            <h3 id="station-title" style="color:var(--gold); font-size: 14px; margin-bottom: 15px;">PILIK PROGRAM VAMS TV</h3>
-            <div class="grid-program" id="gridBox">
+        <div class="remote-panel">
+            <h3 style="font-size:14px; margin:0 0 15px 0; color:var(--v-gold)">PILIH SALURAN TV (PROGRAM)</h3>
+            <div class="channel-grid" id="menu-stb">
                 </div>
-        </div>
-
-        <div class="nav-footer">
-            <button onclick="switchStation('VAMS')" id="navVAMS" class="btn-nav active">VAMS TV</button>
-            <button onclick="switchStation('DJ')" id="navDJ" class="btn-nav">DJ CENTER</button>
-            <button onclick="switchStation('NSTV')" id="navNSTV" class="btn-nav">NSTV</button>
         </div>
     </div>
 
     <script>
-        let modeDaftar = false;
+        // SISTEM KODE STB (Ubah di sini)
+        const MASTER_CODE = "VAMS2026"; 
+        const CEO_CODE = "DANANJA90";
 
-        function setDaftar(val) {
-            modeDaftar = val;
-            const title = modeDaftar ? "PENDAFTARAN VIP" : "VISIONARYPLUS+";
-            const btnText = modeDaftar ? "DAFTAR & LOGIN" : "MASUK STUDIO";
-            const linkText = modeDaftar ? "Sudah punya akun? Login" : "Belum punya akun? Daftar Sekarang";
-            document.querySelector('#formBox h2').innerText = title;
-            document.querySelector('.btn-gold').innerText = btnText;
-            document.querySelector('#formBox p').innerText = linkText;
+        function activateSTB() {
+            const code = document.getElementById('stb-code').value;
+            if(code === MASTER_CODE || code === CEO_CODE) {
+                document.getElementById('stb-boot').style.display = 'none';
+                document.getElementById('tv-screen').style.display = 'flex';
+                loadChannels();
+            } else {
+                alert("KODE SALAH! Signal Terputus.");
+            }
         }
 
-        function prosesMasuk() {
-            const u = document.getElementById('user').value;
-            const p = document.getElementById('pass').value;
-            
-            if(u === "VisionaryPluss Founder90" && p === "DANANJA2026") {
-                bukaStudio();
-            } else if(u && p) {
-                if(modeDaftar) {
-                    localStorage.setItem("acc_" + u, p);
-                    alert("Daftar Berhasil! Silakan klik Masuk.");
-                    setDaftar(false);
-                } else {
-                    const saved = localStorage.getItem("acc_" + u);
-                    if(saved === p) { bukaStudio(); } else { alert("Data Salah!"); }
-                }
-            } else { alert("Isi Username/Pass!"); }
-        }
+        // DATABASE PROGRAM MEDIA KITA
+        const database = [
+            { name: "VAMS TV HD", logo: "https://raw.githubusercontent.com/triyuliansyah588ok/Visionary/main/VAMSTV.png", vid: "https://www.w3schools.com/html/movie.mp4", type: "NEWS" },
+            { name: "NSTV LIVE", logo: "https://raw.githubusercontent.com/triyuliansyah588ok/Visionary/main/logo_nstv-removebg-preview.png", vid: "https://www.w3schools.com/html/mov_bbb.mp4", type: "ENTERTAINMENT" },
+            { name: "DJ CENTER MIX", logo: "https://raw.githubusercontent.com/triyuliansyah588ok/Visionary/main/VAMSTV.png", vid: "https://www.w3schools.com/html/movie.mp4", type: "MUSIC" },
+            { name: "DANANJA ANTHEM", logo: "https://raw.githubusercontent.com/triyuliansyah588ok/Visionary/main/VAMSTV.png", vid: "https://www.w3schools.com/html/mov_bbb.mp4", type: "VIP" }
+        ];
 
-        function bukaStudio() {
-            document.getElementById('screenGate').style.display = 'none';
-            document.getElementById('mainDash').style.display = 'flex';
-            switchStation('VAMS');
-        }
-
-        // DATABASE PROGRAM
-        const content = {
-            'VAMS': [
-                {name: "VAMS NEWS HD", vid: "https://www.w3schools.com/html/movie.mp4", img: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=400"},
-                {name: "VAMS TALKSHOW", vid: "https://www.w3schools.com/html/mov_bbb.mp4", img: "https://images.unsplash.com/photo-1478737270239-2fccd2508567?q=80&w=400"}
-            ],
-            'DJ': [
-                {name: "DJ REMIX 2026", vid: "https://www.w3schools.com/html/mov_bbb.mp4", img: "https://images.unsplash.com/photo-1571266028243-e4733b0f0bb1?q=80&w=400"},
-                {name: "DJ SLOW MANTAP", vid: "https://www.w3schools.com/html/movie.mp4", img: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=400"}
-            ],
-            'NSTV': [
-                {name: "NSTV DOCUMENTARY", vid: "https://www.w3schools.com/html/movie.mp4", img: "https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=400"},
-                {name: "NSTV SPORT LIVE", vid: "https://www.w3schools.com/html/mov_bbb.mp4", img: "https://images.unsplash.com/photo-1504450758481-7338eba7524a?q=80&w=400"}
-            ]
-        };
-
-        function switchStation(st) {
-            // Update UI Tombol
-            document.querySelectorAll('.btn-nav').forEach(b => b.classList.remove('active'));
-            document.getElementById('nav'+st).classList.add('active');
-            
-            // Update Logo
-            const logo = st === 'NSTV' ? "https://raw.githubusercontent.com/triyuliansyah588ok/Visionary/main/logo_nstv-removebg-preview.png" : "https://raw.githubusercontent.com/triyuliansyah588ok/Visionary/main/VAMSTV.png";
-            document.getElementById('watermark').src = logo;
-
-            // Update Judul & Grid
-            document.getElementById('station-title').innerText = "PROGRAM " + st + " CENTER";
-            const grid = document.getElementById('gridBox');
-            grid.innerHTML = "";
-
-            content[st].forEach(item => {
-                const card = document.createElement('div');
-                card.className = 'prog-card';
-                card.onclick = () => {
-                    const v = document.getElementById('v-player');
-                    document.getElementById('v-source').src = item.vid;
-                    v.load(); v.play();
-                };
-                card.innerHTML = `<img src="${item.img}"><p>${item.name}</p>`;
-                grid.appendChild(card);
+        function loadChannels() {
+            const menu = document.getElementById('menu-stb');
+            database.forEach((ch, index) => {
+                const item = document.createElement('div');
+                item.className = 'channel-item';
+                item.onclick = () => playChannel(index);
+                item.innerHTML = `
+                    <img src="${ch.logo}">
+                    <span>${ch.name}</span>
+                    <small style="font-size:8px; color:var(--v-gold)">${ch.type}</small>
+                `;
+                menu.appendChild(item);
             });
-            
-            // Load program pertama otomatis
-            const v = document.getElementById('v-player');
-            document.getElementById('v-source').src = content[st][0].vid;
-            v.load(); v.play();
+            playChannel(0); // Putar otomatis saluran pertama
         }
+
+        function playChannel(i) {
+            const ch = database[i];
+            const player = document.getElementById('tv-player');
+            document.getElementById('tv-source').src = ch.vid;
+            document.getElementById('main-logo').src = ch.logo;
+            player.load();
+            player.play();
+        }
+
+        // Jam Real-time STB
+        setInterval(() => {
+            const d = new Date();
+            document.getElementById('stb-clock').innerText = d.getHours() + ":" + d.getMinutes();
+        }, 1000);
     </script>
 </body>
 </html>
