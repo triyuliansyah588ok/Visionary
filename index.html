@@ -3,156 +3,168 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Visionary STB | Dananja Media Group</title>
+    <title>VISIONARY STB CLOUD | DANANJA MEDIA GROUP</title>
     <style>
-        :root { --v-gold: #ffcc00; --v-dark: #000; }
-        body, html { margin: 0; padding: 0; width: 100%; height: 100%; background: #000; font-family: 'Arial', sans-serif; color: white; overflow: hidden; }
+        /* 50+ OPTIMIZATION: CSS RESET & STABILITY */
+        :root { --v-gold: #ffcc00; --v-dark: #000; --v-gray: #1a1a1a; --v-neon: #00f2ff; }
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body, html { margin: 0; padding: 0; width: 100%; height: 100%; background: #000; font-family: 'Segoe UI', Roboto, sans-serif; color: white; overflow: hidden; }
 
-        /* SKRIN STARTUP DECODER */
-        #decoder-screen { 
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-            background: radial-gradient(circle, #151515, #000); 
-            display: flex; justify-content: center; align-items: center; z-index: 999999; 
-        }
-        .decoder-card { 
-            background: rgba(20,20,20,0.95); border: 2px solid var(--v-gold); 
-            padding: 40px; border-radius: 20px; text-align: center; width: 85%; max-width: 350px;
-        }
-        .decoder-input { 
-            width: 100%; padding: 15px; margin: 20px 0; border: none; border-bottom: 2px solid var(--v-gold);
-            background: #000; color: var(--v-gold); font-size: 22px; text-align: center; font-weight: bold; outline: none;
-        }
-        .btn-boot { width: 100%; padding: 15px; background: var(--v-gold); border: none; font-weight: 900; border-radius: 10px; cursor: pointer; text-transform: uppercase; }
+        /* DECODER STARTUP */
+        #stb-boot { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle, #222, #000); display: flex; justify-content: center; align-items: center; z-index: 9999999; }
+        .boot-card { background: rgba(10,10,10,0.95); border: 2px solid var(--v-gold); padding: 40px; border-radius: 20px; text-align: center; width: 85%; max-width: 380px; box-shadow: 0 0 50px rgba(255, 204, 0, 0.2); }
+        .stb-input { width: 100%; padding: 15px; margin: 20px 0; border: none; border-bottom: 2px solid var(--v-gold); background: #000; color: var(--v-gold); font-size: 22px; text-align: center; font-weight: bold; outline: none; letter-spacing: 5px; }
+        .btn-boot { width: 100%; padding: 18px; background: var(--v-gold); border: none; font-weight: 900; border-radius: 12px; cursor: pointer; text-transform: uppercase; }
 
-        /* INTERFACE TV UTAMA */
-        #tv-interface { display: none; width: 100vw; height: 100vh; flex-direction: column; }
+        /* TV INTERFACE */
+        #tv-screen { display: none; width: 100vw; height: 100vh; flex-direction: column; }
+        .top-bar { padding: 10px 15px; background: #111; font-size: 11px; display: flex; justify-content: space-between; color: var(--v-gold); font-weight: bold; border-bottom: 1px solid #222; }
         
-        /* KOTAK PEMUTAR (LOGO DIKUNCI DI SINI - SCTV STYLE) */
-        #broadcast-area { 
-            position: relative; width: 100%; height: 60%; background: #000; 
-            display: flex; align-items: center; justify-content: center;
-        }
+        /* VIDEO VIEWPORT (ABSOLUTE LOGO LOCK) */
+        #player-box { position: relative; width: 100%; height: 50%; background: #000; display: flex; align-items: center; justify-content: center; overflow: hidden; }
         
-        /* LOGO KECIL & KEMAS (TIDAK AKAN HILANG) */
-        #tv-logo { 
-            position: absolute; top: 15px; right: 15px; width: 65px; 
-            z-index: 2147483647 !important; pointer-events: none; 
-            mix-blend-mode: screen; filter: drop-shadow(0 0 5px black); opacity: 0.9;
+        /* LOGO SCTV STYLE - KUNCI MATI */
+        #main-logo { 
+            position: absolute; top: 15px; right: 15px; width: 75px; 
+            z-index: 2147483647 !important; /* Level Tertinggi */
+            pointer-events: none; mix-blend-mode: screen; filter: drop-shadow(0 0 5px black); 
         }
+        video { width: 100%; height: 100%; object-fit: contain; background: #000; }
 
-        video { width: 100%; height: 100%; object-fit: contain; }
+        /* PROGRAM GALLERY (UPDATE) */
+        #gallery { flex-grow: 1; background: #0a0a0a; border-top: 2px solid #222; padding: 15px; overflow-y: auto; }
+        .gallery-title { color: var(--v-gold); font-size: 13px; margin-bottom: 15px; font-weight: bold; text-transform: uppercase; border-left: 3px solid var(--v-gold); padding-left: 10px; }
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .card { background: #151515; border-radius: 12px; overflow: hidden; border: 1px solid #333; cursor: pointer; transition: 0.2s; position: relative; }
+        .card:active { transform: scale(0.96); border-color: var(--v-gold); }
+        .card img { width: 100%; height: 85px; object-fit: cover; opacity: 0.8; }
+        .card p { padding: 10px; margin: 0; font-size: 10px; text-align: center; font-weight: bold; line-height: 1.2; }
 
-        /* REMOTE CONTROL & PROGRAM */
-        .remote-panel { 
-            height: 40%; background: #0a0a0a; border-top: 2px solid #222; 
-            padding: 20px; overflow-y: auto; box-sizing: border-box;
-        }
-        .ch-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-        .ch-item { 
-            background: #151515; border: 1px solid #333; padding: 25px 10px; 
-            border-radius: 12px; text-align: center; cursor: pointer;
-        }
-        .ch-item:active { background: var(--v-gold); color: #000; }
-        .ch-item b { font-size: 16px; display: block; }
+        /* REMOTE CONTROL NAVIGATION (DJ DI TENGAH) */
+        .remote { display: grid; grid-template-columns: 1fr 1.2fr 1fr; background: #000; padding: 12px; border-top: 2px solid #222; gap: 8px; }
+        .btn-nav { padding: 15px 5px; border: none; font-weight: 900; cursor: pointer; font-size: 10px; border-radius: 8px; background: #222; color: white; text-transform: uppercase; }
+        .btn-nav.active { background: var(--v-gold); color: black; box-shadow: 0 0 15px rgba(255, 204, 0, 0.3); }
+        .btn-dj { background: #333; border: 1px solid var(--v-gold); color: var(--v-gold); }
 
-        /* TOMBOL LEBARKAN */
-        #btn-zoom {
-            position: absolute; bottom: 10px; right: 10px;
-            background: rgba(255, 204, 0, 0.6); border: none; padding: 5px 10px;
-            border-radius: 4px; font-size: 9px; font-weight: bold; z-index: 1000000; color: black;
-        }
-
-        .status-top { padding: 8px 15px; background: #111; font-size: 10px; display: flex; justify-content: space-between; color: var(--v-gold); border-bottom: 1px solid #222; }
+        /* FULLSCREEN BUTTON */
+        #btn-zoom { position: absolute; bottom: 15px; right: 15px; background: rgba(0,0,0,0.6); border: 1px solid var(--v-gold); padding: 8px 12px; border-radius: 5px; font-size: 10px; font-weight: bold; color: var(--v-gold); z-index: 999999; }
     </style>
 </head>
 <body>
 
-    <div id="decoder-screen">
-        <div class="decoder-card">
-            <h1 style="margin:0; letter-spacing: 3px; font-size: 20px;">VISIONARY STB</h1>
-            <p style="font-size: 9px; color: #666; margin-top: 5px;">DANANJA MEDIA GROUP OFFICIAL</p>
-            <input type="text" id="access-code" class="decoder-input" placeholder="KODE AKSES">
-            <button class="btn-boot" onclick="bootSystem()">AKTIFKAN SIGNAL</button>
+    <div id="stb-boot">
+        <div class="boot-card">
+            <h1 style="margin:0; letter-spacing: 2px; font-size: 22px; color: var(--v-gold);">VISIONARY STB</h1>
+            <p style="font-size: 10px; color: #666;">DANANJA MEDIA GROUP DIGITAL 2026</p>
+            <input type="text" id="access-code" class="stb-input" placeholder="KODE AKSES">
+            <button class="btn-boot" onclick="boot()">AKTIFKAN SIGNAL</button>
         </div>
     </div>
 
-    <div id="tv-interface">
-        <div class="status-top">
-            <span>SIGNAL: M RAMADHAN CEO</span>
-            <span id="digital-clock">00:00</span>
-            <span>VISIONARYPLUS+</span>
+    <div id="tv-screen">
+        <div class="top-bar">
+            <span>STB ACTIVE 4G/5G</span>
+            <span id="stb-clock">00:00</span>
+            <span>M RAMADHAN CEO</span>
         </div>
 
-        <div id="broadcast-area">
-            <img id="tv-logo" src="https://raw.githubusercontent.com/triyuliansyah588ok/Visionary/main/VAMSTV.png">
-            
+        <div id="player-box">
+            <img id="main-logo" src="https://raw.githubusercontent.com/triyuliansyah588ok/Visionary/main/VAMSTV.png">
             <video id="stb-player" controls autoplay playsinline>
                 <source id="stb-src" src="" type="video/mp4">
             </video>
-            
-            <button id="btn-zoom" onclick="toggleFull()">LEBARKAN LAYAR</button>
+            <button id="btn-zoom" onclick="gasFull()">LEBARKAN</button>
         </div>
 
-        <div class="remote-panel">
-            <p style="font-size: 11px; color: #444; margin-bottom: 15px; font-weight: bold;">SALURAN TV DIGITAL:</p>
-            <div class="ch-grid">
-                <div class="ch-item" onclick="switchCH('VAMS')"><b>VAMS TV</b></div>
-                <div class="ch-item" onclick="switchCH('NSTV')"><b>NSTV</b></div>
-            </div>
-            <p style="text-align:center; font-size:9px; color:#222; margin-top:30px;">© 2026 DANANJA MEDIA GROUP</p>
+        <div id="gallery">
+            <div class="gallery-title" id="st-title">PROGRAM VAMS TV</div>
+            <div class="grid" id="grid-box">
+                </div>
+        </div>
+
+        <div class="remote">
+            <button onclick="switchST('VAMS')" id="navVAMS" class="btn-nav active">VAMS TV</button>
+            <button onclick="switchST('DJ')" id="navDJ" class="btn-nav btn-dj">DJ CENTER</button>
+            <button onclick="switchST('NSTV')" id="navNSTV" class="btn-nav">NSTV</button>
         </div>
     </div>
 
     <script>
-        // KODE AKSES UTAMA
+        // 50+ OPTIMIZATION: SYSTEM ENGINE
         const KEY = "VAMS2026";
-
-        function bootSystem() {
-            const val = document.getElementById('access-code').value;
-            if(val.toUpperCase() === KEY) {
-                document.getElementById('decoder-screen').style.display = 'none';
-                document.getElementById('tv-interface').style.display = 'flex';
-                switchCH('VAMS');
-            } else { alert("KODE SALAH! Signal Tidak Ditemukan."); }
-        }
-
-        const library = {
+        const STB_DATA = {
             'VAMS': {
-                v: "https://www.w3schools.com/html/movie.mp4",
-                l: "https://raw.githubusercontent.com/triyuliansyah588ok/Visionary/main/VAMSTV.png"
+                logo: "https://raw.githubusercontent.com/triyuliansyah588ok/Visionary/main/VAMSTV.png",
+                progs: [
+                    { t: "VAMS NEWS HD", v: "https://www.w3schools.com/html/movie.mp4", i: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=300" },
+                    { t: "DANANJA TALK", v: "https://www.w3schools.com/html/mov_bbb.mp4", i: "https://images.unsplash.com/photo-1478737270239-2fccd2508567?w=300" },
+                    { t: "GLOBAL UPDATE", v: "https://www.w3schools.com/html/movie.mp4", i: "https://images.unsplash.com/photo-1529243856184-fd5465488984?w=300" }
+                ]
+            },
+            'DJ': {
+                logo: "https://raw.githubusercontent.com/triyuliansyah588ok/Visionary/main/VAMSTV.png",
+                progs: [
+                    { t: "DJ REMIX MANTAP 1", v: "https://www.w3schools.com/html/mov_bbb.mp4", i: "https://images.unsplash.com/photo-1571266028243-e4733b0f0bb1?w=300" },
+                    { t: "DJ SLOW DANANJA 2", v: "https://www.w3schools.com/html/movie.mp4", i: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=300" },
+                    { t: "DJ TIKTOK 2026", v: "https://www.w3schools.com/html/mov_bbb.mp4", i: "https://images.unsplash.com/photo-1493225255756-d9584f8606e9?w=300" },
+                    { t: "DJ NONSTOP BEAT", v: "https://www.w3schools.com/html/movie.mp4", i: "https://images.unsplash.com/photo-1514525253361-b83a65c932c0?w=300" }
+                ]
             },
             'NSTV': {
-                v: "https://www.w3schools.com/html/mov_bbb.mp4",
-                l: "https://raw.githubusercontent.com/triyuliansyah588ok/Visionary/main/logo_nstv-removebg-preview.png"
+                logo: "https://raw.githubusercontent.com/triyuliansyah588ok/Visionary/main/logo_nstv-removebg-preview.png",
+                progs: [
+                    { t: "NSTV MOVIE SPECIAL", v: "https://www.w3schools.com/html/mov_bbb.mp4", i: "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=300" },
+                    { t: "NSTV DOCUMENTARY", v: "https://www.w3schools.com/html/movie.mp4", i: "https://images.unsplash.com/photo-1504450758481-7338eba7524a?w=300" }
+                ]
             }
         };
 
-        function switchCH(id) {
-            const data = library[id];
-            const player = document.getElementById('stb-player');
-            const logo = document.getElementById('tv-logo');
-            
-            document.getElementById('stb-src').src = data.v;
-            logo.src = data.l;
-            
-            player.load();
-            player.play();
+        function boot() {
+            if(document.getElementById('access-code').value.toUpperCase() === KEY) {
+                document.getElementById('stb-boot').style.display = 'none';
+                document.getElementById('tv-screen').style.display = 'flex';
+                switchST('VAMS');
+            } else { alert("KODE SALAH!"); }
         }
 
-        function toggleFull() {
-            let box = document.getElementById("broadcast-area");
-            if (!document.fullscreenElement) {
-                box.requestFullscreen();
-                document.getElementById('btn-zoom').innerText = "KECILKAN";
-            } else {
-                document.exitFullscreen();
-                document.getElementById('btn-zoom').innerText = "LEBARKAN";
-            }
+        function switchST(id) {
+            document.querySelectorAll('.btn-nav').forEach(b => b.classList.remove('active'));
+            document.getElementById('nav'+id).classList.add('active');
+            document.getElementById('st-title').innerText = "PROGRAM " + (id === 'DJ' ? 'DJ CENTER' : id);
+            
+            const grid = document.getElementById('grid-box');
+            grid.innerHTML = "";
+            
+            STB_DATA[id].progs.forEach(p => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.onclick = () => {
+                    const pl = document.getElementById('stb-player');
+                    document.getElementById('stb-src').src = p.v;
+                    document.getElementById('main-logo').src = STB_DATA[id].logo;
+                    pl.load(); pl.play();
+                };
+                card.innerHTML = `<img src="${p.i}"><p>${p.t}</p>`;
+                grid.appendChild(card);
+            });
+
+            // Auto Load First Program
+            const first = STB_DATA[id].progs[0];
+            document.getElementById('stb-src').src = first.v;
+            document.getElementById('main-logo').src = STB_DATA[id].logo;
+            document.getElementById('stb-player').load();
         }
 
+        function gasFull() {
+            let box = document.getElementById("player-box");
+            if (!document.fullscreenElement) { box.requestFullscreen(); } 
+            else { document.exitFullscreen(); }
+        }
+
+        // JAM REALTIME STB
         setInterval(() => {
             const d = new Date();
-            document.getElementById('digital-clock').innerText = d.getHours().toString().padStart(2, '0') + ":" + d.getMinutes().toString().padStart(2, '0');
+            document.getElementById('stb-clock').innerText = d.getHours().toString().padStart(2,'0') + ":" + d.getMinutes().toString().padStart(2,'0');
         }, 1000);
     </script>
 </body>
