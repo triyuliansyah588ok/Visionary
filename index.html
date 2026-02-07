@@ -8,7 +8,7 @@
         :root { --v-gold: #ffcc00; --v-dark: #000; }
         body, html { margin: 0; padding: 0; width: 100%; height: 100%; background: #000; font-family: 'Arial', sans-serif; color: white; overflow: hidden; }
 
-        /* DECODER STARTUP */
+        /* SKRIN STARTUP DECODER */
         #decoder-screen { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
             background: radial-gradient(circle, #151515, #000); 
@@ -17,7 +17,6 @@
         .decoder-card { 
             background: rgba(20,20,20,0.95); border: 2px solid var(--v-gold); 
             padding: 40px; border-radius: 20px; text-align: center; width: 85%; max-width: 350px;
-            box-shadow: 0 0 40px rgba(255,204,0,0.1);
         }
         .decoder-input { 
             width: 100%; padding: 15px; margin: 20px 0; border: none; border-bottom: 2px solid var(--v-gold);
@@ -25,16 +24,16 @@
         }
         .btn-boot { width: 100%; padding: 15px; background: var(--v-gold); border: none; font-weight: 900; border-radius: 10px; cursor: pointer; text-transform: uppercase; }
 
-        /* TV INTERFACE */
+        /* INTERFACE TV UTAMA */
         #tv-interface { display: none; width: 100vw; height: 100vh; flex-direction: column; }
         
-        /* PLAYER KOTAK (LOGO DIKUNCI DI SINI) */
+        /* KOTAK PEMUTAR (LOGO DIKUNCI DI SINI - SCTV STYLE) */
         #broadcast-area { 
             position: relative; width: 100%; height: 60%; background: #000; 
             display: flex; align-items: center; justify-content: center;
         }
         
-        /* LOGO KECIL SCTV STYLE (FIXED) */
+        /* LOGO KECIL & KEMAS (TIDAK AKAN HILANG) */
         #tv-logo { 
             position: absolute; top: 15px; right: 15px; width: 65px; 
             z-index: 2147483647 !important; pointer-events: none; 
@@ -43,7 +42,7 @@
 
         video { width: 100%; height: 100%; object-fit: contain; }
 
-        /* REMOTE CONTROL */
+        /* REMOTE CONTROL & PROGRAM */
         .remote-panel { 
             height: 40%; background: #0a0a0a; border-top: 2px solid #222; 
             padding: 20px; overflow-y: auto; box-sizing: border-box;
@@ -51,12 +50,12 @@
         .ch-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
         .ch-item { 
             background: #151515; border: 1px solid #333; padding: 25px 10px; 
-            border-radius: 12px; text-align: center; cursor: pointer; transition: 0.2s;
+            border-radius: 12px; text-align: center; cursor: pointer;
         }
         .ch-item:active { background: var(--v-gold); color: #000; }
         .ch-item b { font-size: 16px; display: block; }
 
-        /* FULLSCREEN BUTTON */
+        /* TOMBOL LEBARKAN */
         #btn-zoom {
             position: absolute; bottom: 10px; right: 10px;
             background: rgba(255, 204, 0, 0.6); border: none; padding: 5px 10px;
@@ -71,17 +70,17 @@
     <div id="decoder-screen">
         <div class="decoder-card">
             <h1 style="margin:0; letter-spacing: 3px; font-size: 20px;">VISIONARY STB</h1>
-            <p style="font-size: 9px; color: #666; margin-top: 5px;">DANANJA MEDIA GROUP DIGITAL 2026</p>
+            <p style="font-size: 9px; color: #666; margin-top: 5px;">DANANJA MEDIA GROUP OFFICIAL</p>
             <input type="text" id="access-code" class="decoder-input" placeholder="KODE AKSES">
-            <button class="btn-boot" onclick="bootSystem()">CONNECT SIGNAL</button>
+            <button class="btn-boot" onclick="bootSystem()">AKTIFKAN SIGNAL</button>
         </div>
     </div>
 
     <div id="tv-interface">
         <div class="status-top">
-            <span>STB ACTIVE: 4G/5G</span>
+            <span>SIGNAL: M RAMADHAN CEO</span>
             <span id="digital-clock">00:00</span>
-            <span>CEO M RAMADHAN</span>
+            <span>VISIONARYPLUS+</span>
         </div>
 
         <div id="broadcast-area">
@@ -91,7 +90,7 @@
                 <source id="stb-src" src="" type="video/mp4">
             </video>
             
-            <button id="btn-zoom" onclick="toggleFull()">LEBARKAN</button>
+            <button id="btn-zoom" onclick="toggleFull()">LEBARKAN LAYAR</button>
         </div>
 
         <div class="remote-panel">
@@ -100,12 +99,12 @@
                 <div class="ch-item" onclick="switchCH('VAMS')"><b>VAMS TV</b></div>
                 <div class="ch-item" onclick="switchCH('NSTV')"><b>NSTV</b></div>
             </div>
-            <p style="text-align:center; font-size:9px; color:#222; margin-top:30px;">SET-TOP BOX CLOUD VERSION 1.0.26</p>
+            <p style="text-align:center; font-size:9px; color:#222; margin-top:30px;">© 2026 DANANJA MEDIA GROUP</p>
         </div>
     </div>
 
     <script>
-        // KODE AKTIVASI KHUSUS CEO
+        // KODE AKSES UTAMA
         const KEY = "VAMS2026";
 
         function bootSystem() {
@@ -114,7 +113,7 @@
                 document.getElementById('decoder-screen').style.display = 'none';
                 document.getElementById('tv-interface').style.display = 'flex';
                 switchCH('VAMS');
-            } else { alert("ACCESS DENIED: Signal Error!"); }
+            } else { alert("KODE SALAH! Signal Tidak Ditemukan."); }
         }
 
         const library = {
@@ -151,7 +150,6 @@
             }
         }
 
-        // JAM DIGITAL STB
         setInterval(() => {
             const d = new Date();
             document.getElementById('digital-clock').innerText = d.getHours().toString().padStart(2, '0') + ":" + d.getMinutes().toString().padStart(2, '0');
