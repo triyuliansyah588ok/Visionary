@@ -3,208 +3,155 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>VisionaryPlus+ | M RAMADHAN CEO OFFICIAL</title>
+    <title>VisionaryPlus+ | CEO M RAMADHAN</title>
     <style>
         :root { --gold: #ffd700; --dark: #000; --neon: #00f2ff; }
         body, html { margin: 0; padding: 0; width: 100%; height: 100%; background: #000; overflow: hidden; font-family: 'Orbitron', sans-serif; color: white; }
-
-        /* ANIMASI BACKGROUND BINTANG */
+        
         canvas { position: fixed; top: 0; left: 0; z-index: 1; pointer-events: none; }
-
-        /* STUDIO DASHBOARD */
+        
+        /* DASHBOARD BROADCAST */
         #mainDash { display: none; width: 100vw; height: 100vh; flex-direction: column; z-index: 10; position: relative; }
+        #broadcast-room { position: relative; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; overflow: hidden; }
+        
+        /* LOGO WATERMARK SCTV STYLE */
+        #watermark { position: absolute; top: 5%; right: 5%; width: 90px; z-index: 9999999; pointer-events: none; mix-blend-mode: screen; filter: drop-shadow(0 0 8px black); }
+        video { width: 100%; height: 100%; object-fit: contain; }
 
-        /* BROADCAST ROOM (VIDEO + LOGO) */
-        #broadcast-room { 
-            position: relative; 
-            width: 100%; 
-            height: 100%; 
-            background: #000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-        }
-
-        /* LOGO WATERMARK - TETAP ADA SAAT LEBAR (SCTV STYLE) */
-        #watermark { 
-            position: absolute; 
-            top: 5%; 
-            right: 5%; 
-            width: 95px; 
-            z-index: 2147483647 !important; 
-            pointer-events: none; 
-            mix-blend-mode: screen; /* MENGHAPUS BACKGROUND HITAM LOGO */
-            filter: drop-shadow(0 0 8px rgba(0,0,0,0.8));
-            opacity: 0.95;
-        }
-
-        /* NATIVE VIDEO PLAYER (TANPA YOUTUBE) */
-        video { width: 100%; height: 100%; object-fit: contain; background: #000; }
-
-        /* TOMBOL ZOOM KHUSUS CEO */
-        #btn-zoom {
-            position: absolute; bottom: 85px; right: 20px;
-            background: linear-gradient(90deg, #ffd700, #b8860b); 
-            color: black; border: none; padding: 12px 20px; border-radius: 8px; 
-            font-weight: 900; z-index: 1000000; cursor: pointer; 
-            box-shadow: 0 0 15px rgba(255,215,0,0.5); text-transform: uppercase;
-        }
-
-        /* PANEL NAVIGASI STASIUN TV */
-        .nav-bar { 
-            position: absolute; bottom: 0; width: 100%; background: rgba(10,10,10,0.98); 
-            display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; padding: 15px; box-sizing: border-box;
-            z-index: 1000000; border-top: 2px solid var(--gold);
-        }
-        .btn-station { 
-            padding: 15px 5px; border: none; border-radius: 10px; font-weight: 900; 
-            cursor: pointer; font-size: 10px; text-transform: uppercase; letter-spacing: 1px;
-        }
-
-        /* OVERLAY SYSTEM (LOGIN & VIP) */
-        .overlay-screen { 
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-            background: #000; display: flex; justify-content: center; 
-            align-items: center; z-index: 99999999; 
-        }
-        .card { 
-            background: rgba(15,15,15,0.95); border: 2px solid var(--gold); 
-            padding: 40px; border-radius: 30px; text-align: center; 
-            width: 85%; max-width: 400px; box-shadow: 0 0 30px rgba(255,215,0,0.2);
-        }
-        input { 
-            width: 100%; padding: 15px; margin: 10px 0; border-radius: 12px; 
-            border: 1px solid #333; background: #000; color: white; box-sizing: border-box; 
-            font-size: 16px; outline: none;
-        }
-        .btn-gold { 
-            background: linear-gradient(90deg, #ffd700, #b8860b); color: #000; 
-            width: 100%; padding: 18px; border: none; border-radius: 12px; 
-            font-weight: 900; cursor: pointer; font-size: 14px; margin-top: 15px;
-        }
-        .vip-opt { background: #1a1a1a; padding: 12px; border-radius: 10px; margin: 8px 0; border: 1px solid #333; display: flex; justify-content: space-between; font-size: 12px; }
+        /* UI OVERLAY */
+        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; display: flex; justify-content: center; align-items: center; z-index: 999999; }
+        .card { background: rgba(15,15,15,0.98); border: 2px solid var(--gold); padding: 30px; border-radius: 25px; text-align: center; width: 85%; max-width: 400px; box-shadow: 0 0 20px var(--gold); }
+        input { width: 100%; padding: 14px; margin: 8px 0; border-radius: 10px; border: 1px solid #333; background: #000; color: white; box-sizing: border-box; }
+        .btn-gold { background: var(--gold); color: #000; width: 100%; padding: 16px; border: none; border-radius: 10px; font-weight: 900; cursor: pointer; margin-top: 10px; text-transform: uppercase; }
+        
+        /* PRICING TABLE */
+        .price-box { background: #111; border: 1px solid #333; padding: 10px; border-radius: 12px; margin: 8px 0; display: flex; justify-content: space-between; align-items: center; font-size: 13px; }
+        .price-box b { color: var(--gold); }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <canvas id="starfield"></canvas>
+    <canvas id="stars"></canvas>
 
-    <div id="loginGate" class="overlay-screen">
+    <div id="screenDaftar" class="overlay">
         <div class="card">
-            <h1 style="color:var(--gold); margin: 0 0 10px 0; letter-spacing: 4px;">VISIONARYPLUS+</h1>
-            <p style="font-size: 10px; color: var(--neon); margin-bottom: 25px;">GLOBAL BROADCAST - CEO M RAMADHAN</p>
-            <input type="text" id="user" placeholder="Username CEO/Member">
-            <input type="password" id="pass" placeholder="Security Key">
-            <button class="btn-gold" onclick="authorize()">MASUK SISTEM</button>
-            <p style="font-size: 10px; margin-top: 20px; color: #888; cursor: pointer;" onclick="showVIP()">Daftar Member VIP Berbayar</p>
+            <h2 style="color:var(--gold)">BUAT AKUN BARU</h2>
+            <input type="text" id="regUser" placeholder="Username">
+            <input type="password" id="regPass" placeholder="Password">
+            <button class="btn-gold" onclick="prosesDaftar()">DAFTAR SEKARANG</button>
+            <p style="font-size: 11px; margin-top: 15px; cursor: pointer; color: #888;" onclick="gantiScreen('screenLogin')">Sudah punya akun? Login</p>
         </div>
     </div>
 
-    <div id="vipPanel" class="overlay-screen" style="display:none;">
+    <div id="screenLogin" class="overlay" style="display:none;">
         <div class="card">
-            <h2 style="color:var(--gold)">AKTIVASI VIP</h2>
-            <div class="vip-opt"><span>VIP ULTIMATE</span> <b>Rp 500k</b></div>
-            <div class="vip-opt"><span>VIP PREMIUM</span> <b>Rp 150k</b></div>
-            <div class="vip-opt"><span>VIP MONTHLY</span> <b>Rp 25k</b></div>
-            <p style="font-size: 11px; margin: 15px 0;">Transfer ke GOPAY/DANA: <b>08211553241</b></p>
-            <button class="btn-gold" onclick="location.reload()">KEMBALI KE LOGIN</button>
+            <h2 style="color:var(--gold)">LOGIN MEMBER</h2>
+            <input type="text" id="logUser" placeholder="Username">
+            <input type="password" id="logPass" placeholder="Password">
+            <button class="btn-gold" onclick="prosesLogin()">MASUK</button>
+        </div>
+    </div>
+
+    <div id="screenVIP" class="overlay" style="display:none;">
+        <div class="card">
+            <h2 style="color:var(--gold)">AKTIVASI PAKET</h2>
+            <p style="font-size: 11px; color: #aaa;">Pilih paket untuk mulai menonton</p>
+            
+            <div class="price-box"><span>1 BULAN</span> <b>Rp 60.000</b></div>
+            <div class="price-box"><span>3 BULAN</span> <b>Rp 200.000</b></div>
+            <div class="price-box"><span>1 TAHUN</span> <b>Rp 1.000.000</b></div>
+            <div class="price-box"><span>3 TAHUN</span> <b>Rp 4.000.000</b></div>
+
+            <p style="font-size: 11px; margin-top: 15px;">Konfirmasi Pembayaran ke CEO:<br><b style="color:var(--neon)">08211553241 (WhatsApp)</b></p>
+            <button class="btn-gold" onclick="alert('Kirim bukti transfer ke WhatsApp CEO untuk aktivasi akun Anda!')">HUBUNGI CEO</button>
+            <p style="font-size: 10px; margin-top: 10px; color: #555; cursor:pointer;" onclick="gantiScreen('screenLogin')">Logout</p>
         </div>
     </div>
 
     <div id="mainDash">
         <div id="broadcast-room">
             <img id="watermark" src="https://raw.githubusercontent.com/triyuliansyah588ok/Visionary/main/VAMSTV.png">
-            
             <video id="v-player" controls autoplay playsinline>
                 <source id="v-source" src="" type="video/mp4">
             </video>
-            
-            <button id="btn-zoom" onclick="toggleZoom()">LEBARKAN LAYAR</button>
         </div>
-        
-        <div class="nav-bar">
-            <button onclick="changeStation('VAMS')" class="btn-station" style="background:var(--gold)">VAMS TV</button>
-            <button onclick="changeStation('DJ')" class="btn-station" style="background:white">DJ CENTER</button>
-            <button onclick="changeStation('NSTV')" class="btn-station" style="background:#444; color:white;">NSTV</button>
+        <div style="padding: 15px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; background: #000; border-top: 2px solid var(--gold);">
+            <button onclick="play('VAMS')" style="padding: 15px; background: var(--gold); border: none; font-weight: bold; border-radius: 10px;">VAMS TV</button>
+            <button onclick="play('DJ')" style="padding: 15px; background: white; border: none; font-weight: bold; border-radius: 10px;">DJ CENTER</button>
+            <button onclick="play('NSTV')" style="padding: 15px; background: #333; color: white; border: none; font-weight: bold; border-radius: 10px;">NSTV</button>
         </div>
     </div>
 
     <script>
-        // BACKGROUND ANIMASI
-        const canvas = document.getElementById('starfield');
+        // Animasi Bintang
+        const canvas = document.getElementById('stars');
         const ctx = canvas.getContext('2d');
         canvas.width = window.innerWidth; canvas.height = window.innerHeight;
-        let stars = Array(150).fill().map(() => ({ x: Math.random()*canvas.width, y: Math.random()*canvas.height, r: Math.random()*1.5, s: Math.random()*0.5 }));
-        function animate() {
+        let sArr = Array(150).fill().map(() => ({ x: Math.random()*canvas.width, y: Math.random()*canvas.height, r: Math.random()*1.5 }));
+        function anim() {
             ctx.clearRect(0,0,canvas.width,canvas.height); ctx.fillStyle="white";
-            stars.forEach(s => { ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, 7); ctx.fill(); s.y += s.s; if(s.y > canvas.height) s.y = 0; });
-            requestAnimationFrame(animate);
+            sArr.forEach(s => { ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, 7); ctx.fill(); s.y += 0.3; if(s.y > canvas.height) s.y = 0; });
+            requestAnimationFrame(anim);
         }
-        animate();
+        anim();
 
-        // AUTH SYSTEM
-        function authorize() {
-            const u = document.getElementById('user').value;
-            const p = document.getElementById('pass').value;
+        function gantiScreen(id) {
+            document.querySelectorAll('.overlay').forEach(s => s.style.display = 'none');
+            document.getElementById(id).style.display = 'flex';
+        }
+
+        // 1. FUNGSI DAFTAR
+        function prosesDaftar() {
+            const u = document.getElementById('regUser').value;
+            const p = document.getElementById('regPass').value;
+            if(u && p) {
+                localStorage.setItem("user_" + u, p);
+                alert("Pendaftaran Berhasil! Silakan Login.");
+                gantiScreen('screenLogin');
+            } else { alert("Isi Username dan Password!"); }
+        }
+
+        // 2. FUNGSI LOGIN
+        function prosesLogin() {
+            const u = document.getElementById('logUser').value;
+            const p = document.getElementById('logPass').value;
+            const savedP = localStorage.getItem("user_" + u);
+
+            // JALUR CEO (LANGSUNG DASHBOARD)
             if(u === "VisionaryPluss Founder90" && p === "DANANJA2026") {
-                document.getElementById('loginGate').style.display = 'none';
-                document.getElementById('mainDash').style.display = 'flex';
-                changeStation('VAMS');
-            } else if(u !== "" && p !== "") {
-                showVIP();
-            } else { alert("Data Belum Lengkap!"); }
-        }
-
-        function showVIP() {
-            document.getElementById('loginGate').style.display = 'none';
-            document.getElementById('vipPanel').style.display = 'flex';
-        }
-
-        // DATABASE VIDEO INTERNAL (Ganti Link .mp4 di sini jika sudah upload ke GitHub)
-        const channels = {
-            'VAMS': {
-                v: 'https://raw.githubusercontent.com/triyuliansyah588ok/Visionary/main/vams_promo.mp4', 
-                l: 'https://raw.githubusercontent.com/triyuliansyah588ok/Visionary/main/VAMSTV.png'
-            },
-            'NSTV': {
-                v: 'https://www.w3schools.com/html/movie.mp4', 
-                l: 'https://raw.githubusercontent.com/triyuliansyah588ok/Visionary/main/logo_nstv-removebg-preview.png'
-            },
-            'DJ': {
-                v: 'https://www.w3schools.com/html/mov_bbb.mp4', 
-                l: 'https://raw.githubusercontent.com/triyuliansyah588ok/Visionary/main/VAMSTV.png'
-            }
-        };
-
-        function changeStation(key) {
-            const data = channels[key];
-            const player = document.getElementById('v-player');
-            const source = document.getElementById('v-source');
-            const logo = document.getElementById('watermark');
-
-            logo.src = data.l;
-            source.src = data.v;
-            player.load();
-            player.play().catch(e => console.log("Auto-play blocked"));
-        }
-
-        function toggleZoom() {
-            let area = document.getElementById("broadcast-room");
-            if (!document.fullscreenElement) {
-                area.requestFullscreen();
-                document.getElementById("btn-zoom").innerText = "KECILKAN";
+                alert("Selamat Datang Bos!");
+                masukDashboard();
+            } 
+            // JALUR MEMBER (KE HALAMAN BAYAR)
+            else if(savedP && savedP === p) {
+                gantiScreen('screenVIP');
             } else {
-                document.exitFullscreen();
-                document.getElementById("btn-zoom").innerText = "LEBARKAN LAYAR";
+                alert("Username/Password Salah!");
             }
         }
 
-        // Jaminan Logo Tetap Muncul
-        document.getElementById('watermark').onerror = function() {
-            this.src = "https://raw.githubusercontent.com/triyuliansyah588ok/Visionary/main/VAMSTV.png";
+        function masukDashboard() {
+            document.querySelectorAll('.overlay').forEach(s => s.style.display = 'none');
+            document.getElementById('mainDash').style.display = 'flex';
+            play('VAMS');
+        }
+
+        const db = {
+            'VAMS': {v: 'https://raw.githubusercontent.com/triyuliansyah588ok/Visionary/main/vams_promo.mp4', l: 'https://raw.githubusercontent.com/triyuliansyah588ok/Visionary/main/VAMSTV.png'},
+            'NSTV': {v: 'https://www.w3schools.com/html/movie.mp4', l: 'https://raw.githubusercontent.com/triyuliansyah588ok/Visionary/main/logo_nstv-removebg-preview.png'},
+            'DJ': {v: 'https://www.w3schools.com/html/mov_bbb.mp4', l: 'https://raw.githubusercontent.com/triyuliansyah588ok/Visionary/main/VAMSTV.png'}
         };
+
+        function play(k) {
+            const data = db[k];
+            const video = document.getElementById('v-player');
+            const source = document.getElementById('v-source');
+            document.getElementById('watermark').src = data.l;
+            source.src = data.v;
+            video.load();
+            video.play();
+        }
     </script>
 </body>
 </html>
